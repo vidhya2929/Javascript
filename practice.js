@@ -236,3 +236,159 @@
 //     }
 // }
 // putApplesOranges()
+// let inputBtn = document.getElementById("input-btn")
+// inputBtn.addEventListener("click",function(){
+//     console.log("Button clicked from addEventListener")
+// })
+// let box = document.getElementById("box")
+// box.addEventListener("click",function(){
+//     console.log("I want to open the box!")
+// })
+// const basePrice = 520
+// const discount = 120
+// let shippingCost =12
+// let shppingTime = "5-12 days"
+// const fullPrice = basePrice -discount + shippingCost
+// console.log("Total cost:"+fullPrice+".It will arrive in" +shppingTime)
+// const container = document.getElementById("container");
+// container.innerHTML = "<button onclick='buy()'>Buy!</button>";
+// console.log(container)
+// function buy() {
+//     container.innerHTML += "<p>Thank you for buying!</p>";
+// }
+// let myLeads = ["www.beyondinsane.com","www.comybeyond.com","www.yahoo.com"]
+// const inputEl = document.getElementById("input-el")
+// const inputBtn = document.getElementById("input-btn")
+// const ulEl = document.getElementById("ul-el")
+// inputBtn.addEventListener("click",function(){
+//     myLeads.push(inputEl.value)
+//     console.log(myLeads)
+// })
+// for (let i=0; i<myLeads.length; i++){
+//     ulEl.textContent += "<li>" myLeads[i] + "</li>" 
+// }
+// const ulEl = document.getElementById("ul-el")
+// let myLeads = ["www.beyondinsane.com","www.comybeyond.com","www.yahoo.com,www.qwerty.com"]
+// const inputEl = document.getElementById("input-el")
+// const inputBtn = document.getElementById("input-btn")
+// inputBtn.addEventListener("click",function(){
+//     myLeads.push(inputEl.value)
+//     inputEl.value = ""
+//     renderLeads()
+// })
+// function renderLeads(){
+// let listItems = ""
+// for (let i=0; i < myLeads.length; i++){
+//     listItems += "<li><a target='blank' href ='#" +myLeads[i] +"</a></li> "
+//      const li = document.createElement("li")
+//      li.textContent = myLeads[i]
+//      ulEl.append(li)
+//     // "<li><a target='_blank' href ='" +myLeads[i] +"</a></li> "
+//     listItems +=
+//     <li>
+//         <a target='_blank' href='${
+//         myLeads[i]+}'>${
+//             myLeads[i]}</a>
+//     </li>
+// }
+// ulEl.innerHTML = listItems
+// }
+// const recipient = "james"
+// let sender = "Hermione granger"
+// const email = 
+//     `Hey ${recipient}!
+//     How is it going? 
+//     Cheers ${sender}`
+// console.log(email)
+// let myLeads = []
+// const inputEl = document.getElementById("input-el")
+// const inputBtn = document.getElementById("Input-btn")
+// const ulEl = document.getElementById("ul-el")
+// localStorage.setItem("myLeads","www.examplelead.com")
+
+// inputBtn.addEventListener("click",function(){
+//     myLeads.push(inputEl.value)
+//     inputEl.value = ""
+//     renderLeads()
+// })
+// function renderLeads(){
+//     let listItems = ""
+//     for(let i=0; i<myLeads.length;i++){
+//         listItems +=
+//             <li>
+//                 <a target='_blank' href='${
+//                 myLeads[i]+}'>${
+//                     myLeads[i]}</a>
+//             </li>
+//     }
+// }
+// localStorage.setItem("Myname","Hermione Granger")
+// let name = localStorage.getItem("myName")
+
+
+//truthy
+//falsy
+
+// false
+//zero
+// false
+//0
+//""
+//null
+//undefined
+//Nan
+// const credits = 0
+// if (credits > 0){
+//     console.log("Let's play")
+// }
+// else{
+//     console.log("Sorry, you have no credits")
+// }
+// let currentViewers 
+// console.log(currentViewers)
+// let currentViewerser =["jane","kainy"]
+// console.log(currentViewerser[5])
+
+// let trueOfFalse = Boolean("hello")
+
+
+// console.log(trueOfFalse)
+// console.log(Boolean("") ) //false
+// console.log( Boolean("0") ) //true
+// console.log( Boolean(100) ) //true
+// console.log( Boolean(null) )//false
+// console.log( Boolean[0] )//true
+// console.log( Boolean(-0) )//flase
+let myLeads = []
+let oldLeads = []
+const inputEl = document.getElementById("input-el")
+const inputBtn = document.getElementById("input-btn")
+const ulEl = document.getElementById("ul-el")
+const deleteBtn = document.grtElementById("delete-btn")
+const leadsFromLocalStorage = JSON.parse( localStorage.getItem("myleads"))
+if (leadsFromLocalStorage){
+    myLeads = leadsFromLocalStorage
+    render(myLeads)
+}
+function render(leads){
+    let listItems = ""
+    for(let i=0; i < leads.length; i++){
+        listItems +=
+                    <li>
+                        <a target='_blank' href='${
+                        leads[i]+}'>${
+                            leads[i]}</a>
+                    </li>
+    }
+}
+deleteBtn.addEventListener("dblclick",function(){
+    console.log("double clicked!")
+    localStorage.clear()
+    myLeads = []
+})
+inputBtn.addEventListener("click",function(){
+    myLeads.push(inputEl.value)
+    inputEl.value = ""
+    localStorage.setItem("myLeads",JSON.stringify(myLeads))
+    render()
+})
