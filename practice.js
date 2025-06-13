@@ -15,6 +15,7 @@
 //     isAlive=false
 // }
 
+
 // console.log(isAlive)
 // console.log(hasBlack)
 
@@ -359,36 +360,61 @@
 // console.log( Boolean(null) )//false
 // console.log( Boolean[0] )//true
 // console.log( Boolean(-0) )//flase
-let myLeads = []
-let oldLeads = []
-const inputEl = document.getElementById("input-el")
-const inputBtn = document.getElementById("input-btn")
-const ulEl = document.getElementById("ul-el")
-const deleteBtn = document.grtElementById("delete-btn")
-const leadsFromLocalStorage = JSON.parse( localStorage.getItem("myleads"))
-if (leadsFromLocalStorage){
-    myLeads = leadsFromLocalStorage
-    render(myLeads)
-}
-function render(leads){
-    let listItems = ""
-    for(let i=0; i < leads.length; i++){
-        listItems +=
-                    <li>
-                        <a target='_blank' href='${
-                        leads[i]+}'>${
-                            leads[i]}</a>
-                    </li>
-    }
-}
-deleteBtn.addEventListener("dblclick",function(){
-    console.log("double clicked!")
-    localStorage.clear()
-    myLeads = []
-})
-inputBtn.addEventListener("click",function(){
-    myLeads.push(inputEl.value)
-    inputEl.value = ""
-    localStorage.setItem("myLeads",JSON.stringify(myLeads))
-    render()
-})
+// let myLeads = []
+// let oldLeads = []
+// const inputEl = document.getElementById("input-el")
+// const inputBtn = document.getElementById("input-btn")
+// const ulEl = document.getElementById("ul-el")
+// const deleteBtn = document.grtElementById("delete-btn")
+// const leadsFromLocalStorage = JSON.parse( localStorage.getItem("myleads"))
+// if (leadsFromLocalStorage){
+//     myLeads = leadsFromLocalStorage
+//     render(myLeads)
+// }
+// function render(leads){
+//     let listItems = ""
+//     for(let i=0; i < leads.length; i++){
+//         listItems +=
+//                     <li>
+//                         <a target='_blank' href='${
+//                         leads[i]+}'>${
+//                             leads[i]}</a>
+//                     </li>
+//     }
+// }
+// deleteBtn.addEventListener("dblclick",function(){
+//     console.log("double clicked!")
+//     localStorage.clear()
+//     myLeads = []
+// })
+// inputBtn.addEventListener("click",function(){
+//     myLeads.push(inputEl.value)
+//     inputEl.value = ""
+//     localStorage.setItem("myLeads",JSON.stringify(myLeads))
+//     render()
+// })
+
+
+// function saveLead(){
+//     console.log("Button Clicked from onclick attribute")
+// }
+// let inputBtn = document.getElementById("input-btn")
+
+// inputBtn.addEventListener("click",function(){
+//     console.log("Button clicked from addEventListener")
+// })
+
+// let box = document.getElementById("box")
+// box.addEventListener("click",function(){
+//     console.log("I want to open the Box!")
+// })
+const recipient = "James"
+const sender = "Allizon"
+const email =`
+    Hey${recipient}! 
+
+    How is it going? 
+    
+    Cheers ${sender}
+`
+console.log(email)
