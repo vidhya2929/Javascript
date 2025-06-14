@@ -2,12 +2,6 @@ let myLeads = []
 const ulEL = document.getElementById("ul-el")
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
-console.log(localStorage.getItem("myLeads"))
-localStorage.clear()
-
-
-
-
 inputBtn.addEventListener("click",function(){
     myLeads.push(inputEl.value)
     inputEl.value =""
