@@ -418,3 +418,44 @@ const email =`
     Cheers ${sender}
 `
 console.log(email)
+
+
+const credits = 0
+if (credits > 0){
+    console.log("lets play")
+}
+else{
+    console.log("Sorry! you have no credits")
+}
+
+
+//false
+//0
+//""
+//null      -developer signalize emptiness       
+
+//       //both primitive datatypes.signalise emptiness
+
+//undefined       -JavaScript signalize emptiness  
+//NaN -Not a Number
+
+let currentViewers = null
+
+currentViewers = ["jane","per"]
+
+currentViewers = null                       //null
+if (currentViewers){
+    console.log("we have viwerzz")
+}
+
+let currentViewerss = ["jane"]
+console.log(currentViewerss[6])             //undefined
+
+
+let trueOfFalse = Boolean("hello")
+
+console.log(trueOfFalse)
+
+let trueeo = Boolean("")
+
+console.log(trueeo)
