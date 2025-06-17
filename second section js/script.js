@@ -455,7 +455,7 @@ obj2.c = 33;          // change for obj1 because obj1,obj2 has same reference. T
 console.log(obj1, obj2); 
 var obj1 ={
     a :1,
-    b:2
+    b: 2
 }
  var obj2 = {...obj1};   //shallow copy
  obj2.c = 33;
@@ -729,5 +729,380 @@ const arr = [
         return item.name === 'qwerty ';
     });
     console.log(found);
-      
     
+var found = arr.filter((item)=>{
+    return item.name === 'Boobkejj';
+});
+var found = arr.find((item) => {
+    return item.mark <30  ;  // if there is 2 answers then it returns the first that satisfies the condition
+});
+console.log(found);
+// Filter
+var found = arr.filter((item) =>{
+    return item.mark< 30;
+});
+console.log(found);  
+var objj = {
+    name: 'Alice',
+    mark: 35,
+    place: 'Kannur',
+    subject: {
+        teacher: 'Bob'
+    }
+}
+var{
+    subject :{
+        teacher
+    }
+}=obj;
+console.log(teacher)
+// var{
+//     name,
+//     mark
+// }= obj;
+// console.log(name,mark);
+var arr = [11,22,33];
+var [val1,val2]=arr;
+console.log(val2) 
+var arr = [
+    {
+        name: 'Alice',
+        mark: 35,
+        place: 'kannur',
+        subject: {
+            teacher: 'Bob'
+        }
+
+}
+,22,33];
+var [{
+    subject :{
+        teacher
+    }
+},val2]=arr;
+console.log(teacher,val2); 
+var arr = [
+    {
+        name: 'Alice',
+        mark: 35,
+        place: 'kannur',
+
+}
+,22,33];
+var [{
+    subject :{
+        teacher
+    }={}
+}]=arr;
+console.log(teacher); 
+//lodash library//
+
+// class
+// it is a blueprint of object
+var student1={
+    name: 'helen',
+    yob: 2005,
+    getAge: function(){
+        return new Date().getFullYear() - this.yob;
+    },
+    getName: function(){
+        return this.name;
+    }
+};
+console.log(student1.getName(),student1.getAge());
+// class
+// it is a blueprint of object 
+class Student{
+    name;
+    yob;
+    place;
+    constructor(name,yob){
+        this.name = name;
+        this.yob = yob;
+    }
+    getAge(){
+        return new Date().getFullYear() - this.yob;
+    };
+    getName(){
+        return this.name;
+    };
+}
+var student1 = new Student('helen',2005);
+var student2 = new Student('milan',2003);
+var student3 = new Student('heaven',2008);
+
+console.log(student1);
+console.log(student2);
+console.log(student3);
+
+// here there is code maintenance problem;
+// functions get duplicated
+// if any property is added, we should add it for every object without fail.
+// class can store reused 
+// function inside class is called "constructor" it is called when we create objects
+   
+
+//static function -related to class
+// class
+// it is a blueprint of object 
+function printMinYob(...args){
+    var arr = args.map((item => item.yob));
+    console.log(Math.min(...arr));
+}
+
+class Student{
+    name;
+    yob;
+    place;
+    constructor(name,yob){
+        this.name = name;
+        this.yob = yob;
+    }
+    getAge(){
+        return new Date().getFullYear() - this.yob;  //instance functions
+    };
+    getName(){                                       //instance functions
+        return this.name;
+    };
+}
+student.printMinYob = function(...args){
+    var arr = args.map((item => item.yob));              //static fns
+    console.log(Math.min(...arr));
+}
+
+var student1 = new Student('helen',2005);
+var student2 = new Student('milan',2003);
+var student3 = new Student('heaven',2008);
+
+// console.log(student1);
+// console.log(student2);
+// console.log(student3);
+// printMinYob(student1,student2,student3);
+Student.printMinYob(student1,student2,student3);
+// here there is code maintenance problem;
+// functions get duplicated
+// if any property is added, we should add it for every object without fail.
+// class can store reused 
+// function inside class is called "constructor" it is called when we create objects
+   
+
+//static function -related to class
+
+// class
+// it is a blueprint of object 
+class Student{
+    name;
+    yob;
+    place;
+    constructor(name,yob){
+        this.name = name;
+        this.yob = yob;
+    }
+    static printMinYob(...args){
+        var arr = args.map((item => item.yob));
+        console.log(Math.min(...arr))
+    }
+    getAge(){
+        return new Date().getFullYear() - this.yob;  //instance functions
+    };
+    getName(){                                       //instance functions
+        return this.name;
+    };
+}
+// Student.printMinYob = function(...args){
+//     var arr = args.map((item => item.yob));              //static fns
+//     console.log(Math.min(...arr));
+// }
+
+var student1 = new Student('helen',2005);
+var student2 = new Student('milan',2003);
+var student3 = new Student('heaven',2008);
+
+// console.log(student1);
+// console.log(student2);
+// console.log(student3);
+// printMinYob(student1,student2,student3);
+Student.printMinYob(student1,student2,student3);
+// here there is code maintenance problem;
+// functions get duplicated
+// if any property is added, we should add it for every object without fail.
+// class can store reused 
+// function inside class is called "constructor" it is called when we create objects
+   
+
+//static function -related to class
+
+// class
+// it is a blueprint of object 
+class Student{
+    name;
+    yob;
+    place;
+    constructor(name,yob){
+        this.name = name;
+        this.yob = yob;
+    }
+    static printMinYob(...args){
+        var arr = args.map((item => item.yob));
+        console.log(Math.min(...arr))
+    }
+    getAge(){
+        return new Date().getFullYear() - this.yob;  //instance functions
+    };
+    getName(){                                       //instance functions
+        return this.name;
+    };
+}
+// Student.printMinYob = function(...args){
+//     var arr = args.map((item => item.yob));              //static fns
+//     console.log(Math.min(...arr));
+// }
+
+var student1 = new Student('helen',2005);
+var student2 = new Student('milan',2003);
+var student3 = new Student('heaven',2008);
+
+// console.log(student1);
+// console.log(student2);
+// console.log(student3);
+// printMinYob(student1,student2,student3);
+Student.printMinYob(student1,student2,student3);
+// here there is code maintenance problem;
+// functions get duplicated
+// if any property is added, we should add it for every object without fail.
+// class can store reused 
+// function inside class is called "constructor" it is called when we create objects
+//static function -related to class
+
+// Setters & Getters
+class Button{
+    constructor(name,width,height){
+        this.button = document.createElement('button');
+        this.button.innerHTML = name;
+        document.body.appendChild(this.button);
+    }
+}
+new Button("Click Me!",100,100);
+
+
+class Button{
+    constructor(name,width,height){
+        this.button = document.createElement('button');
+        this.button.innerHTML = name;
+        document.body.appendChild(this.button);
+    }
+    setWidth(width){
+        this.button.style.width = width+"px";
+    }
+    setHeight(height){
+        this.button.style.height = height +"px";
+    }
+}
+var b1 = new Button("Click Me!");
+b1.setWidth(100);
+b1.setHeight(100);
+
+class Button {
+    constructor(name){
+        this.button = document.createElement('button');
+        this.button.innerHTML = name;
+        document.body.appendChild(this.button);
+    }
+    set height(height){
+        this.button.style.height = height + 'px';
+    }
+    set width(width){
+        this.button.style.width = width + 'px';
+    }
+    get width(){
+       return parseInt(this.button.style.height,10);
+    }
+    get height(){
+        return parseInt(this.button.style.width,10);
+    }
+}
+var b1 = {
+    init(name){
+        this.button = document.createElement('button');
+        this.button.innerHTML = name;
+        document.body.appendChild(this.button);
+    },
+    set height(height){
+        this.button.style.height = height + 'px';
+    },
+    set width(width){
+        this.button.style.width = width + 'px';
+    },
+    get width(){
+       return parseInt(this.button.style.height,10);
+    },
+    get height(){
+        return parseInt(this.button.style.width,10);
+    }
+}
+b1.init('Click');
+b1.width = 100;
+b1.height = 100;
+// var b1 = new Button("Click Me!");
+// b1.width = 100;
+// b1.height = 100;
+// console.log(b1.width,b1.height)
+// setter - to turn an assignment operator to a function call
+// getter - turning function call into a assignment operator
+//inheritance
+class Button {
+    constructor(name) {
+        this.button = document.createElement('button');
+        this.button.innerHTML = name;
+        document.body.appendChild(this.button);
+    }
+
+    onClick(fn){
+        this.button.onclick = fn;
+    }
+}
+class Greenbutton extends Button{
+   onClick(fn){
+        this.button.onclick = function(){
+            this.button.style.background = 'green';
+            fn();
+        }.bind(this);
+    }
+}
+var b1 = new Greenbutton('Gbutton');
+b1.onClick(function(){
+    console.log("Clicked");
+});
+
+// if we want to modify only a particular portion from parent class then use inheritance i.e,by using 'extends' keyword we can override the desired portion.and also if we wanted to make call parent then use 'super' keyword.
+ // we can add more functions/variables to inherited classes  eg:
+ class Button{
+    constructor(name){
+        this.button = document.createElement('button');
+        this.button.innerHTML = name;
+        document.body.appendChild(this.button);
+    }
+    onClick(fn){
+        this.button.onclick = fn;
+    }
+ }
+ class Greenbutton extends Button{
+    constructor(name){
+        super(name);
+    }
+    onClick(fn){
+        super.onClick(function(){
+            this.button.style.background = 'green';
+            fn();
+        }.bind(this));
+    }
+    printme(){
+        console.log("me")
+    }
+ }
+ var b1 = new Greenbutton('Gbutton');
+ b1.onClick(function(){
+    console.log("Clicked");
+ });
+ b1.printme();
+ 
