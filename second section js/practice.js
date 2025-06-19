@@ -1,28 +1,29 @@
-//before 2015 js used class with the concept of prototype
-// transpilers can be used to compile our class to prototype
-class Button{
-    constructor(name){
-        this.button = document.createElement('button');
-        this.button.innerHTML = name;
-        document.body.appendChild(this.button);
-    }
-    onCLick(fn){
-        this.button.onclick = fn;
-    }
+// Throw 
+// we can throw our own exceptions using 'throw' keyword
+console.log('started');
+let h,k,resu;
+try{
+    console.log('on try');
+    a = getVal1();
+    b = getVal2();
+    resu = processValues(a,b);
 }
-var b1 = new Button('Hello');
-console.log(b1);
-//In javascript any function can be used as constructor
-
-
-function MyButton(name){
-    this.button = document.createElement('button');
-    this.button.innerHTML = name;
-    document.body.appendChild(this.button);
+catch(e){
+    console.log("Inside Catch")
+    resu = 0
 }
+console.log(resu);
+console.log('ended');
 
-var b2 = new MyButton('clickyy')    // by calling using new any function act as a constructor
-console.log(b2)
-// new means  a new obj is created and it's constructor is  -> function MyButton(){}
-// if there is no 'new' then it is a normal function 
 
+function fetVal1(){
+    return 12;
+}
+function getVal2(){
+    console.log("inside getVal2");
+    throw("my error");
+    return 22;
+}
+function processValues(a,b){
+    return a+b;
+}

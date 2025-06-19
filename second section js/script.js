@@ -1105,4 +1105,540 @@ b1.onClick(function(){
     console.log("Clicked");
  });
  b1.printme();
+ //before 2015 js used class with the concept of prototype
+// transpilers can be used to compile our class to prototype
+class Button{
+    constructor(name){
+        this.button = document.createElement('button');
+        this.button.innerHTML = name;
+        document.body.appendChild(this.button);
+    }
+    onCLick(fn){
+        this.button.onclick = fn;
+    }
+}
+var b1 = new Button('Hello');
+console.log(b1);
+console.log(typeof Button);
+//In javascript any function can be used as constructor
+
+
+function MyButton(name){
+    this.button = document.createElement('button');
+    this.button.innerHTML = name;
+    document.body.appendChild(this.button);
+}
+
+MyButton.prototype.onclick = function(fn){    //to create a function inside a function we use prototype property
+    this.button.onclick = fn;
+}
+ 
+var b2 = new MyButton('clickyy')    // by calling using new any function act as a constructor
+b2.onclick(function(){
+    console.log('clicked'); 
+})
+console.log(b2)
+
+// new means  a new obj is created and it's constructor is  -> function MyButton(){}
+// if there is no 'new' then it is a normal function 
+// all fn have a prototype property
+
+
+// difference is :
+// instead of class we use function 
+// things inside the constructor is written inside function 
+//then objects are created using function names instead of class names  
+// if we want to pass a function inside it then use prototype
+
+
+//Asynchronous callback
+// javascript is an event based program
+ 
+// console.log("hello");
+var button = document.getElementById('mybutton');
+button.onclick = () =>{                           //onclick is an event
+    console.log("started click event");
+    $.ajax({
+        url: "https://jsonplaceholder.typicode.com/todos/1",
+        success: (data) =>{
+            console.log(data);
+        }
+    });
+    console.log("Ended click event");
+}
+// here o/p be like
+/*started click event
+ended click event
+user Id:1 ......*/
+//therefore it is Asynchronus callback            // look at the order of execution of callback function
+// ie, if the event occurs in its registered callback it is synchronous callback
+
+
+//synchronous callback
+
+var button = document.getElementById('mybutton');
+button.onclick =() =>{
+    console.log("started click event");
+    $.ajax({
+        url:"https://jsonplaceholder.typicode.com/todos/1",
+        success: (data) =>{
+            console.log(data);
+        },
+        async: false
+    });
+    console.log("Ended click event");
+}
+// here the registered callback is executed in the same event 
+// callback of everey util functions are synchronous callback for eg:
+
+
+var button = document.getElementById('mybutton');
+button.onclick = () =>{
+    console.log("started click event");
+
+    var arr = [1,2,3,4,5];
+    arr.forEach((item)=>{
+        console.log(item);
+    });
+
+    console.log("ended click event");
+}
+
+
+//most of the events are asynchronous callback...
+
+
+// synchronous callback
+var button = document.getElementById('mybutton');
+button.onclick = () =>{
+    console.log("started click event");
+    var arr = [];
+    $.ajax({
+        url: "https://jsonplaceholder.typicode.com/todos/2",
+        success: (data) => {                                                      // TO GET A NETWORK DATA
+             console.log('ajax1 started',data.title);
+             arr.push(data.title);
+             console.log('ajax1 ended');                                                   
+        },
+        async: false
+    });
+    
+    $.ajax({
+        url: "https://jsonplaceholder.typicode.com/todos/2",
+        success: (data) => {
+            console.log('ajax2 started',data.title);
+            arr.push(data.title);
+            console.log('ajax2 ended');
+        },
+        async: false
+    });
+    document.getElementById('mytext').value = arr.join('\n');
+    console.log("ended click event");
+}
+
+
+//asynchronous callback
+
+var button = document.getElementById('mybutton');
+button.onclick = ()=>{
+    console.log("started click event");
+    var arr = [];
+    $.ajax({
+        url: "https://jsonplaceholder.typicode.com/todos/2",
+        success: (data) =>{
+            console.log("ajax1 started",data.title);
+            arr.push(data.title);
+            console.log("ajax1 ended"); 
+        },
+        async: true
+    });
+
+    $.ajax({
+        success: (data) =>{
+            console.log("ajax2 started",data.title);
+            arr.push(data.title);
+            console.log("ajax2 ended");
+        },
+        async: true
+    });
+    document.getElementById("mytext").value = arr.join('\n');
+    console.log("ended click event")
+
+}
+
+
+//asynchronous callback another method
+
+var button = document.getElementById('mybutton');
+button.onclick = ()=>{
+    console.log("started click event");
+    var arr = [];
+    $.ajax({
+        url: "https://jsonplaceholder.typicode.com/todos/2",
+        success: (data) =>{
+            console.log("ajax1 started",data.title);
+            arr.push(data.title);
+            $.ajax({
+                success: (data) =>{                                                     //ajax is inside first ajax
+                    console.log("ajax2 started",data.title);
+                    arr.push(data.title);
+                    console.log("ajax2 ended");
+                    document.getElementById("mytext").value = arr.join('\n');
+                    
+                },
+                async: true
+            });
+            console.log("ajax1 ended"); 
+        },
+        async: true
+    });
+    console.log("ended click event")     
+}
+// major disadvantage of synchrous callback
+/* it is event blocking that result in UI stucking*/
+// In javasript if 1 event get blocked the entire UI get stucked.Becouse it is single threaded.
+
+//Asynchronous callback
+//disadvantage -> complications in writing (nested,chained)
+/* every code except browser code will run without connection*/
+ // to reduce the complications of writing asynchronous callback javascript uses "promises"
+
+
+
+ //To reduce the complications of writing asynchronous callback javascript uses "promise".
+/* promise is a library which helps to organize the asynchronous callback codes.*/
+console.log("started")
+$.ajax({
+    type: 'GET',
+    url: "https://jsonplaceholder.typicode.com/todos/1",    // it is an API call with 2 callback fns, sucess and error to fetch the data from the given link 
+    success: (msg) => {
+        console.log(msg);
+    },
+    error:(xhr, statusText) => {
+        console.log(statusText);
+    },
+});
+console.log("ended");
+// in the above example the callback functions are passed as arguments.
+
+// Resolve -> means success callback is called after an API call
+
+//Reject ->error callback is called after an API call
+/*       One of the main advantage of promise       */
+//here resolve and reject are called at the same place as API call.we can't do later resolve or later rejections
+// eg: 
+
+//             PROMISE FUNCTION
+// a function is using promise is means that it returns a promise object...
+
+//if success is working
+console.log('started');
+
+const pr = myFetch('https://jsonholder.typicode.com/todos/1');
+    console.log(pr);
+pr.then((data) =>{                  //here callback function is not passed as arguments ,it is passed with the returning pr object using "then" fn.
+    console.log(data);
+});
+console.log('ended'); 
+// Major advantage is that we can write "then " anywhere i.e,we can do resolve or reject anywhere for example, consider a button
+                    
+ // it is called "promise" because whenever we used, the data is guaranteed
+ /* Also called "future" as we use it in the future and "differ" as we postpond it's use.*/
+
+ // if error is working
+
+ console.log("started");
+ 
+ 
+const prr = myFetch('https://jsonplaceholder.typicode.com/todos/1');
+ 
+function buttonClick(){
+    console.log('clicked');
+    prr.then((data) => {
+        console.log(data);
+    }, (err) => {
+        console.log(err);
+    });
+}
+console.log('ended');
+
+console.log('started');
+const pro = myFetch("https://jsonplaceholder.typicode.com/todos/1");
+
+function buttonClick(){
+    console.log("clicked");
+    pro.then((data) => {
+        console.log(data);
+    },
+    (err) => {
+        console.log(err);
+    });
+}
+console.log('ended');
+
+
+//promise chaining
+//promise discard nesting by using chaining
+console.log("requesting 1");
+const pru = myFetch('https://jsonplaceholder.typicode.com/todos/1');
+
+pru.then((data) => {
+    console.log(data);
+
+    console.log("requesting 2");
+    const pru = myFetch('https://jsonplaceholder.typicode.com/todos/2');
+
+    pru.then((data) =>{
+        console.log(data);
+
+        console.log("requesting 3");
+        const pru = myFetch('https://jsonplaceholder.typicode.com/todos/3');
+        pru.then((data)=>{
+            console.log(data);
+        });
+    });  
+});
+
+
+//rewriting using chaining
+
+console.log("requesting 1");
+const pre = myFetch("https://jsonplaceholder.typicode.com/todos/1")
+
+const pr2 = pre.then((data) => {                        //here then returns a promise so there is a 'then' for that promise
+    console.log(data); 
+    console.log("requesting 2")
+    return myFetch('https://jsonplaceholder.typicode.com/todos/2')              
+});  
+const pr3 = pr2.then((data)=>{
+    console.log(data);
+    console.log("requesting 3")
+    return myFetch('https://jsonplaceholder.typicode.com/todos/3');
+}); 
+pr3.then((data) => {                 // it resolves the value which the above 'then' returns ,i.e here prints "hello"
+    console.log(data);
+});
+//a promise returned by 'then' is resolved by what the callback in the 'then' returns. 
+
+// organizing promise chain more...
+console.log("requesting 1");
+myFetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then((data) => {
+        console.log(data);
+        console.log("requesting 2");
+        return myFetch('https://jsonplaceholder.typicode.com/todos/2');    // till here is pr2
+    })
+    .then((data)=>{
+        console.log(data);
+        console.log("Requesting 3");
+        return myFetch('https://jsonplaceholder.typicode.com/todos/3');     // till here is pr3
+    })
+    .then((data)=>{
+        console.log(data);
+    });
+
+
+    // Fetch by javascript
+console.log("Requesting 1");
+getJson("https://jsonplaceholder.typicode.com/todos/1")
+    .then((data)=>{
+        console.log(data);
+    });
+
+// Promise Catch & Utils
+// 1st method it uses second argument "err"
+console.log("=== Requesting 1");
+getJson('https://jsonplaceholder.typicode.com/todos/1')
+   .then((data)=>{
+       console.log(data);
+       console.log("=== Requesting 2");
+       return getJson('https://jsonplaceholder.typicode.com/todos/2')
+   },
+   (err) => {
+       console.log("ERROR:",err)
+   }
+   )
+   .then((data)=>{
+       console.log(data);
+       console.log("=== Requesting 3");
+       return getJson('https://jsonplaceholder.typicode.com/todos/3')
+   })
+   .then((data)=>{
+       console.log(data);
+   }); 
+
+// catch is used for error handling i.e,promise get rejected...
+
+//using Catch
+
+console.log('===Requesting 1');
+getJson('https://placeholder.typicode.com/todos/1')
+.then((data)=>{
+   console.log(data);
+   console.log('=== Requesting 2');
+   return getJson('https://jsonplaceholder.typicodex3bjh.com/todos/2');
+})
+.then((data)=>{
+   console.log(data);
+   console.log("=== Requesting 3");
+   return getJson('https://jsonplaceholder.typicode.com/todos/3');      // o/p becomes undefined becouse it gets the value from catch
+})
+.then((data)=>{
+   console.log(data);
+})
+.catch((err)=>{
+   console.log('ERROR',err);
+   return {};
+});
+//usually catch is at the end because if an error occurs one then there is no need to execute that chain.so if there is an error it looks for catch and execute catch only not others
+// promise provide us a function for error handling called catch 
+//if promise resolve it goes to "then"
+//if promise rejects it goes to "catch"
+//once we catch the error then it will visit all "then's"
+
+
+//         UTIL Functions by promise
+// 1) promise.resolve
+// 2) promise.reject
+getJson('https://jsonplaceholder.typicode.com/todos/1')
+    .then((data)=>{
+        console.log(data);
+    })
+    .catch((data) =>{
+        console.log(data);
+    })
+// 3)Promise.all()
+// it takes array as an input.array of promises
+// we can give 2 or more promises as input
+Promise.all([
+    getJson('https://jsonplaceholder.typicode.com/todos/1'),
+    getJson('https://jsonplaceholder.typicode.com/todos/2'),
+    getJson('https://jsonplaceholder.typicode.com/todos/3')
+])
+// it will resolve only after if every getJson is executed successfully... order is not a problem.
+.then((data)=>{
+    console.log(data); 
+});
+//promise.race-;
+//The one which resolve first will get by using promise.race
+Promise.race([
+    getJson('https://jsonplaceholder.typicode.com/todos/1'),
+    getJson('https://jsonplaceholder.typicode.com/todos/2'),
+    getJson('https://jsonplaceholder.typicode.com/todos/3')
+])
+.then((data)=>{
+    console.log(data);
+});
+
+// it is used to access fastly,we can request for one promise and set timer for another promise
+// Try,Catch,finally,throw
+console.log("started");
+let aa;
+try{
+    console.log("on try");
+   aa = getVal1();
+}catch(e){
+    console.log("on catch");
+    aa=0; 
+}
+const b = getVal2();
+
+const result = processValues(aa,b);
+console.log(result);
+
+console.log('ended');
+
+
+
+function getVal1(){
+    console.log("inside getVal1")
+     var obj = undefined;
+    return obj.value;
+}
+function getVal2(){
+    console.log("inside getVal2")
+     return 22;
+}
+function processValues(aa,b){  
+    console.log("inside processvalue")
+    return aa+b
+}
+//error prone functions are put inside the try{} block
+// if we catch the error the remaining lines of code will execute.
+
+// To get result 0 if any one become error
+console.log('started');
+ let d,c,resultt;
+
+ try{
+    console.log('on try');
+    d = getVal1();
+    c = getVal2();
+    resultt = processValues(d,c);
+ }
+ catch(e){
+    console.log("on catch");
+    resultt = 0;
+ }
+ finally{
+    console.log("This is finally");
+
+ }
+
+ console.log(resultt);
+ console.log('ended');
+
+ function getVal1(){
+    console.log('inside getVal1');
+    var obj = undefined;
+    return obj.value;
+ }
+ function getVal2(){
+    console.log('inside getVal1');
+
+    return 22; 
+ }
+ function processValues(d,c){
+    return d+c;
+ } 
+ // finally is guaranteed execution
+ //whether there is no error or not it will execute for sure.
+
+ console.log('started');
+ let dd,c,rresult;
+
+ try{
+    console.log('on try');
+    dd = getVal1();
+    c = getVal2();
+    result = processValues(dd,c);
+ }
+ catch(e){
+    console.log("on catch");
+    rresult = 0;
+    vevs()
+ }
+ finally{
+    console.log("This is finally");
+
+ }
+
+ console.log(rresult);
+ console.log('ended');
+
+ function getVal1(){
+    console.log('inside getVal1');
+    var obj = undefined;
+    return obj.value;
+ }
+ function getVal2(){
+    console.log('inside getVal1');
+    dknesmc()
+    return 22; 
+ }
+ function processValues(dd,c){
+    return dd+c;
+ } 
+ 
+ // if there is an error in the catch block the 'console.log("ended") will not work but 'finally' statement will work for sure'.
  
