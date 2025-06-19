@@ -1642,3 +1642,198 @@ console.log('started');
  
  // if there is an error in the catch block the 'console.log("ended") will not work but 'finally' statement will work for sure'.
  
+
+ // Throw 
+// // we can throw our own exceptions using 'throw' keyword
+console.log('started');
+let h,k,resu;
+try{
+    console.log('on try');
+    h = getVal1();
+    k = getVal2();
+    resu = processValues(h,k);
+}
+catch(e){                               // here 'e' print the error
+    console.log("Inside Catch",e);
+    resu = 0;
+}
+console.log(resu);
+console.log('ended');
+
+
+function getVal1(){
+    return 12;
+}
+function getVal2(){
+    console.log("inside getVal2");
+    throw "my error";
+    return 22;
+}
+function processValues(h,k){
+    return h+k;
+}
+// i.e, thro allow us to create our own exceptions
+// we can give array,obj anything
+
+
+//javascript provide there error class  that is ->
+console.log("started");
+let t,y,ress;
+try{
+    console.log("On try");
+    t=getVal1();
+    y=getVal2();
+    ress = processValues(t,y);
+}
+catch(e){
+    console.log("Inside Catch",e);
+    ress=0
+}
+console.log(ress);
+console.log("ended");
+
+function getVal1(){
+    console.log("Inside getVal1");
+    return 29;
+}
+function getVal2(){
+    console.log("Inside getVal2");
+    throw new Error("my error through js")
+    return 12;
+}
+function processValues(y,t){
+    return y+t;
+}
+// async & await
+// async is used when function is declared
+// await is used when a function is called
+
+/* eg:
+async function myFunct(){
+    var a = await getJson();
+}
+*/
+
+async function getValue(){
+    return 12; 
+ }
+ const op = getValue();
+ op.then((data)=>{
+     console.log(data);
+ })
+ // here we get promise as o/p
+ // to make a function async ; add async keyword before function declaration
+ // to get data from promise just resolve it...
+ // a function is async means that it returns a "promise".
+ 
+ // suppose a promise is returning through th fn
+ async function getVal(){
+     return fetch('https://jsonplaceholder.typicode.com/todos/1');
+ }
+ const ot = getVal();
+ ot.then((data)=>{
+     console.log(data);
+ })
+
+ // async function is not for converting a data into promise
+// it is for make use of await   
+console.log("started");
+var cc = getValue();
+cc.then((data)=>{
+    console.log(data);
+});
+console.log("ended");
+
+async function getValue(){
+    // fetch('https://jsonplaceholder.typicode.com/todos/1')
+    // .then((data)=>{
+    //     return data.json();                   // as response is the object
+    // })
+    // .then((data)=>{
+    //     console.log(data);
+    // });
+
+    const data = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+    const jsonData = await data.json();
+    // console.log(jsonData);
+    return jsonData;
+
+//here code want to wait to get data from the server
+// for that we can use await keyword
+//the only condition for await to work is it need async .
+// when we use await keyword it doesn't get block,instead it will waits for it.
+// await will wait until we solve the promise.
+}
+// 2 ways of error handling
+//1)
+console.log('Started');
+var aa = getValue()
+    .then((data)=>{
+        console.log(data);
+    })
+    .catch(() =>{
+        console.log('Handled')
+    });
+    console.log('Ended');
+
+async function getValue(){
+    const data = await fetch('https://jsonplaceholder.typicodezd3zzzza.com/todos/1');
+    const jsonData = await data.json();
+    return jsonData;
+}
+
+// 2)
+console.log('Started')
+var aa = getValue()
+    .then((data) =>{
+        console.log(data);
+    });
+    console.log('Ended');
+async function getValue(){
+    try{
+        const data = await fetch('https://jsonplaceholder.typicodeassxsa.com/todods/1');
+        const jsonData = await data.json();
+        return jsonData;
+    }
+    catch(e){
+        console.log('Handled');
+        return {};
+    }
+}
+// Self- Invoking function in JavaScript
+//it is used to solve problems related to variable scope
+/*            VARIABLE SCOPE                            */
+//  after declaring a variable from where we can access it .not neccessary to be in the same file...
+// 2 tpes of scopes are there in the JavaScript 
+// 1) Global scope -> a variable is declared outside the function,it can access from anywhere.
+// 2) Local Scope ->if a function is declared inside a function,it cannot access from outside the function
+//    Block Scope
+//  eg local scope:
+function fn1(){
+    var number = 12;
+    console.log(number);
+}
+function fn2(){
+    console.log(number);
+}
+
+fn1();
+fn2();
+
+//eg global scope:
+var number = 25;
+
+function fn1(){
+    console.log(number);
+}
+function fn2(){
+    console.log(number);
+}
+fn1();
+fn2();
+
+//IMPORT EXPORT
+// to avoid the problems by global scope in javascript we use import and export statement
+ 
+//problems occure when we use Self Invoked Function Expression/Immediately Invoked Function Expression(IIFE) -;
+// if we write 2 block of codes using self invoking function then function call or data passing between them are difficult
