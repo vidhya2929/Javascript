@@ -1837,3 +1837,843 @@ fn2();
  
 //problems occure when we use Self Invoked Function Expression/Immediately Invoked Function Expression(IIFE) -;
 // if we write 2 block of codes using self invoking function then function call or data passing between them are difficult
+// Template Literal
+/* it is a feature of string */
+
+
+// const var1 = "codee isn't cool";
+// const var2 ='codee isn't cool';                 //error example
+
+
+
+//same case will occur for double quotes
+
+
+// const var02 = "code is."super";
+// const var11 ="code is super";                 //error example
+
+console.log(var1);
+console.log(var2);
+
+console.log
+// to avoid this misunderstanding we use escape (backslash)  eg:
+
+const varr = "codee isn't cool";
+const var22 = 'codee isn\'t cool';
+
+const jve = "code is.\"super";
+const eed = "code is super";
+
+// string can be represented without single qoute and double qoute 
+// that is possible by using backtick.
+//Through backtick we get  all the properties of single quote and double quote and also used for template literal
+
+
+// template strings are represented using `(backticks)
+// Advantages of using backticks are -:
+// 1.Multiline String
+// 2.Expression Inside a String
+const var3 =`codee isn't it cool`;
+
+
+
+/*                Multiline String             */
+// if we split a string written using double quotes or single quotes it will cause an error
+// But if we split a string that uses backtick it can be split without error. eg:
+
+// const jder= 'here is the 
+// example for you';                   // error example
+
+
+
+const mij =`here is the 
+bjhjhm
+vgfhjm
+ngvghkv
+corrected example`;
+
+
+//example if we want an html element like this
+/* <!DOCTYPE html >
+<html lang = "en">
+    <head>
+        <title>Coded</title>
+    </head>
+    <body>
+        <div className = "item" >
+            <h4>Product Name</h4>
+            <div>Price: 00</div>
+        </div>
+        <script type="module" src='scripty.js'></script>
+    <body>
+    </html>
+ */
+ 
+document.body.innerHTML = '<div className="item"><h4>Product Name</h4><div>Price: 00</div></div>'
+//it is difficult to read
+// so we split it 
+
+document.body.innerHTML = `<div className ="item"`+ 
+`<h4>Product Name</h4>`+ 
+`<div>Price: 00</div>`+
+`</div>`;
+
+// Expression inside a string
+
+const producttName = "Pen";
+const price ="12";
+
+const val1 = `The ${producttName} is ${price}`;
+const msg = `The product is ${price > 10 ? 'Costly' : 'Cheap '}`
+console.log(value);
+console.log(msg);
+// we can give another statements inside the template string
+//eg:
+const product = "pen";
+const pri = 2;
+
+const va = `The ${productName} is ${price} Rs`;
+const msgg =`The product is ${`Hello ${price}`}`   //Nesting
+
+
+const products = [
+    {
+        producttName: 'pen',
+        price: 10
+    },
+    {
+        productName: 'Book',
+        price: 20
+    }
+];
+
+document.body.innerHTML = products.map((item) => {
+    return`
+    <div className = "item">
+        <h4>${item.productName}</h4>
+        <div>Price${item.price}</div>
+    </div>`;
+})            //it is like a template that's why it is called as template literal
+ 
+// Default parameters in function 
+//ite is also called as Default Arguments...
+
+function average (a,b) {
+    console.log(a,b);
+    const avg = (a+b) / 2;
+    return avg;
+}
+
+const avg = average(5);
+console.log(avg);  
+
+//if we didn't give any values to arguments,we can get them default value 
+// eg:
+ function average (a=0,b=0){                                 // a=0,b=0  is default argument
+    console.log(a,b);
+    const avg = (a+b)/2;
+    return avg
+ }
+
+ const avgg = average();
+ console.log(avgg);
+
+// eg 2;
+
+function average(a= getDefault(),b=0){
+    console.log(a,b);
+    const avg = (a+b)/2;
+    return avg;
+}
+function getDefault(){
+    return 100;
+}
+
+const av = average();
+console.log(av);
+// Any single statements can be given as default arguments
+//give default arguments even if we need only
+
+
+// left arguments can be passed as right arguments...
+// eg:
+function average(a, b=a){
+    console.log(a,b);
+    const ave = (a+b)/2;
+    return ave;
+}
+
+const ave = average(10);
+console.log(ave); 
+
+// operators are also applicable
+// eg:
+function average (a, b = a+100){
+    console.log(a,b);
+    const avv = (a+b)/2;
+    return avv;
+}
+
+const avv = average(10);
+console.log(avv);
+
+// right arguments cannot be passed on left side. Because it is initialized from left side to right side
+
+// Rest parameters 
+// it is a syntax for accepting parameters in function  
+//it's syntax is similar to spread operator and array destructuring...
+function test(){
+    const arr = [11,22,34,43];
+    const[a, ...rest] = arr;
+
+
+    console.log(a, rest);
+
+}
+test();                                                             //destructuring...
+
+//rest will be an empty array if -;
+
+function test(){
+    const arr = [11,24,23,34];
+    const [a,b,c,d, ...rest] = arr;
+    console.log(a,rest)
+} 
+//
+function test(a,b, ...rest ){
+    console.log(a,b,rest);
+}
+ 
+test(11, 44, 64, 22, 66);  
+// giving only rest operator
+function test(...rest){
+    console.log(rest);
+}
+test(34,21,56,76,86,65)
+
+// its main advantage is that we can use array functions in parameters
+
+function test(...total){
+    const a = total.reduce((sum,current) => sum + current)
+    console.log(a);
+}
+
+test(11,44,22,34,64,2);
+
+// pass an array by splitting it into elements
+ function test(...total){
+    console.log(total)
+        const a = total.reduce((sum, current) => sum+current)
+        console.log(a);
+ }
+
+ const l = [11,44,64,22,34,1,100];
+ test(...l); // array can be passed as sepearate elements
+ // that's it rest parameters
+
+ // Parameter Destructuring...
+// // eg:
+
+function test(a){
+    const{
+        name,
+        age
+    }=a;
+
+    console.log(name, age);
+}
+const ojj = {
+    name: 'Code Malayalam',
+    age: 1
+}
+test(ojj);
+//we can destructure the the parameter pass
+// eg:
+function test({name,age}){          //give it as single line
+    
+    console.log(name,age);
+}
+const ob = {
+    name:'codd',
+    age: 1
+}
+
+test(ob);
+// Rest arguments -; make arguments more than one as a single array
+//parameter destructuring -; making an array or objects into seperate variables.
+
+// var   let  const
+var ar ='coddee';
+console.log(a);
+// let is used instead for var 
+//a variable can be declared in 2 places-;
+//   1)inside a function//  2)outside a function
+
+var ar = 10;                      //global variable
+
+function test(){
+    var a = 10;                   //local variable
+}
+
+// Every function has a stack memory. so if we declare a variable inside a function it will be stored on the stack
+// but if we declare a variable outside the function it will be stored on window object. Every webpage have a window object.
+//  when we load a webpage it will be stored as an object in the window.
+
+
+var ar = 10;                  // both are equal...
+window.a = 10;
+
+// location property in the window tell us which webpage is now opened
+
+var location = "hello";  //it will be going to windows.location 
+
+
+// if we declare a variavle using var ,it will be going to window object.
+let ar = "hello";
+// 1)'let' will not corrupt window object.
+// 1)'var' will corrupt window object.
+
+
+// scope of a variable is the accessibility of a variable.
+
+function test(){
+    console.log(testVar);
+    var testVar;
+}
+test();
+// inside a function we can access a 'var' variable from anywhere inside the function.
+
+function test(){
+    console.log(testVar);
+    testVar = 12;
+    var testVar;
+    console.log(testVar);
+
+}
+// we can declare a variable after it's use
+// reason for working this is 'Hoisting',it will make the declaration on the top .
+// it only carry declaration to the top
+//eg:
+function test(){
+    console.log(testVar);
+    var testVar = 12;
+}
+test()                             //  O/P = undefined
+// 2)'var' variable does hoist
+// 2) 'Let' variable  does not hoist
+function test() {
+    console.log(testVar);
+    let testVar;
+    testVar = 12;
+}
+test();  
+// 3) Allows multiple declaration in a scope
+// 3) Only one declaration in a scope
+
+//A block start with curly brace open and end with curly brace close.
+function test(){
+                           // this is a block with no content.
+}
+test();
+// scope of 'var' variable is function
+
+//a block inside a block given below 
+function test(){
+    if(true) {
+
+    }
+}
+
+test();
+
+// scope of 'let' is a block
+// 4) var - Function Scope
+// 4) let - Block Scope
+// let block eg:
+
+function test() {
+    let a = 20;
+    if(true){
+        let a = 100;
+        console.log(a);
+    }
+    
+}    
+test();
+
+
+//
+function test(){
+    let a = 20;
+    if(true){
+        let a = 100;
+    }
+    console.log(a);
+}
+test();
+
+/*            VAR               */ 
+// corrupts window object
+// Can be declared anywhere in the function
+// Hoisted
+//Supports multiple declaration in a scope
+// function scope
+
+
+/*             LET                          */
+// Doesn't corrupt window object 
+// Declare before use
+// Not Hoisted
+// Only one declaration in scope
+// Block scope
+
+/*            CONST     (constant)                         */
+// it has all properties of const with 2 extra properties
+//1) when we declare a variable with const a value should be assign to it
+//2) Once declared we can't change the value of const.
+function test(){
+    const a = 10;
+    a = 100;
+}
+test();
+
+// note that when it is a array or obj it only store reference not value
+//eg:
+function test(){
+    const a = [];
+    console.log(a);
+}
+test();
+// but we can push a value to the array
+function test(){
+    const a = [];
+    a.push(12)
+    console.log(a);
+}
+
+test();
+// const can mutate only already existing array ,new array cannot be created
+
+
+// function test(){
+// const a = [];
+// a = [12, 11]
+// }
+// test();
+
+//in other words a variable declared using const cannot use '='(assignment variable)
+
+// JSON - JavaScript Object Notation
+
+//datatypes used in JavaScript are -;
+
+// 1)Integer
+var arre = 10;
+
+// 2) Boolean
+var b = false;
+
+//  3)String
+var c = 'Codeeeed code';
+
+// 4) Array
+var dre = ['codeed', 'code'];
+
+// 5) Object
+var e = {
+   name: 'codded code',
+   age: 1,
+   topic: ['javascript', 'React', 'SCSS','git','aws'],
+   caption: 'Keep calm and Js'
+};
+
+function submit(){
+    const items = document.getElementsByClassName('data');
+    const data = {};
+    for (let item of items){
+        data[item.name] = item.ariaValueMax;
+    }
+    console.log(data);
+}
+
+// Data Transfer Format -conversion of data which everyone understands.
+// eg for data Transfer Format -;
+/*         .CSV
+           .YAML
+           .XML
+           .JSON
+*/
+// Among this one of the popular data transfer format is JSON.
+// JSON is Language Independent
+//JSON - JavaScript Object Notation
+// JSON format inspired from JavaScript
+
+var ar = 10;        //Integer
+
+var b = false;     // Boolean
+
+var c = 'coded code' // String
+
+var dr =['coded','code'] //Array
+
+var e = {
+    name: 'coded code',
+    age: 22,
+    topic:['javaScript','React','SCSS','git','aws'],
+    caption: 'Keep calm and JS'                             //Object
+};
+
+var f = null;                      //Null
+
+// To make these JSON
+//1) make it string
+
+// eg;
+var jsonE = `
+    {
+        name: 'coded code',
+        age: 22,
+        topic:['JavaScript','React','SCSS','git','aws'],
+        caption: 'Keep calm and JS'
+}
+`;
+// inside JSON quote("") is neccessary for object key
+// eg:
+
+var jsonE = `
+    {
+        "name": 'coded code',
+        "age": 22,
+        "topic":['JavaScript','React','SCSS','git','aws']
+        "caption": 'Keep calm and JS'
+    }
+`
+// In JSON string should be in double qoutes
+// In JSON don't put comma after last element
+//JSON format
+var jsonE = `
+    {
+        "name": "coded code",
+        "age": 1,
+        "topic":["JavaScript","React","SCSS","git","aws"],
+        "caption":"Keep calm and JS" 
+    }
+`;
+//JavaScript JSON Library to convert arr,obj etc.. to JSON /JSON string
+
+var jsonE = JSON.stringify(e);
+ // to convert string to obj,array etc..
+var obbjj = JSON.parse(jsonE);
+console.log(obj.name);
+
+var json = JSON.stringify(dr);
+console.log(json); 
+
+//RegEx -; Regular Expression
+// It is a library related to string. to extract substring,or particular words etc..
+
+ //Form Validation
+ function textOnChange(arg){
+    const label = document.getElementById('validation-label');
+    const error = validate(arg.value);
+    if (error){
+        label.innerText =error;
+    }
+    else
+    {
+        label.innerText = '';
+    }
+ }
+  
+
+ function validate(value){
+    return false;
+ }
+ // restrictions we give to a value is called patterns
+ //eg:
+ // Characters A-Z
+ //Numbers 0-9
+ // Underscore_
+ //
+
+
+ //Regular Expression library checks whether the patterns and input string matches
+ // If it matches the pattern it return succes else failure  
+
+
+ //Rules for writing Patterns
+
+ // .string should br inside forward slash
+ //case sensitive
+ const regexp = /cat/;
+
+ const resullt = regexp.test('my bat'); 
+ console.log(result);
+
+ // after giving 2 forward slash for patterns we can give different flags
+
+ const regex = /cat/i;             //it is case sensitive
+ //   const regex = new regex('cat','i');          //elaborated 
+   
+ //   const resuult = regex.test('my Cat');
+ //   console.log(resuult);
+ 
+ const str1 = "The cat is white";
+ const str2 = "Rat eats meat";
+ const str3 = "Is it ok?";
+ 
+ var result1 = regex.test(str1);
+ console.log(result1);
+ 
+ var result2 = regex.test(str2);
+ console.log(result2);
+ 
+ var result3 = regex.test(str3);
+ console.log(result3);
+
+ //Special Characters
+/*
+
+            [] -;means one of the characters inside the square bracket 
+            [a,b,c] -; means a/b/c
+*/
+//eg:
+const reeg = /[cr]at/i;
+// also range can be given
+  
+// const reeg = /[k-z0-9]at/i
+
+const st1 = "The cat is white";
+const st2 = "Rat eats meat";
+const st3 = "Is it ok?";
+
+var rest1 = reeg.test(st1);
+console.log(rest1);
+
+var rest2 = reeg.test(st2);
+console.log(rest2);
+
+var rest3 = reeg.test(st3);
+console.log(rest3);
+
+/*
+        [-](hyphon) to mention range inside the square bracket 
+*/ 
+/*
+        [^][$] -; [^] (start of string), [$] (end of string)
+*/ 
+
+const rec = /^cat/i;
+//const rec =/meat$/i;
+
+const sst1 = "The cat is white";
+const sst2 = "Cat eats meat";
+const sst3 = "These are good meats";
+
+var re1 = rec.test(sst1);
+console.log(re1);
+
+var re2 = rec.test(sst2);
+console.log(re2);
+
+var re3 = rec.test(sst3);
+console.log(re3);
+//      [m]-; multiline
+const redd = /meat$/im;   // end of the line should be meat
+
+const w1 = "The cat is white";
+const w2 = "Cat eats meat";
+const w3 = "These are good meats";
+const w4 =`
+good meat
+is always good
+`;
+//if 'm' is not given then it check whether the string starting is same 
+// 'm' chech whether the line start is same
+
+/**
+        [?] -;means optional / zero or one occurence 
+ //eg:
+ */
+const  reed = /meats?$/im;
+
+const veed = /fish(es)?$/im;
+
+/*  
+        [()] -;  to group things
+*/
+/*
+
+    [*, +]  ->[*] -; zero or many occurence, [+] -; one or more occurence
+    [.]     -; any character 
+*/
+function textOnChange(arg){
+    const label = document.getElementById('validation-label');
+    const error = validate(arg.value);
+    if(error){
+        label.innerText = error;
+    }
+    else{
+        label.innerText = '';
+    }
+}
+
+function validate(value){
+    const recc = /^[a-z][a-z0-9_]*$/i;
+    const ress = recc.test(value);
+    if(ress){
+        return '';
+    }else{
+        return 'Invalid String';
+    }
+}
+// carrot in square bracket have another meaning
+/* 
+[^abc]  not abc
+*/
+/*
+{} -> 
+*/
+
+const regeeex = /l{2}o+$/i;
+const strin = 'hello'
+
+const reult = regeeex.test(strin);
+console.log(reult); 
+/*
+{} -> represents repeatition of just front character.
+*/
+
+const reg = /l{3}o+$/i;     //here l can repeat 3 times
+const string = 'hello'
+
+const resst = regex.test(string);
+console.log(resst)
+
+
+const regr =/l{4,6}o$/i;               // here l can be from 4 to 6
+const stringg = 'helllo';
+
+const rests = regr.test(stringg);
+console.log(rests);
+
+const regrr =/l{2,}o$/i;                  // here l can be 2 to more
+
+
+// Meta characters
+// \d = digits
+const one = /\d/i;
+const ten = 'Helo';
+
+const ans = one.test(ten);
+console.log(ans);
+
+// \D = Non-digit
+
+const two = /\D/i;
+const eleven =12312;
+
+// \s = whitespace
+
+// \S = non-whitespace
+
+// \w = word character
+
+// \W = non-word character
+ 
+// backslash is called as escape character
+
+// \. specially dot 
+//   . all characters
+
+// Meta characters
+// \d = digits
+const one = /\d/i;
+const teen = 'Helo';
+
+const anss = one.test(ten);
+console.log(ans);
+
+// \D = Non-digit
+
+const two = /\D/i;
+const elevenn =12312;
+
+// \s = whitespace
+
+// \S = non-whitespace
+
+// \w = word character
+
+// \W = non-word character
+ 
+// backslash is called as escape character
+
+// \. specially dot 
+//   . all characters
+
+
+// how to extract a substring from string using regular expression
+function textOnChange(arg){
+    const label = document.getElementById('validation-label');
+    const error = validate(arg.value);
+    if(error){
+        label.innerText = error;
+    }
+    else{
+        label.innerText = '';
+    }
+}
+
+function validate (value){
+    const regex =/^d{1,2}-d{1,2}-d{4}$/i
+    const result = regex.test(value);
+    if(result){
+        return '';
+    }else{
+        return 'Invalid String'
+    }
+}
+// in a month there is only 31 days 
+function textOnChange(arg){
+    const label = document.getElementById('validation - label');
+    const error = validate(arg.value);
+    if(error){
+        label.innerText = error;
+    }
+    else{
+        label.innerText = '';
+    }
+}
+
+function validate(value){
+    const ref = /^([012]?\d | 3[01])([0]?\d|1[012])\d{4}$/i;
+              // first character can be 0/1/2 second character can be any digit | if first character is 3 second character can be 0/1
+                 // first character can be 0 and second character can be any digit | if first character is 1 then second characterr can be 0/1/2 only. 
+    const ret = value.match(ref);
+    if(ret === null){
+        return 'Invalid String';
+    }
+    else{
+        return '';
+    }
+}
+// 'test' returns false if it doesn't match 
+// match function returns null if the string is not match with the given string(ref)
+// () round brace are called capturing group
+
+
+// we extract substring by determining capturing with round brace.
+// if we don't want to show something in the capturing brace but still wanted it in a round brace then put "?:"
+// eg:
+const ref = /?:([012]?\d |3[01])([0]?\d|1[012])\d{4}$/i;
+"a-b-c".replace(/-/, ':')     // O/p ->a:b-c
+"a-b-c".replace(/-/g,':')     // O/p ->a:b:c
+
+//  flag g ==> global
+// if there is no g then it will end in the first match
+ 
+
+// $$ insert $
+//$&  insert entire match
+// $' Insert preceding string
