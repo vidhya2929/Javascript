@@ -2677,3 +2677,98 @@ const ref = /?:([012]?\d |3[01])([0]?\d|1[012])\d{4}$/i;
 // $$ insert $
 //$&  insert entire match
 // $' Insert preceding string
+
+const val1 = 5;
+const val2 = 5;
+console.log("Integer",val1 === val2);
+
+const val3 = "Code Malayalam";
+const val4 = "Code Malayalam";
+console.log("string", val3 === val4);
+
+const val5 = ["code", "Malayalam"];
+const val6 = ["code", "Malayalam"];
+console.log("Array",val5 === val6);
+
+const val7 = { name: "Code Malayalam"};
+const val8 = { name: "Code Malayalam"};
+console.log("Object", val7 === val8); 
+// primitive DataTypes -> it is not an object and has no methods 
+// All primitives are immutable
+/*
+.string
+.number
+.bignit
+.boolean
+.undefined
+.symbol
+.null
+*/
+//Non-Primitive DataTypes
+/*
+.Object
+.Array
+.Map
+.Function
+*/
+//Equality acts diffferent for primitive and non-primitive
+// variable stores the reference not the value
+// Also it stores which type is it like primitive/non-primitive
+ 
+// while comparing 2 primitives then its value is compared
+// if it is non-primitive the its reference is compared
+
+//Mutation
+//eg:
+var ae ={
+    name: 'Code Malayalam'
+};
+ 
+var b = ae;
+
+b.name = 'Code Malayalam 2.0';
+
+console.log('ae=',ae);
+console.log('b=',b);
+
+// the process of changing value of variable is called variable mutation
+// Case of Primitives
+
+var ae = 10;
+var b=ae;
+b=b+1;
+
+console.log('ae=',ae);
+console.log('b=',b);
+
+// here also it stores reference but it gives 2 diff values
+//primitive are non-mutable(Immutable).The value of reference can't change
+//here b=b+1 so ot is trying to change the primitive so it creates a new reference
+
+// Variable store reference
+// Value can change-Mutable
+// value cannot change -Immutable
+ 
+
+// const -> reference cannot be changed
+// Immutable ->value cannot be changed
+
+//Issues with Mutable
+function junk(obj){
+    const ret = {
+        ...obj,
+        test: "Test"
+    }
+    return ret;
+}
+const myObj = {
+    name: 'Coded code'
+};
+var ret = junk(myObj);
+console.log(myObj);
+console.log(ret)
+console.log(ret === myObj);
+// therefore like this we make changes in an object immutably
+//This is immnutable coding
+//if we encounter an object/array we can create new objects/array using spread operator.Or if we want to manipulate array we can use array functions like map(),reduce(),filter() etc...
+//Avoid mutating functions
