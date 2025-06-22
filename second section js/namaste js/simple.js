@@ -1,20 +1,12 @@
-// At global level 'this' points to window object
-// window is a global object created with global execution context
-// where ever we run the javascript code there is a global object 
-// here browser's global object created is called window
+// let and const declarations are Hoisted
+console.log(b);              //undefined due to hoisting
+let a = 10;
+var b = 100;
 
-//In the global level or base level 'this'==='window'
-/*
-whenever we create an execution context a "this" is created along with it even for the functional execution context
-At global level 'this' points to 'global object'(window for browser)
-*/
 
-/*                            Global Space                      */
-var a = 10;                   //here a is in the global space
-function b(){                  // b is also in the global space 
-    var x = 100;                // but x is not in the global space
-}
-console.log(window.a);
-console.log(a);   // if there is nothing before a it automatically refers to the global space
-console.log(x);  // as here nothing is infront of the x it assumes that it is in the global space so it come up with error that it is not defined. 
-console.log(this.a); 
+console.log(ar);             //error -; cannot access a before initialization
+let ar = 10;
+var b = 100;
+//  var b is attached to global object
+// but let and const are also allocated memory but they are stored on a seperate memory than global
+// we cannot access this memory without initializing it.
