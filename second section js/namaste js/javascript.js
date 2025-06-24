@@ -577,13 +577,55 @@ Iterators
 .Data hiding and Encapsulation -; if we have some variable and want some data privacy over it or other pieces of code cannot have access to this particular data
 // eg: 
 */
-var counter = 0;              // anybody can change(access) this counter .It should not be like that it should only be changed through the increment operator.
+function counter(){
+var count = 0;              // anybody can change(access) this counter .It should not be like that it should only be changed through the increment operator.
                             // to achieve that we use closure
 function incrementCounter(){
-    counter++;
+    count++;
 }
+}
+console.log(count);                    //here we have the privacy and we can only achieve it through function...
+//
+function counter(){
+    var count = 0;
+return function incrementCounter(){
+    count++;
+    console.log(count);
+}
+}
+var counter = counter()
+counter();
+
+var counter2 = counter(); //this like completely a new counter itself
+counter2();
+
+//using constructor class and make seperate functions for increment and decrement
+function counter(){
+    var count = 0;
+    this.incrementCounter = function(){
+        count++;
+        console.log(count);
+    }
+    this.decrementCounter = function(){
+        count--;
+        console.log(count);
+    }
+}
+var counter1 =new counter();        //as this is a constructor we have to use "new" keyword here
+counter1.incrementCounter();
+counter1.incrementCounter();
+counter1.decrementCounter();
+//wrap this inside a function
 //Questions for Interview
 
+
+//Disadvantages of closure
+/*
+.there could be over consumption of memory (every time a closure is formed it consumes a lot memory )
+.the closed over variables are not garbage collected which accumulates a lot of memory if we create a lots of closures 
+because they are not garbage collected till the program expires.
+.if we it is not handled properly it can leads to memory leaks
+*/
 function x(){
     var i = 1;
     setTimeout(function(){
@@ -757,5 +799,372 @@ var close = outest()("helloworld"); //a copy of inner function is goes to close 
 close(); 
 // in this case if we don't have let a = 10, then it will be defaulted to the global variable the inner function forms a closure with its outer environment so if it does not find "a" it goes to the global scope to resolve that variable
 // if it is not present in the global scope then it will return error that 'a' is not defined
+// INTERVIEW QUESTIONS
+/*
+.Each and every function in javascript has access to its outer lexical environment i.e, like access to the variables and functions which are presented in the environment of it's parent
+.each and every function has access to them.
+.Even when this function is executed in other scope not in its own original scope,it still remembers it's outer lexical environment where it was originally present in the code
+*/
+// eg: 
+// suppose we have nested functions
+function outer(){
+    var a = 100;
+    function inner(){   // in js the inner function has access to it's outer environment, So the inner function has access to 'a' variable
+        console.log(a);
+    }
+    return inner;          // if we return this inner function also and try to access it from the outside also,it still remembers what the value of 'a' was
+}
+outer()();    //O/p => 100 (even if it is not in the scope it still remembers the value of 'a')
+ 
+// outer();   ==>This will return the inner function
+// outer()();  ==> Call the inner function in the same line.
 
 
+//
+var close = outer();
+close();
+// which is equal to  ==>
+var close = outer()();
+
+// ? what if the program is like this 
+function outer(){
+    function inner(){
+        console.log(a);
+    }
+    var a = 10;
+    return inner;
+}
+outer()();
+// what if we change the "var" to "let" in the above question.considering that "let" is a block scope
+
+function outer(){
+    function inner(){
+        console.log(a);
+    }
+    let a = 10;
+    return inner;
+}
+outer()();
+
+// In this case "a" has a block scope here.we cannot access this "a" outside.but still it forms a closure
+
+// ? what if it was like this
+function outer(b){
+    function inner(){
+        console.log(a,b);  // suppose we access this 'b' here
+    }
+    let a = 10;
+    return inner;
+}
+var close = outer ("helloworld");
+outer()();
+// even if it is called outside it will work in the same way
+function outest(){
+    var c = 20;
+    function outer(b){
+
+    function inner(){
+        console.log(a,b,c);
+    }
+    let a = 10;
+    return inner;
+}
+return outer;
+}
+var close = outest()("helloworld");
+close();
+// if there is a conflict in the name of let "a"; want to do
+function outest(){
+    var c = 20;
+    function outer(b){
+        function inner(){
+            console.log(a,b,c);
+        }
+        let a = 10;
+        return inner;
+    }
+    return outer;
+}
+let a =100;                    // it is in the global scope, therfore these two similar name variables are like different variable
+var close = outest()("helloworld"); //a copy of inner function is goes to close ,it remembers the value of a is pointing to 10,not 100
+close(); 
+// in this case if we don't have let a = 10, then it will be defaulted to the global variable the inner function forms a closure with its outer environment so if it does not find "a" it goes to the global scope to resolve that variable
+// if it is not present in the global scope then it will return error that 'a' is not defined
+
+
+//       GARBAGE COLLECTOR
+/*
+it is like a program in the browser or js engine which freeze up the unutilized memory
+In high level programming language like javascript most of the work is done by the js engine
+There is a garbage collector in javascript
+whenever there is unused memory the garbage collector take it from the memory
+*/
+
+// relation between garbage collector and closure
+function a(){
+    var x = 0, z = 10;
+    return function b(){
+        console.log(x);
+    }
+}
+var y = a();
+
+y();
+
+/* functions are the heart of javaScript */
+// "Function Statement" also called as "Function Declaration"
+function a(){
+    console.log("a called")        //This way of creating a funtion is called function statement
+}
+a();
+//FUNCTION EXPRESSION
+var b = function(){
+    console.log("b called");
+}   
+b();
+//(A function can be assigned to a variable)[i.e, function acts like a value]
+// Difference between function statement and function expression ==>Hoisting
+a();
+b();
+function a(){
+    console.log("a called")
+}
+var b = function(){
+    console.log("b called")             // it is like undefined until this line caame
+}
+// during the memory creation phase,in the function expression b is treated like any other variable
+// here b is not defined 
+// we cannot access variable b 
+
+
+//Anonymous Function
+/*
+.A function without a name is called as anonymous function.
+ eg:  */
+ /*             function(){}               //Syntax error    
+ */
+ // it doesn't have a name
+// ANONYMOUS FUNCTIONS ARE USED IN A PLACE WHERE FUNCTIONS ARE USED AS VALUES(use it to assign as a value for a variable)
+// Function statement cannot use anonymous functions
+
+var b = function(){
+    console.log("b called");
+}
+b();
+//Named Function Expression
+// it is similar to the function declaration above instead of anonymous function we use a name for the function.This is called as a named function expression
+function a(){
+    console.log("a called");
+}
+var b = function xyz(){           // we can have the name of the function itself and put it into an expression
+ console.log("b called");  //console.log(xyz) we can access it here but we cannot accesss it outside
+}
+a();
+b();
+xyz();           //Not Possible because this xyz is not in the global scope but it is created as a local variable
+
+//Named Function Expression is a function expression that has its own name...
+// if we don't give a name in the above function it becomes a normal function
+//DIFFERENCE BETWEEN PARAMETERS & ARGUMENTS ?
+var b = function(param1,param2){     //whenever we create a function the items we put inside the round parenthesis
+    console.log("b called");       //this is a local variable in the function scope
+}
+a();
+b(1,2);       //This is known as argument
+/*
+-> The values which we pass inside a function is called "arguments"
+->the labels/identifiers which get those values are called "parameters"
+*/
+
+// FIRST CLASS FUNCTIONS
+/*
+.We can pass a function from a function
+*/
+var b = function(param1){
+    console.log(param1);
+    }
+b(function(){
+
+});
+
+//Passing another function inside a function
+
+var b = function(param1){
+    console.log(param1);
+}
+function xyz(){
+
+}
+b(xyz);
+
+
+// Also we can return an anonymous function from another function
+var b = function(param1){
+    return function(){     // we can return an anonymous function from a function
+
+    }
+}
+function xyz(){
+
+}
+b(xyz);
+// when we invoke 'b'then the function will be returned 
+
+var b = function(param1){
+    return function(){
+
+    }
+}
+console.log(b());
+// The ability of functions to be used as values and can be passed as an arguments to another functions and can be returned from the functions are called first class functions(It is a programming concepts)
+/*
+.use as a value
+.assign it to a variable
+.can be passed into another functions
+.can be returned out from another function
+*/
+// first class functions === first class citizens(Ability to be used like values)
+
+let b = function(param1){         ////They are in a temporal deadzone until it encounters this statement    
+    //LET | CONST instead of var
+    return function xyz(){
+
+    }
+}
+console.log(b());
+//here also it behaves like the normal variables.
+
+// ARROW FUNCTION
+// the function statements,function expressions eetc.. can be created using the arrow function.
+
+
+// what is a CALLBACK FUNCTION in JavaScript
+/*
+*Functions are first class citizens
+i.e, functions can be passed to another function
+The function which we use to pass to another function is called a callback function
+It gives us access to the whole asynchronous world in a synchronous single threaded language
+*/
+function x(y){
+
+}
+x(function y(){
+
+})
+// here "function y" is called as callback function 
+// i.e, we give the responsibility of the function "y" to another function "x"
+// How callback function is used in asynchronous task
+// eg:
+setTimeout(function (){       // The function which the setTimeout takes is a callback function
+    console.log("timer");
+},5000);                
+function x(y){
+    console.log("x");
+    y();
+}
+x(function y(){
+    console/log("y");
+});
+//here setTimeout will take that function and store it in a seperate space and along with its timer(5000) attached 
+//Everything that is executed from our page is through the call stack(which is the main thread)
+//Any action that is blocking the call satck is called blocking the main thread
+// using web API's,setTimeout,and the callback functions we can achieve the asynchronous operations...
+
+
+// Event Loop
+/*
+.It has one call stack -it can do onlt 1 thing at a time
+.This call stack is present inside the javascript engine
+.All the code inside the js was executed here
+*/ 
+function a(){
+    console.log("a");
+}
+a();
+console.log("End");
+//whenever any js program is run a GEC(Global Execution Context) is created
+// and it is pushed on to the call stack
+//call stack executes whatever comees into it
+//it doesn't wait for anything
+
+
+// callback is inside the javaScript engine
+// js engine is inside the browser
+
+// WEB API's
+/*
+==> it is not a part of javascript.
+.setTimeout()  
+.DOM APIs     
+.fetch()
+.localStorage
+.console
+.location
+// These are part og browser
+*/
+//document. are all DOM API's
+//fetch()->connections to the external server
+// global object is the  window
+//use the setTimeout inside the javascript then do "window.setTimeout"
+//access to localStorage --> window.localstorage
+// window.console.log  --> access to log something to console 
+// The browser wraps up all the API's to a global object "window"
+console.log("Start");
+setTimeout(function cb(){
+    console.log("callback");
+},5000);
+console.log("End")
+
+
+// setTimeOut
+/* 
+.GEC -> call stack
+running code line by line
+API is plugged through window
+.first line of code(console.log(Start);) it calls the web API console, and it makes an internal call to log something to the console.
+"window"-
+*/
+//calls the web API setTimeOut and it takes a callback function and some delay
+// when we pass the callback to setTimeOut it registers a callback
+//because we pass the delay it also starts 5000ms in the timer and the js engine moves to next line,it does not wait for anything
+//after executing all the lines GEC pops out from the call stack.
+//as soon as the timer expires this callback function needs to be executed.
+
+
+//The callback function goes to the call stack through callback queue
+// when the timer expires this callback function is put inside this callback queue
+ 
+// EVENT LOOP
+/*
+it checks the callback queue and put the functions of callback queue into the call stack
+
+it acts like a gatekeeper it checks whether we have something in the callback queue and if there is anything it push that to the callback stack 
+and the call stack quickly executes the callback function
+*/
+console.log("Start");
+document.getElementById("btn")
+.addEventListener("click",function cb(){
+    console.log("callback");
+});
+console.log("End");
+// addeventListener ==> it is given by the browser to the java script engine through the window object in the form of a web API  which is a DOM API
+// addeventListener registers a callback on an event (here click)
+// So a caallback will be registered in the web API and an event is attached to it(click) [This is called as registering a callback]
+// After the console line also execute the GEC will be popped out from the call stack
+
+// but the event handler will stay in the web API's environment until and unless we explicitly removes that event listener or close the browser
+// when the user clicks the button the callback method then push into the callback queue and waits ther for it's turn for execution
+//EVENT LOOP ==> continously moniter the call stack and the callback queue and whenever the opportunity came it will push the callback(cb) into the call stack from callback queue.
+// and lastly it log out the "callback" and "end"
+
+
+// DOM(Document Object Model) it is like the html source code
+
+// why do we need callback queue
+/*
+.suppose the user clicks the button continously 7-8 times at that time the callback is pushed into the callback queue 7-8 times and thath will be waiting to be executed.
+The event loop continously checks the call stack that whether it is empty or not ,if it is empty it will take the functions one by one from the callback queue and executes them
+*/
+
+// there will be a lot of timers, a lot of event listeners so we need to queue all of thems together so that they get a chance one after the another
+//because there is only one call stack and it can do 1 thing at a time and everything in js executes only in the stack
