@@ -1168,3 +1168,426 @@ The event loop continously checks the call stack that whether it is empty or not
 
 // there will be a lot of timers, a lot of event listeners so we need to queue all of thems together so that they get a chance one after the another
 //because there is only one call stack and it can do 1 thing at a time and everything in js executes only in the stack
+
+
+//                                FETCH
+// Fetch is not working in the same way as the eventListeners or the setTimeOut
+// eg:
+console.log("Start");
+
+setTimeout (function cbT(){
+    console.log("CB SetTimeOut");
+}, 5000);
+
+fetch("https://api.netflix.com").then(function cbF(){
+    console.log("CB Netflix");
+});
+console.log("End");
+
+//FETCH ==> Goes and request an API call
+// the fetch function returns a promise and we have to pass a callback function which will be executed once the promise is resolved
+// GEC => Call Stack =>execute line by line => console =>setTimeOut register the callback function in the web API's so we have cbT =>timer of 5000 started =>fetch(web API used to make network calls) it also registers the callback function in the web API so we have cbF
+// the cbT is waiting for the timer to expire so that it can get pushed into the call stack through callback queue
+// cbF is waiting for the data to be returned from the netflix servers.& once the data is returned then the cbF is ready to be executed
+// cbF will goes to the microtask queue =>push to callstack ==>console "CB Netflix" ==>popped fromthe callstack
+// after cbF the event loop will now schedule the cbT function inside the callstack and
+
+/*            MICROTASK QUEUE                   */
+//microtask que is similar to callback queue but it has higher priority
+// the functions come inside the microtask queue will be executed first and the functions in the callback queue are executed later
+// the callback functions (in case of promises||incase of network calls) will go to the microtask queue
+// When the timer get expires the cbT will go to the callback queue 
+// the event loop will continously checks whether the call stack is free.
+// as there is microtask queue and callback queue ,the event loop will push the functions from the microtask to the call stack.As the microtask has the higher priority
+
+
+
+/*
+.All the callback function which comes through promises will go inside microtask queue.
+.Mutation Observer -;keeps on checking whether there is some mutation in the DOM tree or not.
+.if there is some mutation in the DOM tree it can execute some callback function
+.promises and mutation observer goes inside to the microtask queue
+*/
+//callback queue is also known as Taskqueue
+
+
+/*                    STARVATION
+.waits for execution
+*/
+// JavaScript Runtime Environment
+// it is like a big container which has all the things required to run a javascript code
+
+/*
+.JS engine
+.set of API to connect to the outer environment
+.Event Loop
+.Caallback queue 
+.Microtask Queue
+*/
+
+//JavaScript Runtime Environment is not possible without the java script engine
+// Browser can execute the javascript because it has the javascript runtime environment
+
+
+//the setTImeOut API looks similar in the browser as well as in the Node.js but internally they are implemented very differently inside
+                // js engines
+// Microsoft Edge => Chakra
+// Firefox        =>SpiderMonkey
+// Google Chrome  =>V8 
+
+// we can create our own js engine;
+/*
+.ECMAScript language standard
+*/
+
+// first javascript engine =>SpiderMonkey
+
+/*                   JavaScript Engine Architecture                           */
+// javascript engine is not a machine(it is a code)
+// google's V8 is written inside a c++ code
+
+// js engine takes code as the input
+//  This code goes through three main steps-;
+/*
+1). Parsing -;        code is broken down into tokens
+    .Syntax parser-;take the code and convert it into AST
+    .AST -;Abstract Syntax Tree
+*/
+// {
+//     "type": "program",
+//     "start": 0,
+//     "end": 42,
+//     "body": [
+//     { 
+//         "type": "VariableDeclaration",
+//         "start": 0,
+//         "end": 42,
+//         "declarations": [
+//         {
+//             "type": "VariableDeclarator",
+//             "start": 6,
+//             "end": 41,
+//             "id": {
+//             "type": "Identifier",
+//             "start": 6,
+//             "end": 18,
+//             "name": "bestJSCourse"
+//             },
+//             "init":{
+//             "type": "Literal",
+//             "start": 21,
+//             "end": 41,
+//             "value": "Namaste JavaScript",
+//             "raw": "\"Namaste Javascript\""
+//             }
+//         }
+//         ],
+//         "kind": "const"
+//     }
+//     ],
+//     "sourceType": "module"
+//     }
+// it is an abstract syntax tree for the following code
+
+// const bestJSCourse = "Namaste JavaScript"     //head of the tree
+// it has declarations inside it 
+
+// in some js engine have AOT(Ahead Of Time Compilation) 
+// 2).Compilation
+// when we write this code it generates the syntax parser tree and that generates the AST(above)
+// it is the AST for 1 line of code
+
+// The AST then generated is passed on to the compilation
+
+///// astexplorer /////
+
+// compilation and execution goes hand in hand
+// JIT Compilation => Just In Time Compilation
+
+// Interpreter  Vs  Compiler
+// interpreter => takes the code and execute it line by line in the order and it doesn't know what will happen in the next sentence
+// Compiler =>whole code get compiled before the code get executed
+// and a new code is formed which is an optimized version of this code  & then it is executed
+
+
+
+// In interpreter the code is fast it doen'nt want to wait for compilation
+// but compiler has more efficiency
+
+
+// js language can be an interpreted language as well as compiler language (everything is dependent on the javascript engine)
+
+// Most of the modern browsers use both interpreter and a compiler together
+// It depends on whether it is purely interpreted or just in time compiler
+// JUST IN TIME COMPILER -; JavaScript engines can use an interpreter along with a compiler
+// As AST passes to the interpreter and the interpreter converts high level code to bytecode and moves to the execution step
+// The interpreter takes the help of the compiler to optimize the code
+// compiler =>optimize the code as much as it can on the run time and it also produces the bytecode which is then goes to the execution phase
+// 3).Execution
+/*
+Execution is not possible without 2 major components
+.The memory heap -> place where all the memory is stored
+place where all the variables and functions are assigned memory
+.The Call Stack(inside js engine)
+*/
+///*Garbage Collector(orinoco) uses "mark and sweep" algorithm *///
+
+/*Optimization which the compiler does for the code...*/
+// Inlining
+// copy elision
+// Inline caching
+// google's V8 is the best javascript engine.
+
+// v8 has an interpreter known as ignition.Along with that an turbo fan(Optimizing compiler)
+// This make our code run fastly
+// 
+
+
+// SetTimeOut
+// It has trust issues it is not working in the exact timer ,it is based on call stack
+function cb(){
+    console.log("Callback");
+}
+
+setTimeout(cb, 5000);
+
+// reason for trust issues
+console.log("start");
+setTimeout(function cb(){
+    console.log("callback");
+},5000);
+console.log("End");
+// GEC is created => pushed into the callstack =>run line by line =>log start=>"setTimeou"t" registers a callback method into the web API's environment,waiting the timer for execution to get expire
+// => it starts the timer of 5000ms=> log "print"
+
+// suppose there is 1 million lines of code after the "end" and it has 10 seconds to execute
+// In that case the GEC is busy by running that 1 million of code
+// GEC wait for 10 seconds and execute these line of code
+// main thread(call stack)
+// as it is executing the 1 million lines of code ,the timer (5000) expired and the callback function is pushed into the callback queue,event loop is
+// event loop is checking whether the call stack is empty or not.
+
+
+// when will the cb get chance to execute
+// After 10 seconds(it is only 5000ms)but it waits for GEC to pop out after 10 s
+// It will wait for the whole program to execute before the function can be push inside the call stack     
+//                      //concurrency model in javascript
+// After 10 seconds the GEC will pop out  and at that time the event loop will pick up the cb from the callback queue to the call stack
+// So the function CB get chance to execute =>log "callback" to console.
+
+
+// we should avoid the thing that is blocking our main thread because if the call stack is not empty it cannot process any other event.
+console.log("Start");
+setTimeout(function cb(){
+    console.log("callback");           
+}, 5000);                                        //it is waiting in the callback queue for the 10 seconds to end
+
+console.log("End");
+// block the main thread for 10 seconds
+// 1).millions of code
+
+// simulate to block a main thread for 10 seconds
+
+
+let startDate = new Date().getTime();
+let endDate = startDate;
+while(endDate < startDate + 10000){
+    endDate = new Date().getTime();
+}
+console.log("while expires");
+/* O/p ==> Start
+End
+While expires
+Callback
+*/
+// why js has only 1 callStack
+// => synchronous single threaded language with 1 callstack all the code get executed in it.
+// what if setTimeout is set to be 0 ?
+console.log("Start");
+setTimeout(function cb(){
+    console.log("callback");
+},0);
+console.log("End");
+// even if the timer is 0 seconds the function has to go through the queue,the js does'nt wait for anything it will log out "end"
+// the need for setTimeout =0
+
+console.log("Start");
+ 
+function cb(){
+    console.log("callback");
+}
+cb();
+setTimeout(function cb(){                
+    console.log("calllback"); 
+},0);                           //if we don't want to execute that code at that moment.
+console.log("End");            //when this code is more important
+
+// Higher Order Functions
+// The function passed into the higher order function is known as the callback function
+// A function which takes another function as an argument or returns a function from itself is known as higher order functions
+// eg:
+function x(){
+    console.log("Namaste");
+}
+
+function y(x){                //here function "y" takes,another function "x" as argument is the higher order function
+    x();
+}
+
+
+const radius = [3,1,2,4];
+
+// calculate the area of 4 circles
+const calculateArea = function (radius){
+    const output =[];
+    for(let i = 0;i<radius.length;i++){
+        output.push(Math.PI * radius[i] * radius[i]);
+    }
+    return output;
+};
+console.log(calculateArea(radius));
+// This code is okay,but if the code grows what will be the output...
+const calculateCircumference = function(radius){
+    const output =[];
+    for(let i = 0; i<radius.length;i++){
+        output.push(2 * Math.PI * radius[i]);
+    }
+    return output;
+};
+console.log(calculateCircumference(radius));
+
+const calculateDiameter = function(radius){
+    const output = [];
+    for(let i = 0;i<radius.length;i++){
+        output.push(2*radius[i]);
+    }
+    return output;
+};
+console.log(calculateDiameter(radius));
+
+// This is not a good way
+// repetition is the problem
+
+const radius =[3,1,2,4];
+// extract the logic 
+const area = function(radius){
+    return Math.PI*radius*radius;
+};
+// instead of passing radius inside the function we are passing some logic inside the function
+// so write a genericfunction
+const Circumference = function (radius){
+    return 2 * Math.PI * radius;
+};
+const diameter = function (radius){
+    return 2 * radius;
+};
+
+const calculate = function (radius, logic){
+    const output = [];
+    for(let i =0;i <radius.length;i++){
+        output.push(logic(radius[i]));                                  //similar to map function
+    }
+    return output;
+};
+console.log(calculate(radius, area));
+console.log(calculate(radius,Circumference));
+console.log(calculate(radius,diameter));
+
+// break down logic into smaller functional units.
+
+// reusability
+// modularity
+// how you pass functions in higher order functions
+
+// calculate()
+// 1.create a new array
+// 2.Iterate through all the elements in that array
+// 3).Push into the ouput and return that array
+
+// function calculate in here is similar to the "map" 
+// MAP is a very common higher order function
+const radius = [3,1,2,4];
+
+const area = function(radius){
+    return Math.PI* radius * radius;
+};
+const circumference = function(radius){
+    return 2*Math.PI*radius;
+}
+const diameter = function (radius){
+    return 2 * radius;   
+};
+const calculate = function (arr, logic){
+    const output = [];
+    for(let i=0;i<arr.length;i++){
+        output.push(logic(arr[i]));
+    }
+    return output;
+}
+console.log(radius.map(area));
+console.log(radius.map(circumference));
+console.log(radius.map(diameter));
+
+// array.prototype
+const radius = [3,1,2,4];
+
+const area = function (radius){
+    return Math.PI *radius *radius;
+};
+const circumference = function (radius){
+    return 2 * radius;
+};
+const diameter = function (radius){
+    return 2 * radius;
+};
+Array.prototype.calculate = function (logic){          //content in the prototype will occur in all the array
+    const output = [];
+    for(let i=0;i<arr.length;i++){
+        output.push(logic(arr[i]));
+    }
+    return output;
+};                                                     //"this" ==> radius 
+console.log(radius.calculate( area));
+console.log(radius.calculate(circumference));
+console.log(radius.calculate(diameter));
+
+// MAP FUNCTION
+// ==> it is used to transform an array
+const arr = [5,1,3,2,6];
+// map function can be used
+// Double - [10, 2, 6, 4, 12]
+
+function double(x){
+    return x * 2;
+
+} 
+const output = arr.map(double);
+console.log(output);
+
+// Triple - [15,3,9,6,18]
+
+function triple(x){
+    return x * 3;
+}
+const outp = arr.map(triple);
+console.log(outp);
+
+// Binary - ["101","1","11","10","110"]
+function binary(x){
+    return x.toString(2);
+}
+const op = arr.map(binary);
+console.log(op);
+// function inside 
+const outt = arr.map(function binary(x){    //Higher Order Functions
+    return x.toString(2);
+});
+console.log(outt);
+
+// Arrow Function
+const oop = arr.map((x) => {
+    return x.toString(2);
+});
+// or as it is single line
+const opo = arr.map((x) => x.toString(2));
+console.log(opo);
