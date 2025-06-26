@@ -58,10 +58,10 @@ var x = 7;
 function getName(){
     console.log("Namaste javascript");
 }
-
 getName();                           
 console.log(x);
 console.log(getName);
+
 // when it is executed the execution context will be popped from the call stack.
 //The global execution context has created and put it in the call stack.
 
@@ -99,6 +99,8 @@ function getName(){
 getName();
 console.log(x);
 console.log(getName);
+
+
 
 var x = 7;
 // Case 1
@@ -151,7 +153,6 @@ var a =  7;
 console.log(x)   // herre is what not defined, x is not defined here...
 // form the place where the javascript engine allocated "undefined"
 //undefined is taking memory not like 'not defined' (it is a placeholder)
-
 var a;
 console.log(a);                       // O/p -; undefined
 a =10;
@@ -169,6 +170,7 @@ a=10;
 console.log(a);
 a = "hello world";
 console.log(a);
+
 // Loosely typed language is also known as weekly typed language(which is not weak actually)
 
 // *a = undefined               // don't do this
@@ -212,7 +214,6 @@ function a(){                              // a is lexically inside the global s
 }
 a();
 console.log(b);
- 
 // when we run this program a gec(global execution context) is put into the stack
 // where ever an execution context is created a lexical environment is also created, lexical environment is the local memory along with the lexical environment of its parent.
 // lexical means in hierarchy or in a sequence or in order
@@ -1591,3 +1592,7 @@ const oop = arr.map((x) => {
 // or as it is single line
 const opo = arr.map((x) => x.toString(2));
 console.log(opo);
+
+const opo = arr.map((x)=>{
+    return x.toString(2);
+})

@@ -1,0 +1,109 @@
+<!-- HTML -> Hypertext Markup Language  -->
+<!-- <h1></h1> ==> headings/titles -->
+ <!-- <p></p> ==> paragraphs of text -->
+<!-- <a href=""></a>  ==>hyperlink -->
+ <!-- CSS ==>Cascading Style Sheets -->
+<!-- In html -->
+<!-- Most tags are in group of pairs -->
+<!-- forward slash represents the end of a tag -->
+ <!--This is COMMENTS.Comments aren't displayed as output, they are usually used as notes for yourself or for other developers-->
+  <!DOCTYPE html> 
+  <!-- declaration that shows this document is an HTML5 document (latest version) -->
+   <html> <!-- represents the root element of an HTML page -->
+        <head> <!--contains the information about our webpage(like title...) -->
+            <title>Brocode Website</title> 
+            <!-- The link tag is self closing 
+            the link tag specifies the relationship between this document and an external source -->
+            <link rel="icon" type="image/jpg" href="images/favicon.jpeg"> <!--because we are adding an icon-->
+        </head>                                    
+       <body>   <!--contains visible content in the webpage -->
+            <h1>This is an h1 heading</h1>  <!--used for headings/ other large texts--> <!--large headings-->
+            <h2>THis is an h2 heading</h2>   <!--less than h2--> 
+            <h3>This is an h3 heading</h3>
+            <hr>
+            <p><!-- p tag don't care about any spaces or new lines -->
+            <pre>  <!--pre-formatted text --> it retain any line breaks or spaces within these tags
+            Lorem ipsum dolor
+            sit amet consectetur adipisicing
+            elit. Soluta molestias dolore repreh
+            enderit laboriosam commodi vel aliquam 
+            deserunt quas quam culpa asperiores 
+            magnam placeat autem itaque iste ex,
+            obcaecati ullam nihil?
+            </pre>
+            </p>  <!--Paragraphs are seperated with a line break -->
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde inventore architecto, excepturi exercitationem rerum delectus, fuga eaque dolore molestias aliquam animi minima odit consequuntur! Quo eius ea sequi deserunt totam.
+            </p>
+            <!-- if we need a line break then we can use <br> tag -->
+             <!-- <br> is a self closing tag -->
+            <!--[<hr> => horizontal rule] it add a horizontal line accross your page -->
+
+            <!-- HYPERLINKS -->
+            <!-- It is a digital reference to data, that the user can follow oy be guided by clicking or tapping a button or a link -->
+                <!-- to create a hyperlink we need a pair of a tags => -->
+                <!--This below URL is an absolute URL--><!-- linking an external website -->
+
+                <a href="https://www.google.com/" target="_blank" title="goes to google">click Me</a>   <!--anchor.It need an attribute : "href" -->
+
+                <!-- An attribute is a name value pair that modifies the behaviour of an element -->
+                <!-- href => hypertext reference, we are referencing something within the set of qoutes we can list a web page or a file to link-->
+                <!-- if target is set into _blank =>this link will open that URL either in a new tab or a new window -->
+               <!-- title attribute displays additional information about the element as a tool tip(while hovering) -->
+                <br>
+               <a href="song.html">Song lyrics</a>  <!-- for a relative file path all we need is the file name (song.html)-->
+                <br>
+                <!-- creating a link that begins the process of emailing -->
+               <a href="mailto:vidhyamrobert.29@gmail.com">Email Me</a>
+
+                <!-- Creating an image to a web page -->
+                <!-- we can change the dimensions of an image with height and width attributes -->
+                <!-- we can turn the images into hyperlinks, surround the image element with a pair of a tags -->
+                <a href="https://en.wikipedia.org/wiki/Dog">
+               <img src="images/download (1).jpeg" alt="THis is a picture of a Dog" 
+               height="200">
+                </a>
+                <!-- gif can also be created with the image tag -->
+
+                <!-- eg : <img src="puppy.gif" alt="this is a gif of a puppy" height="200"> -->
+
+               <!-- For visually impaired people, In"alt" included image tag the screen reader read the alternative text for the image -->
+                <p>we don't talk anymore</p>
+               <!-- audio tag -->
+                <!-- how to include audio to a webpage -->
+                <!-- to include audio we need a pair of audio tag and between that we need source element with a src(source attribute)-->
+                <audio controls >
+                    <source src="link of audio.mp3">
+                </audio>
+                <!-- audio file to autoplay (muted) &(loop)-->
+                <!-- type attribute to specify type -->
+                 <p>At my worst</p>
+                <audio controls autoplay muted loop>
+                    <source src="linkk of audio.mp3" type="audio/mpeg">
+                    <source src="linkkofaudio mp3" type="audio/wave">
+                    <!-- when our web browser doesn't support a certain audio type we can add fallbacks.(wave version of our audio file) -->
+                </audio>
+                <p>blue</p>
+                <audio controls>
+                    <source src="audio.mp3">
+                </audio>
+                <audio>
+                <source src="audiolast.mp3">
+                </audio>
+                <!-- including video in our webpage  -->
+                <!--video tag-->
+                <!-- .mp4,.webm,.ogg -->
+                <a href="https://zelda.nintendo.com/">
+                <video width="180px" height="200px" controls autoplay muted loop></video>
+                <source src="linkkk.mp4" type="video/mp4">
+                <source src="linkkk.webm" type="wave/webm">
+                </a>
+                 <!-- control to play the video -->
+                  <!-- we can give all the attributes within the opening tag -->
+        </body>                                
+      </html>
+<!-- favicon in our page -->
+<!-- modern browsers accept .ico,png,.jpg,.gif,.svg -->
+ <!-- to change the size of the image we can use paint -->
+  <!-- In paint to change the size take resize or skew the image -->
+
