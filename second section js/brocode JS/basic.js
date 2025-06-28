@@ -262,3 +262,471 @@ ze = Boolean(ze);
 console.log(xe, typeof xe);
 console.log(ye, typeof ye);
 console.log(ze, typeof ze);
+
+
+// 
+let e = "";
+let t = "";
+let o = "";
+
+e = Number(e);
+t = String(t);
+o = Boolean(o);
+
+console.log(e, typeof e);
+console.log(t, typeof t);
+console.log(o, typeof o);
+//  if string is empty we can chack for the boolean and if it is false then the reason is that the user may not enter the input,& we can let them know.
+
+let a;
+let b;
+let c;
+
+a = Number(a);
+b = String(b);
+c = Boolean(c);
+
+console.log(a, typeof a);
+console.log(b, typeof b);
+console.log(c, typeof c);
+
+// if a variable is declared but not assigned then the Number becomes NaN,String becomes undefined and Boolean becomes false.
+
+
+let xx = "0";
+let yy = "0";
+let zz = "0";
+
+xx = Number(xx);
+yy = String(yy);
+zz = Boolean(zz);
+
+console.log(xx, typeof xx);
+console.log(yy, typeof yy);
+console.log(zz, typeof zz);
+
+// This is all Type conversion
+
+//                                 CONST (constant)-;
+// A variable that can't be changed once you assign them.
+// here is a program to calculate the circumference of a circle given radius
+
+let pi = 3.14159;
+let radius;
+let circumference;
+
+radius = window.prompt(`Enter the radius of a circle`);
+radius = Number(radius);   //when we acept user input it will be a string so to convert it we use "Number" function.
+
+
+circumference = 2 * pi * radius;
+console.log(circumference);
+
+// Use of const => somebody may malicious our program or an error they make like reassignment we use const so that it cannot be changed or reassigned
+
+let Pi = 3.14;
+let radiuss;
+let perimeter;
+
+
+Pi = 420.69;    //reassigned
+
+radiuss = window.prompt(`Enter the radius of circle`);
+radiuss = Number(radiuss);
+
+perimeter = 2 * Pi * radiuss;
+console.log(perimeter);
+// here the output changes
+// So to ensure security use "const" for variables that shouldn't change
+
+// replace let with const (use captial variable while using const)
+// Capitalizing the constants is only done with primitive datatypes like numbers,boolean... and not with reference datatypes such as strings...
+// here "PI" is a constant and a number so we are assigning it uppercase.(if it is a string then not used).
+
+const PE = 3.14159;
+let radiuus;
+let circum;
+
+PE = 420.9;           //TypeError:assignment to const variable        
+// js won't allow us to reassign constants once they are assigned once ,we can't make any changes to it
+radiuus = window.prompt(`Enter the radius of circle`);
+radiuus = Number(radiuus);
+
+circum = 2 * PE * radiuus;
+console.log(circum);
+
+const PI = 3.14159;
+let raddius;
+let circummference;
+
+document.getElementById("mySub").onclick = function(){
+    raddius = document.getElementById("radi").value;
+    raddius = Number(raddius);
+    circummference = 2 * PI *raddius
+    document.getElementById("myH3").textContent = circummference + "cm";
+    console.log(circummference);
+}   
+
+
+// Math
+// -> built-in object that provides a collection of properties and methods
+
+// if we need PI then we can use it from Math =>
+
+    console.log(Math.PI);
+    console.log(Math.E);
+    // Math gives access to all math related methods
+    
+    let ex = 3.21;
+    let ey = 3;
+    let ez;
+    let s;
+    
+    ez = Math.round(ex);   //to round
+    s = Math.ceil(ex);
+    d = Math.trunc(ex);
+    console.log(ez);
+    console.log(s);
+    console.log(d);
+    
+    let r = 3.99;
+    let tt = 2;
+    let w;
+    z = Math.floor(ex);
+    console.log(z);
+    
+    let g =3;
+    let v =2;
+    l = Math.pow(g, v)  //x to the power of y
+    console.log(l);
+
+let f =81;
+s = Math.sqrt(f);   //square root
+b = Math.log(f);    // to find natual logarithmic function
+a = Math.sin(f);
+aa = Math.cos(f);
+ab = Math.tan(f);
+console.log(a);
+console.log(aa);
+console.log(ab);
+console.log(s);
+console.log(b);
+// 
+
+let h = -3.21;
+zz = Math.abs(h);     //absolute of a negative number
+console.log(zz);
+
+// To find the sign of a number we use sign function
+c = Math.sign(h);
+console.log(c);     // O/p => -1; if it is a positive number then it becomes 1, and if it is zero sign also become 0
+
+let re = 3;
+let de = 2;
+let te = 1;
+
+let Max = Math.max(re,de,te);
+let Min = Math.min(re,de,te);
+console.log(Max);
+console.log(Min);
+
+// RANDOM NUMBER GENERATOR
+
+let randomNum = Math.random();
+console.log(randomNum);           //It will generate a random number between 0 and 1
+
+// if we wanted a random number between 1 and 6 not including the decimal portion
+/*
+1). Multiply "Math.random * 6"  => It will give  random number between 0 and 6 exclusive
+2).To avoid decimal portion,we enclose this with "Math.floor" method
+*/
+let randNo = Math.floor(Math.random() * 6)+1;
+// we can increase the minimum by adding plus one or whatever we wanted the minimum to be
+
+console.log(randNo);
+// if we want a random number between 50 and 100
+
+const min = 50;
+const max = 100;
+let randmNo = Math.floor(Math.random() * (max-min)) + min;
+console.log(randmNo);
+
+// IF STATEMENTS  => if a condition is true, execute some code
+//                   if not, do something else
+
+let aage = 25;
+
+if(aage >= 18){
+    console.log("You are old enough to enter this site");
+}
+else{
+    console.log("You must be 18+ to enter this site");
+}
+
+
+let time = 9;
+
+if(time < 12){
+    console.log("Good morning");
+}
+else{
+    console.log("Good afternoon");
+}
+
+let issStudent = false;
+
+if(issStudent){                                 // true
+    console.log("You are a student");
+}
+else{
+    console.log("You are NOT a student");
+}
+
+// NESTED IF
+let Aage = 14;
+let hasLicence =false;
+
+if(Aage >= 16){
+    console.log("You are old enough to drive");
+    if(hasLicence){
+        console.log("You have your licence");
+    }
+    else{
+        console.log("You do not have your licence yet!");
+    }
+}
+else{
+    console.log("You must be 16+ to have a license");
+}
+// else if
+let aAge = -1;
+
+if(aAge >= 18){
+    console.log("You are old enough to enter this site");
+}
+else if(aAge<0){
+    console.log("Your age can't be below 0");
+}
+else if(aAge >= 100){
+    console.log("You are TOO OLD to enter this site");
+}
+else{
+   console.log("You must be 18+ to enter this site"); 
+}
+// O/p => Your age can't be below 0
+// 
+let Agee = 108;
+
+if(Agee >= 18){
+    console.log("You are old enough to enter this site");
+}
+else if(Agee < 0){
+        console.log("Your age can't be below 0");
+}
+else if(Agee >=100){
+    console.log("You are TOO OLD to enter this site");
+}
+else{
+    console.log("You must be 18+ to enter this site");
+}
+
+// O/p => you are old enough to enter this site
+// but we expected it's output to be You are TOO OLD to enter this site
+// because of the order ,the first encountered sentence will be executed...
+
+// It should be like =>
+
+let AG = 112;
+
+if(AG >=100){
+    console.log("You are TOO OLD to enter this site");
+}
+else if(AG == 0){                         // = (assignment operator) , ==(equals(comparison))
+    console.log("You can't enter.You were just born.");
+}
+else if(AG >= 18){
+    console.log("You are old enough to enter this site");
+}
+else if(AG < 0){
+    console.log("Your age can't be below 0");
+}
+else{
+    console.log("You must be 18+ to enter this site");
+}
+
+
+const myText = document.getElementById("myText");
+const myBtn = document.getElementById("myBtn");
+const resultElement = document.getElementById("resultElement");
+let AgG;
+
+myBtn.onclick = function(){
+
+    AgG = myText.value;
+    AgG = Number(AgG);
+    if(AgG >=100){
+        resultElement.textContent = `You are TOO OLD to enter this site`;
+    }
+    else if(AgG == 0){                         // = (assignment operator) , ==(equals(comparison))
+        resultElement.textContent = `You can't enter.You were just born`;
+    }
+    else if(AgG >= 18){
+        resultElement.textContent = `You are old enough to enter this site`;
+    }
+    else if(AgG < 0){
+        resultElement.textContent = `Your age can't be below 0`;
+    }
+    else{
+        resultElement.textContent = `You must be 18+ to enter this site`;
+    }
+}
+
+// .checked = property that determines the checked state of an HTML checkbox or radio button element
+const myCheckBox = document.getElementById("myCheckBox");
+const visaBtn = document.getElementById("visaBtn");
+const masterCardBtn = document.getElementById("masterCardBtn");
+const paypalBtn = document.getElementById("paypalBtn");
+const mySubmit = document.getElementById("mySubmit");
+const subResult = document.getElementById("subResult");
+const PaymentResult = document.getElementById("PaymentResult");
+mySubmit.onclick = function(){
+    // we will first check the  checked property of the subscribe button
+    if(myCheckBox.checked){
+        subResult.textContent = `You are subscribed`;
+    }
+    else{
+        subResult.textContent = `You are not subscribed`;
+    }
+    if(visaBtn.checked){
+        PaymentResult.textContent = `You are paying with visa`;
+    }
+    else if(masterCardBtn.checked){
+        PaymentResult.textContent = `You are paying with MasterCard`;
+    }
+    else if(paypalBtn.checked){
+        PaymentResult.textContent = `You are paying with PayPal`;
+    }
+    else{
+        PaymentResult.textContent = `You must select a payment type`;
+    }
+}
+
+// ternary operator = a shortcut to if() and else() statements
+//                    helps to assign a variable based on a condition 
+//                    condition ? codeIfTrue : codeIffalse
+
+let aje = 22
+
+let msg;
+
+if(aje >= 18){
+    msg = "You are an adult";
+    console.log(msg);
+}
+else{
+    msg = "You are a minor";
+    console.log(msg)
+}
+
+// instead we can use the below method
+
+let aege = 9;
+let messaage = aege >= 18 ? "You are an adult":"You are a minor";
+console.log(messaage);
+
+let timee = 16;
+let greeting = timee < 12 ? "Good Morning":"Good Afternoon!";
+console.log(greeting);
+
+
+let isSStudent = true;
+let message = isSStudent ? "You are a student":"You are not a student";
+console.log(message);
+
+let purchaseAmount = 1500;
+let discount = purchaseAmount >= 100 ? 10 : 0;
+console.log(`Your total is $${purchaseAmount - purchaseAmount * (discount/100)}`);
+
+
+// Switch = can be an efficeint replacement to many else if statements
+
+let day = "pizza";
+
+
+if(day == 1){
+    console.log(`It is Monday`);
+}
+else if(day == 2){
+    console.log(`It is Tuesday`);
+}
+else if(day == 3){
+    console.log(`It is Wednesday`);
+}
+else if(day == 4){
+    console.log(`It is Thursday`);
+}
+else if(day == 5){
+    console.log(`It is Friday`);
+}
+else if(day == 6){
+    console.log(`It is Saturday`);
+}
+else if(day == 7){
+    console.log(`It is Sunday`);
+}
+else{
+   console.log(`${day} is not a day`);
+}
+// it can be done using switch that is simple
+let dayy = 7;
+
+switch(dayy){
+   case 1:
+           console.log(`It is Monday`);
+           break;
+    case 2:
+           console.log(`It is tuesday`);
+           break;
+   case 3 : 
+           console.log(`It is Wednesday`)
+           break;
+   case 4 : 
+           console.log(`It is Thursday`);
+           break;
+   case 5 :
+           console.log(`It is Friday`);
+           break;
+   case 6:
+           console.log(`It is saturday`);
+           break;
+   case 7:
+           console.log(`It is Sunday`);
+          break;
+   default:
+       console.log(`${dayy} is not a day`);
+}
+// break is used to break out of the switch
+// if we don't have break, once we have a matching case we will execute the code found within that space then cascade down and execute any code that follows after including code within different cases 
+
+// A Complex Example
+
+let testScore = 33;
+let letterGrade;
+
+switch(true){
+    case testScore >= 90:
+        letterGrade = "A";
+        break;
+    case testScore >= 80:
+        letterGrade = "B";
+        break;
+    case testScore >= 70:
+        letterGrade = "C";
+        break;
+    case testScore >= 60:
+        letterGrade = "D";
+        break;
+    default:
+        letterGrade = "F";
+}
+console.log(letterGrade);
