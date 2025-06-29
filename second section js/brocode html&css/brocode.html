@@ -133,7 +133,7 @@
 </ol>
 
  <!-- Description List -->
-<h4></h4>
+<h4>Mythical Creatures</h4>
  <dl style="background-color: lightgreen; border:2px solid">
     <dt>dragon</dt>
     <dd>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab nemo vero dolorum nobis amet quo nesciunt dicta doloremque! Quod, earum eligendi! Exercitationem quidem dignissimos quasi minima eaque excepturi maxime sit!</dd>
@@ -147,3 +147,44 @@
 <!-- dd => description definition
 dt => description term
 dl => description List -->
+
+
+<!-- TABLES -->
+ <!-- how to create tables in html -->
+
+ <h3>Store Hours</h3>
+ <table border="1" style="background-color: black;"> 
+     <tr align="center" style="background-color: lightblue;">                   <!--table rows(tr) => to create table rows-->
+        <th width="100">Sunday</th>          <!--table header(th) => to create table headers-->
+        <th width="100">Monday</th>
+        <th width="100">Tuesday</th>
+        <th width="100">Wednesday</th>
+        <th width="100">Thursday</th>
+        <th width="100">Friday</th>
+        <th width="100">Saturday</th>     <!--if we shrink this window the cells will be compressed-->
+    </tr>
+    <tr align="center" style="background-color: aliceblue;">      <!--to align it center-->
+        <td>Closed</td>                  <!--table data(td) -->
+        <td>9-5</td>
+        <td>9-5</td>
+        <td>9-5</td>
+        <td>9-5</td>
+        <td>9-5</td>
+        <td>10-2</td>
+    </tr>
+ </table>
+
+ <!-- BUTTON -->
+  <a href="https://www.google.com/">
+  <button style="font-size: 25px;background-color: rgb(245, 88, 88);color: lightblue;border-radius: 25px;cursor: pointer;">click me</button>
+  <!--This is inline-css -->
+</a>
+
+
+
+<!-- Form -->
+
+<form action="index.php" method="POST">
+    <input type="text">
+</form> 
+<!-- method specifies if this is a get request or a post request, post is used for confidential information such as a username and a password  &  get is for insensitive data-->
