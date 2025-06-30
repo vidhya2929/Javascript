@@ -730,3 +730,416 @@ switch(true){
         letterGrade = "F";
 }
 console.log(letterGrade);
+
+// string Methods = allow you to manipulate and work wuth text (strings)
+
+// Strings have different built-in-methods where we can manipulate text
+let userName = "   Brocode";
+// To get the first character of the string -; use .charAt()
+console.log(userName.charAt(3));
+// return the index of the first occurrence of the character -;.indexOf()
+console.log(userName.indexOf("c"));
+// & for the last index -;.lastIndexOf()
+console.log(userName.lastIndexOf("o"));
+// method to get length of the string -; .length
+console.log(userName.length);  
+// To make Uppercase -;.toUpperCase()
+console.log(userName.toUpperCase()); //type the string |variable containing the string
+// To make lowercase -; .toLowerCase()
+console.log(userName.toLowerCase());
+// to trim the string -; trim()
+console.log(userName.trim());
+// To repeat a string -;.repeat()
+console.log(userName.repeat(3)); // inside the parenthesis write how many times do you want to repeat
+// To determine if a string starts with a given character-; .startsWith()
+let reesult = userName.startsWith(" ");
+console.log(reesult);
+// To determine if a string ends with a given character -;endsWith()
+console.log(userName.endsWith(" "));
+// includes() -; the string contain an empty space                 check chatgpt
+console.log(userName.includes(" "));
+let namee = "porsche";
+let car = namee.startsWith(" ")
+
+if(car){
+    console.log("Your name can't begin with ' '");
+}
+else{
+    console.log(namee);
+}
+
+let brandname = "BMW M5";
+let carname = brandname.endsWith("5")
+
+if(carname){
+    console.log(brandname);
+}
+else{
+    console.log("ok bye");
+}
+
+ // replace()
+ let phoneNumber = "123-456-7890"; //it is a string even though it takes numbers because string can contain numbers but we treat them as characters
+ phoneNumber = phoneNumber.replaceAll("-","/");   //if we don't want to replace with anything we can give it as replaceAll("-","");
+ console.log(phoneNumber);
+ 
+ // .padStart()
+ // The first value within the padStart method is a specified length and the next value will add the corresponding one in the start to make the length
+ phoneNumber = phoneNumber.padStart(15,"0");
+ console.log(phoneNumber);
+ // The first value within the the padEnd method is a specified length and the next value add the corresponding value in the end to make the length
+ phoneNumber = phoneNumber.padEnd(20,"1");
+ console.log(phoneNumber);
+
+ // string slicing = creating a substring from a portion of another string
+// string.slice(start,end)
+const FullName = "Bro Code";
+
+let FirstName = FullName.slice(0,2);                    //The ending index is exclusive so we should increase it by one
+// so here to get Bro we should use slice(0,3)
+let LastName = FullName.slice(4,8);
+console.log(FirstName);
+console.log(LastName);
+// If we are creating a substring from some position all the way to the end then it is not neccessarily need to mention the ending index
+// TO get the first character
+let firstChar = FullName.slice(0,1);   // here it displays the first character
+console.log(firstChar);
+let LastChar = FullName.slice(7,8);
+console.log(LastChar);
+// if we use negative number then it begin at the end and by decreasing the number it will work towards starting
+let gf = FullName.slice(-1);
+console.log(gf);
+let we = FullName.slice(-3);
+console.log(we);
+
+// To make this program more Dynamic we can combine string slicing with index of method
+newName = "Broseph Code";
+let namefirst = newName.slice(0, newName.indexOf(" "));
+// indexOf() -; shows where is the first index of a space so that ending position where ever there is a space then we will display our first name
+console.log(namefirst);
+let nameSecond = newName.slice(newName.indexOf(" "));  //to avoid space here add +1 (the first index of a space and start in the position after that's and getting every letter that comes after)
+console.log(nameSecond);
+let nameLast = newName.slice(newName.indexOf(" ") + 1);
+console.log(nameLast);
+
+const emaiil = "Brocode12@gmail.com"
+// extracting the first part of the email and to store it as a username
+let usName = emaiil.slice(0,emaiil.indexOf("@"));
+let extension = emaiil.slice(emaiil.indexOf("@")+ 1);
+console.log(usName);
+console.log(extension);
+// using slice we cannot make changes in a string (also here we used const) but we tak ethe string use the built in slice method and we can list starting or ending indices
+// Method Chaining = Calling one method after another in one continous line of code
+
+//-------- METHOD CHAINING---------------
+
+
+
+
+// -----------NO METHOD CHAINING---------
+let usingname = window.prompt("Enter your usingname: ");
+usingname = usingname.trim();
+let letter = usingname.charAt(0);  //hold the first character
+letter = letter.toUpperCase();
+console.log(letter);
+
+// Method Chaining = Calling one method after another in one continous line of code
+
+// -----------NO METHOD CHAINING---------
+// let usingname = window.prompt("Enter your usingname: ");
+// usingname = usingname.trim();
+// let letter = usingname.charAt(0);  //hold the first character
+// letter = letter.toUpperCase();
+// let extraCharacters = usingname.slice(1);
+// extraCharacters = extraCharacters.toLowerCase();
+// usingname = letter + extraCharacters
+// console.log(usingname);
+
+//-------- METHOD CHAINING---------------
+// By using method chaining we can combine some steps together and can avoid creating variables that we don't need (like letter,extracharacters)
+
+let usname=window.prompt("Enter your user name:");
+usname = usname.trim().charAt(0).toUpperCase() + usname.trim().slice(1).toLowerCase(); //get the usingname and trim it and then get the first charcter and then make it uppercase and then concat the usingname which is trimmed and sliced to make lowecase for rest of the characters
+console.log(usname);
+// technique of calling one method rught after another in one continous line of code
+
+// Logical Operators = used to combine or manipulate boolean values
+//                    (true or false)
+
+//                   AND = &&
+//                   OR = ||
+//                   NOT = !
+const temp = -100;
+// check if the temperature falls within a certain range
+
+if (temp > 0){
+    console.log("The weather is GOOD");
+}
+else if(temp <= 30){
+    console.log("The weather is Good");
+}
+else{
+    console.log("The weather is BAD");
+}
+// here all the temperature falls in between 0 and 30
+//    &&
+const tempp = -140;
+
+if(tempp = 0 && tempp <=30 ){
+    console.log("The weather is GOOD");
+}
+else{
+    console.log("The weather is BAD");
+}
+// To join 2 conditions we use double ampersand (meaning and)
+// if tempp = 25 O/p => weather is GOOD
+// if any one condition among these to is false we don't execute it at all,we will skip over it
+//OR
+const tmp = 28;
+
+if(tmp > 0 || tmp <= 30){
+    console.log("The weather is GOOD");
+}
+else{
+    console.log("The weather is BAD");
+}
+// ==>
+const tem = -250;
+if(tem <= 0 || tem > 30){
+    console.log("The weather is BAD");
+}
+else{
+    console.log("The weather is GOOD");
+}
+// when atleast 1 condition is true it will execute
+// NOT
+const isSunny = true;
+if(!isSunny){
+    console.log("It is Cloudy");
+}
+else{
+    console.log("It is Sunny");
+}
+// Using NOT logical operator we can flip a boolean from true to false or false to true
+
+//  = asssignment operator
+//  == comparison operator(compare if values are equal)
+//  === strict equality operator (compare if values & datatype are equal)
+// eg:
+const Pe = 3.14;
+
+if (Pe == "3.14"){
+    console.log("That is PI");
+}
+else{
+    console.log("That is not PI")
+}
+//  != inequality operator
+// !== strict inequality operator
+// if we are using strict equality operator
+
+const Pei=3.14159;
+if(Pei === "3.14159"){                    // here when we use === it also checks the data type too 
+    console.log("That is Pi");
+}
+else{
+    console.log("That is not Pi");
+}
+// inequality operator will return true if 2 values are not equal
+const pei = 3.14;
+if(pi!="3.14"){
+    console.log("That is not pi");
+}
+else{
+    console.log("That is pi");
+}  //O/p => That is pi
+// 
+
+const P = 3.14;
+if(P!== "3.14"){
+    console.log("That is not P");
+}
+
+// while loop = repeat some code WHILE some condition is true
+
+let as = "";
+
+if(as === ""){
+    console.log("You didn't enter your name")
+}
+else{
+    console.log(`Hello ${as}`);
+}
+
+// 
+// let ase = "";
+
+// while(ase === ""){
+    // console.log("You didn't enter your name");            //Infinite Loop
+// }
+// console.log(`Hello ${ase}`);
+
+// if we use while loop and it is true then we get into the while loop and execute that forever
+// And we want some sort of condition to exit the while loop while you are in it . Otherwise we get into an infinite Loop.
+
+// rewriting
+let nam = "";
+while(nam === "" || nam === null){               //when one of these condition is true execute the condition inside it forever
+    nam = window.prompt("Enter your name");
+}
+console.log(`Hello ${nam}`);
+// while loop => repeat some code until the condition is no longer true...
+// if we cancel it then O/p => Hello null (null means no value)
+let loggedIn = false;
+let naem;
+let password;
+while(!loggedIn){
+    usr = window.prompt("Enter your username;");
+    password = window.prompt("Enter your password");
+
+    if(usr === "myUsername" && password ==="myPassword"){
+        loggedIn = true;
+        console.log("You are logged in!");
+    }
+    else{
+        console.log("Invalid credentials! please try again");
+    }
+} 
+
+
+
+// DO ...WHILE LOOP
+// In this we can move "while" and the condition to the end and then precede the set of curly braces with "do" .So it will always execute this code atleast once then check the condition at the end 
+// Using do...while loop we don't neccessarily set the username it can set to undefined
+// do...while loop => do the code first then checks the condition at the end.
+let logged = false;
+let us;
+let pass;
+
+do{
+    us = window.prompt(`Enter your username`);
+    pass = window.prompt(`Enter your password`);
+    if(us === "myUsername" && pass === "mypassword"){
+        logged = true;
+        console.log("You are logged in!");
+    }
+    else{
+        console.log("Invalid credentials! please try again");
+    }
+}while(!logged)
+
+
+// for Loop -;repeat some code a LIMITED amount of times
+for(let i = 0; i <= 2; i++){  //first is a temporary counter to keep track of the number of iterations ,// the second statement means we will continue the for loop as long as I is less than or equal to 2,// the third statement we can increment or decrement the counter by one during each iteration by typing i++
+    console.log(i);
+}
+// we can increment the counter by 2 or more not neccessarily one
+for (let i = 2; i <= 10; i+=2){
+    console.log(i);
+}
+
+// 
+for(let i = 10; i > 0; i--){
+    console.log(i);
+}
+
+console.log("HAPPY NEW YEAR!")
+
+// Continue & Break
+// 
+for(let i = 1; i<=20 ; i++){
+
+    if(i == 13){       //here we skip over 13 we jump from 12 to 14
+        continue;        //Use continue to skip an iteration
+    }
+    else{
+        console.log(i);
+    }
+}
+// break -; it will break out of the loop entirely
+for(let i = 1; i <= 20; i++){
+    if(i == 13){
+        break;
+    }
+    else{
+        console.log(i);
+    }
+}
+
+// NUMBER GUESSING GAME
+// we should set the maximum and minimum numbers in our number guessing game
+
+const minNum = 1;
+const maxNum = 100;
+// we should create a random number between minimum and maximum
+const answer = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+// if we have minimum besides 1 ,then we will add minimum to the end
+console.log(answer);
+
+let attempts = 0;   //to keep track of the attempts
+let guess;              
+let running = true;       //keeeping the variable running because we can exit the game when it's over
+
+while(running){
+    guess = window.prompt(`Guess a number between ${minNum} - ${maxNum}`)
+    guess = Number(guess);
+
+    if(isNaN(guess)){
+        window.alert("Please enter a valid number");
+    }
+    else if(guess< minNum || guess > maxNum){
+        window.alert("please enter a valid number");
+    }
+    else{
+        attempts++;
+        if(guess < answer){
+            window.alert("TOO LOW! TRY AGAIN!");
+        }
+        else if(guess > answer){
+             window.alert("TOO HIGH! TRY AGAIN!");
+        }
+        else
+        {
+            window.alert(`CORRECT! The answer was ${answer}. It took you ${attempts} attempts.`);
+            running = false;
+        }
+        
+    } 
+}
+
+// function => a section of reusable code.
+//             Declare code once. use it whenever you want.
+//              Call the function to execute that code.
+
+function happyBirthday(){
+    console.log("Happy birthday to you!");
+    console.log("Happy birthday to you!");
+    console.log("Happy birthday dear you!");
+    console.log("Happy birthday to you!")
+  }
+  happyBirthday();
+  happyBirthday();
+  happyBirthday();  // here it executes the function 3 times.
+  // therefore the function is for this it invoked whenever it is called.
+  // Major advantage of Function is it's reusability
+  
+  function heppyBirthday(useenamee, ageer){   //parameters are passed inside the declaration
+    console.log("Heppy birthday to you!");
+    console.log("Heppy birthday to you!");
+    console.log(`Heppy birthday dear ${useenamee}!`);
+    console.log("Heppy birthday to you!");
+    console.log(`You are ${ageer} years old`);
+  }
+  heppyBirthday("Broocodee",25);    //it is called arguments -they are the data you send inside the function.But we need a matching set of parameters.
+  // parameters are within the parenthesis of declaration(some temporary variables with comma seperated)
+  heppyBirthday("spongeBob",68)
+  heppyBirthday("keyle",23)
+  // parameters => inside the parenthesis of declaration
+  // arguments => along with functions
+  
+
+  //  order of the parameters does matter...suppose
+  heppyBirthday(76,"Mellisa");
+  // O/p will be Heppy birthday dear 76,........... You are Mellisa years old....
+  // so we want to ensure that the parameters match up
+  

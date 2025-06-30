@@ -1,46 +1,41 @@
-// string Methods = allow you to manipulate and work wuth text (strings)
+// RETURNS IN FUNCTIONS
+function add(x,y){
+  let rsul = x+y;
+  return rsul;
+}
+let answer = add(2,3);
+console.log(answer);
+//Returning a function  => we can send some data back to the place in which we call a function
+// 
+// OR
+function add(x,y){
+  return x+y;
+}
+console.log(add(2,3));
 
-
-// Strings have different built-in-methods where we can manipulate text
-let userName = "   Brocode";
-// To get the first character of the string -; use .charAt()
-console.log(userName.charAt(3));
-// return the index of the first occurrence of the character -;.indexOf()
-console.log(userName.indexOf("c"));
-// & for the last index -;.lastIndexOf()
-console.log(userName.lastIndexOf("o"));
-// method to get length of the string -; .length
-console.log(userName.length);  
-// To make Uppercase -;.toUpperCase()
-console.log(userName.toUpperCase()); //type the string |variable containing the string
-// To make lowercase -; .toLowerCase()
-console.log(userName.toLowerCase());
-// to trim the string -; trim()
-console.log(userName.trim());
-// To repeat a string -;.repeat()
-console.log(userName.repeat(3)); // inside the parenthesis write how many times do you want to repeat
-// To determine if a string starts with a given character-; .startsWith()
-let result = userName.startsWith(" ");
-console.log(result);
-// To determine if a string ends with a given character -;endsWith()
-console.log(userName.endsWith(" "))
-
-let namee = "porsche";
-let car = namee.startsWith(" ")
-
-if(car){
-    console.log("Your name can't begin with ' '");
+function subtract(x,y){
+  return x-y;
+}
+console.log(subtract(6,2));
+function multiply(x,y){
+  return x*y;
+}
+console.log(multiply(2,8));
+function divide(x,y){
+  return x/y;
+}
+console.log(divide(10,2));
+function isEven(number){
+if(number%2===0){
+  return true
 }
 else{
-    console.log(namee);
+  return false;
 }
-
-let brandname = "BMW M5";
-let carname = brandname.endsWith("5")
-
-if(carname){
-    console.log(brandname);
 }
-else{
-    console.log("ok bye");
-} 
+console.log(isEven(11));
+// OR Ternary operator can be used
+function isEEven(number){
+  return number % 2 === 0 ? true : false
+}
+console.log(isEEven(24));
