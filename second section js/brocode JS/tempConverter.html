@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <link rel="stylesheet" href="tempConverter.css">
+</head>
+<body>
+  <form>
+    <h1>Temperature Conversion:</h1>
+    <input type="number" id="textBox" value="0"> <br><br><!--It set starting value to zero--><!--Since we are going to convert temperatures--> <!--that gives us arrow to increase and decrease number-->
+    <input type="radio" id="toFahrenheit" name="unit">
+    <label for="toFahrenheit">Celsius -> Fahrenheit</label><br><br><!--when we click on the label we should be able to select the radio button that is because the "for" attribute of label is same as the id attribute of the radio button-->
+    <input type="radio" id="toCelsius" name="unit">
+    <label for="toCelsius">Fahrenheit -> Celsius</label><br><br>
+    <button type="button" onclick="convert()">Submit</button>
+    <p id="result"></p>
+  </form>
+  
+</body>
+  <script src="tempConverter.js"></script>
+</html>

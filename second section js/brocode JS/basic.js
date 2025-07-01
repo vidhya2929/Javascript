@@ -1142,4 +1142,243 @@ function happyBirthday(){
   heppyBirthday(76,"Mellisa");
   // O/p will be Heppy birthday dear 76,........... You are Mellisa years old....
   // so we want to ensure that the parameters match up
+  // RETURNS IN FUNCTIONS
+function add(x,y){
+    let rsul = x+y;
+    return rsul;
+  }
+  let ansswer = add(2,3);
+  console.log(ansswer);
+  //Returning a function  => we can send some data back to the place in which we call a function
+  // 
+  // OR
+  function add(x,y){
+    return x+y;
+  }
+  console.log(add(2,3));
   
+  function subtract(x,y){
+    return x-y;
+  }
+  console.log(subtract(6,2));
+  function multiply(x,y){
+    return x*y;
+  }
+  console.log(multiply(2,8));
+  function divide(x,y){
+    return x/y;
+  }
+  console.log(divide(10,2));
+  function isEven(number){
+  if(number%2===0){
+    return true
+  }
+  else{
+    return false;
+  }
+  }
+  console.log(isEven(11));
+  // OR Ternary operator can be used
+  function isEEven(number){
+    return number % 2 === 0 ? true : false; 
+  }
+  console.log(isEEven(24));
+  // function to get see if an email is valid
+  function isValidemail(email){
+    if(email.includes("@")){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  console.log(isValidemail("brofakegmail.com"));
+  
+  // OR
+  function emailValidate(email){
+    return email.includes("@") ? true:false;
+  }
+  console.log(emailValidate("brookk12gmail.com"))
+
+  // variable scope = where a variable is recognized and accessible (local vs global)
+let xee = 1;
+// let xee = 2;           //syntax error
+// we can reuse the same variable names as long as they are in different scopes.
+function1();
+function2();
+function function1(){
+  let x = 1;
+  console.log(xee);
+}
+function function2(){
+  let x = 2;
+  console.log(xee);
+}
+// here there is 2 variables with same name it is legal as long as they have different scope
+// A variable declared inside a function has a local scope 
+// one function can't know what is inside another function.
+function1();
+
+function function1(){
+  let x = 1;
+  console.log(y);
+}
+
+function function2(){
+  let y = 2;                   //local scope
+  console.log(x);
+}
+//here function1 has no idea what  variable y is and function2 has no idea what variable x is
+// A variable declared outside of a function has a global scope
+
+
+// eg :
+let xex = 3;              //global scope
+function1();
+function2();
+function function1(){
+  console.log(xex);
+}
+function function2(){
+  console.log(xex);
+}
+// for large programs global variables are not so good...
+
+let xo=4;
+function1();
+function function1(){
+  let xo = 1;
+  console.log(xo);
+}
+function function2(){
+  let xo = 2;
+  console.log(x0);
+}
+
+// here O/p => 1
+// if we have 2 variable with same name and they are in different scopes then we will use the local version first.
+
+// array = a variable like structure that can hold more than 1 value
+// 
+let fruits = ["apple","orange","banana"];   //array are enclosed inside straight bracket
+// it is not mandatory to give plural variable name
+fruits[0] = "coconut";
+ // it print all the elements in the array -; console.log(fruits)
+console.log(fruits[0]);
+console.log(fruits[1]);
+console.log(fruits[2]);
+
+// we can add element like -:
+fruits[3] = "Mango"; 
+console.log(fruits[3]);
+// there is a built-in function
+fruits.push("pineapple");      //Add an element to the end
+console.log(fruits);
+// to pop out the element -; pop()
+fruits.pop();                 //Pop an element from the end
+console.log(fruits);  
+// To remove an element at the beginning
+fruits.shift();
+// To add an element at the beginning
+fruits.unshift("rambutan");
+console.log(fruits);
+
+let numOfFruits = fruits.length;                // it finds the length of the array
+let index = fruits.indexOf("coconut");          
+console.log(index);           // to get the index of an element
+console.log(numOfFruits);
+
+let fruit = ["orange","apple","mango","pineapple"];
+for(let i = 0;i < fruit.length;i++){    // i+=2   => O/p -; orange and mango
+  // for(let i = 1; i<fruit.length ; i+=2)   O/p => apple and pineapple
+  console.log(fruit[i]);
+}
+
+// different ways to display the elements of an array using "for loop"
+
+// To reverse the array
+for(let i = fruit.length - 1; i >=0; i--){
+  console.log(fruit[i]);
+}
+
+let fruits = ["orange","apple","mango","pineapple"];
+console.log(fruits.sort()); //to sort elements in alphabetical order
+console.log(fruits.sort().reverse());  //to reverse the sorted array
+// enhanced for loop  (shortcut to display the elements of an array)
+for(let fruit of fruits){
+  console.log(fruit);      
+}
+
+// spread operator = (...)allows an iterable such as an array or string to be expanded into seperate elements.(unpacks the element)
+let numbers = [1,2,3,4,5];
+// let maximum = Math.max(numbers);   //not a number(NaN)
+let maximum = Math.max(...numbers);   //spread operator => It will spread into different elements
+let minimum = Math.min(...numbers);
+console.log(maximum);
+console.log(minimum);
+
+let usar = "Hermione Granger";
+// let letters = [...usar];
+let letters = [...usar].join("-"); // To join the elements
+console.log(letters);
+
+let fruitss =["apple","orange","banana","mango"];
+let vegitables = ["carrot","cucumber","potatoes"];
+let fooods = [...fruitss,...vegitables,"eggs","milk"]; //we can append seperate elements along with unpacking these arrays.
+console.log(fruitss);
+let fruu =[...fruitss];
+console.log(fruu);
+console.log(fooods);
+
+// shallow copy is created using spread operator => It is a different data structure but it contains identical values.
+// rest parameters = (...rest) allow a function work with a variable number of arguments by building them into an array
+
+//                   spread = expands an array into seperate elements ||| rest = bundles seperate elements into an array
+function openFridge(...foods){
+    console.log(foods);
+    console.log(...foods);   //spread operator
+  }
+  function getFood(...foods){
+    return foods;
+  }
+  const food1 = "pizza";
+  const food2 = "hamburger";
+  const food3 = "hotdog";
+  const food4 = "sushi"; 
+  const food5 = "ramen"
+  
+  // openFridge(food1, food2,food3,food4,food5);               //variable number of argument
+  
+  // this function can accept any number of arguments
+  // rest parameters can be used as parameters
+  // spread operator is used whenever you have an array or any sort of collection of something
+  const foods = getFood(food1,food2,food3,food4,food5);
+  console.log(foods); //bundled into an array
+
+  function sum(...numbers){
+    let result = 0;
+    for(let number of numbers){
+      result += number;
+    }
+    return result;
+  }
+  const tottal = sum(1,2,3,4);
+  
+  console.log(`Your total is $${total}`);
+
+  function getAverage(...numbers){
+    let result = 0;
+    for(let number of numbers){
+      result += number;
+    }
+    return result / numbers.length;
+  }
+  const total = getAverage(75,100,85,90,50);
+  console.log(total);
+
+  function combineStrings(...strings){
+    return strings.join(" ");
+  }
+  const fullNName = combineStrings("Mr.","Spongebob","Squarepants","III");
+  console.log(fullNName);
+  // the rest parameters allow a function to work with a variable number of arguments by bundling them into an array

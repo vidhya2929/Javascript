@@ -1,0 +1,46 @@
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(225, 225, 225);
+}
+h1{
+  color: hsl(223, 100%, 64%);
+}
+form{
+  background-color:white;
+  text-align: center;
+  max-width: 350px;        
+  /* max- width is setting because it defaultly taking up 100% width of the web browser */
+  margin: auto;    /*It automatically sets it to the center */
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px hsla(0, 0%, 0%, 0.3);  /*first value is horizontal offset , second value is vertical offset,3rd value is blur radius and also a color*/
+}
+#textBox{
+  width: 50%;    /*It is going to take 50% of the width available*/
+  text-align: center;
+  font-size: 2em;  /*200%*/
+  border: 2px solid hsl(0, 0%, 0%, 0.8);
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+label{
+  font-size: 1.5em;
+  font-weight: bold;
+}
+button{
+  margin-top: 15px;
+  background-color: hsl(0, 100%, 60%);
+  font-size: 1.5em;
+  border: none;
+  padding: 10px 15px;  /*first top and bottom second value for left and right*/
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+button:hover{
+  background-color: hsl(0, 100%, 40%);
+}
+#result{
+  font-size: 1.75em;
+  font-weight: bold;
+}
