@@ -1382,3 +1382,261 @@ function openFridge(...foods){
   const fullNName = combineStrings("Mr.","Spongebob","Squarepants","III");
   console.log(fullNName);
   // the rest parameters allow a function to work with a variable number of arguments by bundling them into an array
+
+// callback = a function that is passed as an argument to another function
+// used to handle asynchronous operations:
+// 1.Reading a file
+// 2.Network requests
+// 3.Interacting with databases
+
+
+// ("Hey, when you're done,call this next." )
+
+
+hello();
+goodbye();
+function hello(){
+  console.log("Hello")
+}
+function goodbye(){
+  console.log("Goodbye!");
+}
+// we should check whether the js engine waits 
+hello();
+goodbye();
+function hello(){
+  setTimeout(function (){
+    console.log("Hello");
+  },3000);                           //here it delays
+// Therefore the goodbye function doesn't wait for anything
+ 
+}
+function goodbye(){
+  console.log("Goodbye!");
+}
+// here by adding a callback to the "goodbye" function we can ensure that the "goodbye" function follows after the hello function
+// to use a callback -; we can pass the goodbye function as an argument to another function(here "hello" function)
+// within the set of parenthesis type the name of the function goodbye
+
+hello(wait);
+
+function hello(callback){
+  console.log("Hello!");
+  callback();
+}
+function leave(){
+  console.log("leave!");
+}
+function wait(){
+  console.log("wait!");
+}
+function goodbye(){
+  console.log("Goodbyee!");
+}
+
+// second example
+
+sum(displayPage, 1, 2);
+function sum(callback, x, y){
+  let result = x+y;
+  callback(result);
+}
+
+function displayConsole(result){
+  console.log(result);
+}
+
+function displayPage(result){
+  document.getElementById("myH1").textContent = result;
+}
+//  after the calculation processes, execute the callback and this time we are passing it to the displayPage function that we created.
+
+// By using a callback we can ensure that a function executes after the processess are complete not before...
+
+// DOM(Document Object Model) -; when a browser loads a webpage,it converts the HTML into a tree-like structure of objecs  called the DOM
+
+// forEAch() = method used to iterate(loop through) over the elements of an array  and apply a specified function (callback)
+//             array.forEach(callback)
+//             element, index, array are provided
+// eg:
+
+let nuumbers = [1,2,3,4,5];
+
+numbers.forEach(double);
+nuumbers.forEach(display);
+nuumbers.forEach(triple);
+nuumbers.forEach(square);
+nuumbers.forEach(cube);
+
+function double(element, index, array){
+    array[index] = element * 2;
+}
+function triple(element, index, array){
+    array[index] = element * 3;
+} 
+function square(element, index, array){
+    array[index] = Math.pow(element, 2);
+}
+function cube(element, index, array){
+    array[index] = Math.pow(element, 3);
+}
+function display(element){
+    console.log(element);
+}
+// 
+
+let fruits = ["apple","orange","banana","coconut"];
+// fruits.forEach(uppercase);
+fruits.forEach(lowerCase);
+fruits.forEach(Capitallize);
+fruits.forEach(display);
+function uppercase(element,index,array){
+  array[index] = element.toUpperCase();
+}
+function lowerCase(element,index,array){
+  array[index] = element.toLowerCase();
+}
+function Capitallize(element,index,array){
+  array[index] = element.charAt(0).toUpperCase() + element.slice(1);                                     //method chaining
+}                                                                                                        //element.slice(1);  -; This character create a substring of every character besides the first    
+function display(element){
+  console.log(element);
+} 
+
+// .map() = accepts a callback and applies that function to each element of an array, then return a new array
+const numbbers = [1,2,3,4,5];
+
+const squares = numbbers.map(square); //passing the function as a callback function
+const cubes = numbbers.map(cube);
+console.log(squares);
+console.log(cubes);
+
+function square(element){
+  return Math.pow(element, 2);
+}
+function cube(element){
+  return Math.pow(element, 3);
+}
+// 
+// new map() example
+const studeents = ["SPONGEBOB","CLARA","MARTIN","MELLISA"];
+const studentsUpper = studeents.map(uppercase);
+const studentslower = studeents.map(lowercase);
+console.log(studentsUpper);
+console.log(studentslower);
+
+function uppercase(element){
+  return element.toUpperCase();
+}
+
+function lowercase(element){
+  return element.toLowerCase();
+}
+// example 3
+const dates = ["2024-01-10", "2025-05-25", "2013-06-21","2018-07-12"];
+const formattedDates = dates.map(formatDates);
+console.log(formattedDates);
+function formatDates(element){
+    const parts = element.split("-");
+    return `${parts[2]}/${parts[1]}/${parts[0]}}`;
+}
+// filter() => creates a new array by filtering out elements
+
+let numbeers = [1,2,3,4,5,6,7];
+let evenNums = numbeers.filter(isEven);
+let oddNums = numbeers.filter(isOdd);
+
+function isEven(element){
+  return element % 2 === 0;
+
+}
+function isOdd(element){
+  return element !== 0;
+}
+// the filter method will take any values that return true(that is it will effectively filter out any elements that don't return true)
+const ages = [16,17,18,18,19,20,60];
+const adults = ages.filter(isAge);
+const children = ages.filter(isChild);
+console.log(adults);
+console.log(children);
+// Using filter method to filter out anybody that is under 18
+function isAge(element){
+  return element >= 18;
+}
+function isChild(element){
+  return element < 18;
+}
+
+// example 3
+const words = ["apple", "orange","banana","kiwi","pomegranate","coconut"];
+const shortWords = words.filter(getShortWords);
+const longwords = words.filter(getLongWords);
+console.log(longwords);
+console.log(shortWords);
+// we want to filter words having length above 6
+function getShortWords(element){
+      return element.length <= 6;
+}
+function getLongWords(element){
+  return element.length > 6;
+}
+
+// reduce() = reduce the elements of an array to a single value.
+
+const prices = [5, 30, 10, 25, 15, 20];
+
+const tootal = prices.reduce(sum);
+console.log(`$${tootal.toFixed(2)}`);                         //toFixed(2) means it will fix to 2 decimal places
+
+function sum(accumulator, element){           //function sum(previous,next){ return previous + next};
+    return accumulator + element;             // function sum(0,5){return 0+5;}  so here 5 will be returned to the accumulator during next iteration
+}                                             // so on the next iteration accumulator becomes 5 and element becomes 30  , next it will be 35
+// we have 2 parameters
+// accumulator -> previous
+// next -> current
+
+const grades = [75, 50, 90, 80, 65, 95];
+ const maxximum = grades.reduce(getMax);
+ const minnimum = grades.reduce(getMin);
+
+ console.log(maxximum);
+ console.log(minnimum);
+ function getMax(accumulator,element){
+    return Math.max(accumulator,element);
+}
+function getMin(accumulator, element){
+    return Math.min(accumulator, element);
+}
+
+// function declaration = define a reusable block of code that performs a specific task
+
+
+
+function hello(){
+  console.log("Hello");        //we can assign a function to a variable or pass it as a value to another function
+}
+// function expression = a way to define functions as values or variables
+
+const hello = function(){
+  console.log("Hello");
+}
+// In javascript we can pass a function as a value
+
+// setTimeout(hello, 3000);
+
+
+// after 3000 milliseconds hello function will be executed
+// instead of using a function declaration we pass a function expression as an argument to the setTimeout() function
+// instead of callback we create a function and we will pass an entire function as an argument =>
+setTimeout(function(){
+  console.log("Hello")
+}, 3000);
+// i.e, In javaScript it is legal to pass an entire function as an argument or treat it as a value
+
+const numbiers = [1,2,3,4,5,6];
+const squaries = numbiers.map(square);
+console.log(squaries);
+
+function square(element){
+    return Math.pow(element, 2);
+}
