@@ -1637,6 +1637,359 @@ const numbiers = [1,2,3,4,5,6];
 const squaries = numbiers.map(square);
 console.log(squaries);
 
-function square(element){
+
+// we will treat this function as a value
+const nnums = [1,2,3,4,5.6];
+const squat = nnums.map(function(element){
     return Math.pow(element, 2);
+});
+console.log(squat);
+
+// // function declaration = define a reusable block of code that performs a specific task
+// function expressions = a way to define functions as values or variables
+// 1.Callbacks in asynchronous operations
+// 2.Higher-order Functions 
+// 3.Closures
+// 4.Event Listeners
+
+const nums = [1,2,3,4,5,6];
+const squa = nums.map(function(element){
+  return Math.pow(element, 2);
+});
+const cubees = nums.map(function(element){
+  return Math.pow(element, 3);
+});
+const evenNo = nums.filter(function(element){
+  return element % 2 === 0;                           //if the number is dividible by 0
+});
+const oddNo = nums.map(function(element){
+  return element % 2 !==0;
+});
+const totaal = nums.reduce(function(accumulator, element){
+  return accumulator + element;
+})
+
+console.log(totaal);
+// Instead of passing function declaration and callback we can pass an entire function expression as an argument to these methods
+
+// Arrow Functions = a consice way to write function expressions good for simple functions that you use only once.
+//                   (parameters) => some code
+function hello(){
+  console.log("hello");
 }
+hello();
+// function expression
+  const hello = function(){
+    console.log("hello");
+  }
+  hello();
+  // Arrow function of above function expression be like  => 
+const hello = () => console.log("Hello");  //we can also send some arguments to arrow function
+
+// To write more than 1 sentence of code inside the arrow function, it should be enclosed within the curly braces.
+
+const names = (name, age) => {
+  console.log(`Hello ${name}`)
+  console.log(`You are ${age} years old`)
+};
+names ("Felix",76);
+// we have some parameters =>(arrow function) some code
+// eg 2
+setTimeout(hello, 3000);      //callback
+
+function hello (){
+  console.log("Hello");
+}
+// function expression
+setTimeout(function(){
+  console.log("Hello");
+}, 3000);
+
+// Arrow function
+setTimeout( () => console.log("Hello"), 3000);
+
+
+// Arrow function with map,filter and reduce
+
+const numb = [1,2,3,4,5,6];
+
+const squ = numb.map((element) => {
+  return Math.pow(element, 2);
+});                                                //ME
+console.log(squ);
+
+const nos = [1,2,3,4,5,6];
+const sqa = nos.map((element) => Math.pow(element, 2));
+const cubess = nos.map((element) => Math.pow(element, 3));
+const evennum = nos.filter((element) =>{ 
+  return element % 2 === 0
+});
+// const evennum = nos.filter((element) => element % 2 === 0);
+const Oddnum = nos.filter((element) => element % 2 !== 0);
+console.log(sqa); 
+console.log(cubess);
+console.log(evennum);
+console.log(Oddnum);
+// we don't neccessarily need a statement when we have only one statement.
+const tot = nos.reduce((accumulator, element) =>
+    accumulator = accumulator + element);
+console.log(tot);
+// OBJECT = A collection of related properties and / or methods                                     //properties are things that an object has
+//          Can represent real world objects (people, products, places)                             //method is a function that belongs to an object 
+//          object = {key:value,function()}
+
+const person1 ={
+  firstName: "Vasco",
+  lastName: "degama",
+  age: 30,
+  isEmployed: false,
+  sayHello: function(){
+    console.log("Hi! I am Vascodegama!")
+  },
+  eat: function(){console.log("I am eating a burger...")},
+}
+// const person =                          objects need different names,here it is not possible to have person because it already exist(syntax error)
+
+const person2 = {
+  firstName: "Elon",
+  lastName: "Musk",
+  age: 68,
+  isEmployed : true,
+  // sayHello: function(){
+  //   console.log("Hello! I am elon....")
+  // }
+  sayHello : () => console.log("Hello! I am Elon..."),
+  // eat: function(){console.log("I am eating pizza")}
+  eat: () => console.log("I am eating pizza...")
+}
+
+person2.sayHello();
+console.log(person1.firstName);
+console.log(person1.lastName);
+console.log(person1.age);
+console.log(person1.isEmployed);
+person1.sayHello();
+console.log(person2.firstName);
+console.log(person2.lastName);
+console.log(person2.age);
+console.log(person2.isEmployed);
+person1.eat();
+person2.eat();
+
+// this = reference to the object where THIS is used 
+//        (the object depends on the immediate context)
+//         person.name = this.name
+const peson1 = {
+  name: "Hermione",
+  favFood: "Hamburger",
+  sayHello: function(){console.log(`Hi! I am ${this.name}`)},
+  eat: function (){console.log(`Heyy!${this.name} 's favourite food is ${this.favFood}`)}
+}
+peson1.eat();
+
+console.log(this);  //It gives window obect 
+// THIS keyword doesn't work with arrow functions
+
+const pers2 = {
+  name:"Patrick",
+  favFood: "Broasted Chicken",
+  eat: () => {console.log(`${this.name} is eating ${this.favFood}`)}
+}
+pers2.eat();
+// O/p => this (undefined is eating  undefined) because window object doesn't have a favFood,name object
+
+// CONSTRUCTORS in JavaScript
+// special method for defining the properties and methods of object
+
+const car1 = {
+  make: "Ford",
+  model: "Mustang",
+  year: 2024,
+  color: "red",
+  drive: function(){console.log(`You drive the ${this.model}`)}
+}
+const car2 = {
+  make: "Cheverolet",
+  model: "Camaro",
+  year: 2025,
+  color: "blue",
+  drive: function(){console.log(`You drive the ${this.model}`)}
+}
+const car3 = {
+  make: "Dodge",
+  model: "Charger",
+  year: 2026,
+  color: "silver",
+  drive:function(){console.log(`You drive the ${this.model}`)}
+}
+//
+
+function Car(make,model,year, color){          //or function Car(a,b,c,d){              //these are the arguments we receive when we construct a car object
+// To assign these properties we are going to use "this" keyword
+this.make = make,                                      //this.make = a,
+this.model = model,                                    //this.model = b,
+this.year = year,                                      //this.year = c,
+this.color = color,                                    // this.color = d 
+this.drive = function(){console.log(`You drive the ${this.model}`)}
+}                                                   // }
+
+// our car object is a reusable method where we can define the properties and methods of objects we create
+// To use this constructor, create an instance of an object 
+const car11 = new Car("Ford","Mustang",2024,"red");
+const car12 = new Car("Chevrolet","camaro",2025,"blue");
+const car13 = new Car("Dodge","Charger",2026,"black");
+
+car11.drive();
+car12.drive();
+car13.drive();
+
+/*console.log(car11.make);
+console.log(car11.model);
+console.log(car11.year);
+console.log(car11.color);
+
+console.log(car12.make);
+console.log(car12.model);
+console.log(car12.year);
+console.log(car12.color);
+
+console.log(car13.make);
+console.log(car13.model);
+console.log(car13.year);
+console.log(car13.color);*/
+
+
+// constructor is a special method for defining the properties and methods of objects
+
+// class = (ES6 feature) provides a more structured and cleaner way to work with objects compared to traditional constructor functions 
+// eg: static keyword, encapsulation,inheritance
+
+class product{
+  constructor(name,price){                      //constructor inside class 
+    this.name = name;
+    this.price = price;
+  }
+  displayProduct(){
+    console.log(`Product: ${this.name}`);
+    console.log(`price: $${this.price.toFixed(2)}`);
+  }
+  calculateTotal(salesTax){
+    return this.price + (this.price * salesTax);
+  }
+}
+//gye 
+///////////// Inside a class function keyword is not required for function ///////////////
+const product1 = new product("Shirt", 19.99);
+const product2 = new product("Pants",23.33);
+const product3 = new product("tshirt",34.999);
+const salesTax = 0.05;
+//
+
+product1.displayProduct();
+product2.displayProduct();
+product3.displayProduct();
+const totall = product1.calculateTotal(0.05);
+console.log(`Total price(with tax):$${totall.toFixed(2)}`);
+const ttotal = product3.calculateTotal(0.05);
+console.log(`Total  price(with tax):$${ttotal.toFixed(2)}`);
+
+
+// static = keyword that defines properties or methods that belong to a class itself  rather than the the objects created from that class (class owns anything static, not the objects)
+
+class MathUtil{
+  static PI = 3.14159;
+
+  static getDiameter(radius){
+    return radius * 2;                     //method
+  }
+  static getCircumference(radius){
+    return 2 * this.PI * radius;           //"this" here MathUtil
+  }
+  static getArea(radius){;
+    return this.PI * radius * radius;
+  }
+}
+console.log(MathUtil.PI);
+console.log(MathUtil.getDiameter(10));
+console.log(MathUtil.getCircumference(10));
+console.log(MathUtil.getArea(10));
+//  static property is accessed by its class
+// Anything declared as static belongs to the class itself(not any objects created from that class)
+// mix of regular properties and methods ,static properties and methods
+class User{
+  static userCount = 0;     //To track the amount of users we create
+  constructor(username){
+    this.username = username;
+    User.userCount++;
+  }
+  static getUserCount(){
+    console.log(`There are ${User.userCount} users on online`)         //static method
+  }
+  sayHello(){
+    console.log(`Hello,my username is ${this.username}`);             //regular method
+  }
+}
+// user objects
+const user1 = new User("Hermione");
+const user2 = new User("Granger");
+const user3 = new User("Harry");
+
+
+user1.sayHello();
+user2.sayHello();
+user3.sayHello();
+console.log(user1.username);
+console.log(user2.username);
+console.log(user3.username);
+User.getUserCount();
+// constructor is automatically called when we instantiate a new object
+// Inheritance =allows a new class to inherit properties and methods from an existing class (parent -> child)
+//              helps with code reusability
+// eg:
+class Animal{
+  alive = true;
+  eat(){
+    console.log(`This ${this.name} is eating`);
+  }
+  sleep(){
+    console.log(`This ${this.name} is sleeping`);
+  }
+}
+class Sloth extends Animal{
+  name ="sloth";
+  run(){
+    console.log(`This ${this.name} is running`);
+  }
+}
+class Fish extends Animal{
+  name = "fish";
+  swim(){
+    console.log(`This ${this.name} is swimming`);
+  }
+}
+class Hawk extends Animal{
+  name = "hawk";
+  fly(){
+    console.log(`This ${this.name} is flying`);
+  }
+}
+const sloth = new Sloth();
+const fish = new Fish();
+const hawk = new Hawk();
+console.log(fish.alive);
+console.log(sloth.alive);
+console.log(hawk.alive);
+sloth.sleep();
+sloth.eat();
+sloth.run();
+fish.sleep();
+fish.eat();
+fish.swim();
+hawk.sleep();
+hawk.eat();
+hawk.fly();
+// All child classes inherited the preoperties and methods of parent class
+// It provides code reusability
+
+// children can also have their own unique properties and methods too
+// eg: sloth can run but but fish and hawk can't run so it only belongs to sloth class
