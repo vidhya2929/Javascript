@@ -1865,7 +1865,7 @@ console.log(car13.color);*/
 // eg: static keyword, encapsulation,inheritance
 
 class product{
-  constructor(name,price){                      //constructor inside class 
+  constructor(name,price){                      //constructor inside class => to use a constructor use the keyword constructor
     this.name = name;
     this.price = price;
   }
@@ -1873,13 +1873,13 @@ class product{
     console.log(`Product: ${this.name}`);
     console.log(`price: $${this.price.toFixed(2)}`);
   }
-  calculateTotal(salesTax){
+  calculateTotal(salesTax){                           // As it is inside the class we don't need the class keyword
     return this.price + (this.price * salesTax);
   }
 }
-//gye 
+//
 ///////////// Inside a class function keyword is not required for function ///////////////
-const product1 = new product("Shirt", 19.99);
+const product1 = new product("Shirt", 19.99);      //COnstructor is going to be constructed automatically but need to pass the arguments.
 const product2 = new product("Pants",23.33);
 const product3 = new product("tshirt",34.999);
 const salesTax = 0.05;
@@ -1974,22 +1974,595 @@ class Hawk extends Animal{
   }
 }
 const sloth = new Sloth();
-const fish = new Fish();
-const hawk = new Hawk();
-console.log(fish.alive);
+const fishy = new Fish();
+const hawky = new Hawk();
+console.log(fishy.alive);
 console.log(sloth.alive);
-console.log(hawk.alive);
+console.log(hawky.alive);
 sloth.sleep();
 sloth.eat();
 sloth.run();
-fish.sleep();
-fish.eat();
-fish.swim();
-hawk.sleep();
-hawk.eat();
-hawk.fly();
+fishy.sleep();
+fishy.eat();
+fishy.swim();
+hawky.sleep();
+hawky.eat();
+hawky.fly();
 // All child classes inherited the preoperties and methods of parent class
 // It provides code reusability
 
 // children can also have their own unique properties and methods too
 // eg: sloth can run but but fish and hawk can't run so it only belongs to sloth class
+
+//         this refers to this object 
+//         super refers to the parent
+
+class Animal{
+  constructor(){
+
+  }
+}
+class Rabbit extends Animal{
+  constructor(name, age, runSpeed){
+    super();
+    this.name = name;                           //before we are using the "this" keyword we have to call the constructor of the parent the super class
+    this.age = age;
+    this.runSpeed = runSpeed;
+  }
+}
+class Fish extends Animal{
+  constructor(name, age, swimSpeed){
+    super();
+    this.name = name;
+    this.age = age;
+    this.swimSpeed = this.swimSpeed;
+  }
+}
+class Hawk extends Animal{
+  constructor(name, age, flySpeed){
+    super();
+    this.name = name;
+    this.age = age;
+    this.flySpeed = flySpeed;
+  }
+}
+
+const rabbitt = new Rabbit("rabbo",1,25);
+const fishh = new Fish("fishy",2,12);
+const hawkk = new Hawk("hawky",3,50);
+// one of the advantage of using constructor is that if there is any properties that the children all share in common we can send them to the constructor of the parent
+
+
+// DRY ===> DON'T REPEAT YOURSELF
+class Animal{
+  constructor(name,age){
+    this.name = name;
+    this.age = age;
+  }
+}
+// here we need to pass the name and age arguments inside the super keyword.
+class Rabbit extends Animal{
+  constructor(name, age, runSpeed){
+    super(name, age);
+    this.runSpeed = runSpeed;
+  }
+}
+class Fish extends Animal{
+  constructor(name, age, swimSpeed){
+    super(name, age);
+    this.swimSpeed = swimSpeed;
+  }
+}
+class Hawk extends Animal{
+  constructor(name, age, flySpeed){
+    super(name, age);
+    this.flySpeed = flySpeed;
+  }
+}
+// the properties that are in common with the child classes, it can be send to the parent constructor
+// It helps code reusability
+
+const rabbit = new Rabbit("rabbo",2,25);
+const fish = new Fish("fishy",2,12);
+const hawk = new Hawk("hawky",3,50);
+
+console.log(rabbit.name);
+console.log(rabbit.age);
+console.log(rabbit.runSpeed);
+
+console.log(fish.name);
+console.log(fish.age);
+console.log(fish.swimSpeed);
+
+console.log(hawk.name);
+console.log(hawk.age);
+console.log(hawk.flySpeed);
+// 1). by using the "super" keyword we can instead of every single time for each child we write it in one place and reuse it.
+// 2). Another use of "super" keyword is that we can extend a method from the parent
+
+// so we are creating a move method in the animal class
+// and within each subclasses we extend the move method of parent animal.
+class Animal{
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+  }
+  move(speed){
+    console.log(`The ${this.name} moves at a speed of ${speed} mph`)
+  }
+}
+class Rabbit extends Animal{
+  constructor(name, age, runSpeed){
+    super(name, age);
+    this.runSpeed = runSpeed;
+  }
+  run(){
+    console.log(`This ${this.name} can run`);
+    // to refer to the parent class we use super keyword and use the parent's move method with the argument(speed)
+    super.move(this.runSpeed);
+  }
+}
+class Fish extends Animal{
+  constructor(name, age, swimSpeed){
+    super(name, age);
+    this.swimSpeed = swimSpeed;
+  }
+  swim(){
+    console.log(`this ${this.name} can swim`);
+    super.move(this.swimSpeed);
+  }
+}
+class Hawk extends Animal{
+  constructor(name, age, flySpeed){
+    super(name,age);
+    this.flySpeed = flySpeed;
+  }
+  fly(){
+    console.log(`This ${this.name} can fly`);
+    super.move(this.flySpeed);
+  }
+}
+
+const rrabbit = new Rabbit("rabbo",1,25);
+const ffish = new Fish("fishy",2,12);
+const hhawk = new Hawk("hawky",3,50);
+
+hhawk.fly();
+ffish.swim();
+rrabbit.run();
+
+// getter = special method that makes a property readable
+// setter = special method that makes a property writeable
+
+// validate and modify a value when reading/writing a property
+// It helps with validation when creating an object or updating one of its properies
+
+class Rectangle{
+  constructor(width, height){
+    this.width = width;
+    this.height = height;
+  }
+}
+const rectangle = new Rectangle(-100000, "pizza");
+// we don't want to enter in garbage value like negative or sting like this, we are expecting positive values
+// getters and setters ensure it
+
+console.log(rectangle.width);
+console.log(rectangle.height);
+
+// setters
+class Rectangle{
+  constructor(width, height){
+    this.width = width;
+    this.height = height;
+  }
+  set width(newWidth){                          //here the underscore refers that it is a private property
+    //                      this private property of width is different tham our standard width property
+    if(newWidth > 0){
+      this._width = newWidth;
+    }
+    else{
+      console.error("Width must be a positive number");
+    }
+  }
+  set height(newHeight){
+    if(newHeight > 0){
+      this._height = newHeight;
+    }
+    else{
+      console.error("Height must be a positive number");
+    }
+  }
+}
+const rectanglee = new Rectangle(12,27);
+// By using Setters we can update those values later
+rectangle.width = 5;                                          
+rectangle.height = 6;
+// rectangle.width = "pizza";
+// rectangle.height = -100000;
+// Even if we try to give negative,or string like above, then the error will be showed again and the object retains its initial values that previously assigned it
+
+console.log(rectanglee.height);
+console.log(rectanglee.width);
+// O/p => undefined
+// They are writable via Getters
+
+class Rectangle{
+  constructor(width, height){
+    this.width = width;
+    this.height = height;
+  }
+  set width(newWidth){                          //here the underscore refers that it is a private property
+    //                      this private property of width is different tham our standard width property
+    if(newWidth > 0){
+      this._width = newWidth;
+    }
+    else{
+      console.error("Width must be a positive number");
+    }
+  }
+  set height(newHeight){
+    if(newHeight > 0){
+      this._height = newHeight;
+    }
+    else{
+      console.error("Height must be a positive number");
+    }
+  }
+  // Getters
+  // With getters we can add additional logic (here toFixed is used)
+  get width(){
+    return `${this._width.toFixed(1)} cm`;
+  }
+  get height(){
+    return `${this._height.toFixed(1)} cm`;
+  }
+// With Getters we can even use  the property accessor that dot to access a property that doesn't neccessarily exist
+  get area(){
+    return `${(this._width * this._height).toFixed(1)} cm^2`;
+  }
+// here area is not found within the constructor but we can access it as if it was a property with a getter
+}
+const rectangl = new Rectangle(3,4);
+
+console.log(rectangl.width);
+console.log(rectangl.height);
+console.log(rectangl.area);
+
+class Persan{
+  constructor(firstName, lastName, age){
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+  }
+  // here we need to validate this input before assigning the properties,that's why we use setters
+  set firstName(newFirstname){
+    if(typeof newFirstname === "string" && newFirstname.length > 0){
+      this._firstName = newFirstname;
+    } 
+    else{
+      console.error("First name must be a non-empty string");
+    }
+  }
+  set lastName(newLastname){
+    if(typeof newLastname === "string" && newLastname.length > 0){
+      this._lastName = newLastname;
+    }
+    else{
+      console.error("Last name must be a non-empty string");
+    }
+  }
+  set age(newAge){
+    if(typeof newAge === "number" && newAge >= 0){
+      this._age = newAge;
+    }
+    else{
+      console.error("Age must be a non-negative number");
+    }
+  }
+} 
+const persan = new Persan(420,69,"pizza");
+
+
+console.log(persan.firstName);
+console.log(persan.lastName);
+console.log(persan.age);
+
+// getters
+class Persaan{
+  constructor(firstName,lastName,age){
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+  }
+  set firstName(newFirstname){
+    if(typeof newFirstname === "string" && newFirstname.length > 0){
+      this._firstName = newFirstname;
+    }
+    else{
+      console.error("Firstname must be a  non-empty string");
+    }
+  }
+  set lastName(newLastname){
+    if(typeof newLastname === "string" && newLastname.length > 0){
+      this._lastName = newLastname;
+    }
+    else{
+      console.error("Last name must be a non-empty string");
+    }
+  }
+    set age(newAge){
+      if(typeof newAge === "number" && newAge >= 0){
+        this._age = newAge;
+      }
+      else{
+        console.error("Age must be a non-negative number");
+      }
+    }
+ 
+}
+const persen = new Persaan("Peter","Parker",26);
+// Now it become only undefined as we didin't use the getter
+
+
+console.log(persen.firstName);
+console.log(persen.lastName);
+console.log(persen.age);
+
+// getters
+class Persaan{
+  constructor(firstName,lastName,age){
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+  }
+  set firstName(newFirstname){
+    if(typeof newFirstname === "string" && newFirstname.length > 0){
+      this._firstName = newFirstname;
+    }
+    else{
+      console.error("Firstname must be a  non-empty string");
+    }
+  }
+  set lastName(newLastname){
+    if(typeof newLastname === "string" && newLastname.length > 0){
+      this._lastName = newLastname;
+    }
+    else{
+      console.error("Last name must be a non-empty string");
+    }
+  }
+  set age(newAge){
+    if(typeof newAge === "number" && newAge >= 0){
+      this._age = newAge;
+    }
+    else{
+      console.error("Age must be a non-negative number");
+    }
+  }
+// getters
+  get firstName(){
+    return this._firstName;
+  }
+  get lastName(){
+    return this._lastName;
+  }
+  get age(){
+    return this._age;
+  }
+  get fullName(){
+    return this._firstName +" "+ this._lastName;        //by using getter ,we can even use it when we have no property for fullName...
+  }
+
+}
+const persaan = new Persaan("Peter","Parker",26);
+// Now it become only undefined as we didin't use the getter
+
+
+console.log(persaan.firstName);
+console.log(persaan.lastName);
+console.log(persaan.age);
+console.log(persaan.fullName);
+// By using both Setters and Getters we can validate and modify a value when reading or writing a property
+// destructuring = extract values from arrays and objects, then assign them to variables in a convinient way
+//     []        = to perform array destructuring
+//     {}        = to perform object destrucuring
+//               5 examples
+
+//                 Example 1
+// SWAP THE VALUE OF TWO VARIABLES
+let ea = 1;
+let eb = 2;
+
+[ea,eb] = [eb,ea];   // left hand side we are using destructuring ,on the right hand side we are creating an array
+
+console.log(ea);
+console.log(eb);
+
+//             Example 2
+// SWAP 2 ELEMENTS IN AN ARRAY
+
+const colors = ["red","green","blue","black","white"];
+[colors[0], colors[4]]=[colors[4], colors[0]];       //right hand side => destructuring, left handside =>new array
+console.log(colors);
+
+//                   Example 3
+// ASSIGN ARRAY ELEMENTS TO VARIABLES
+
+const colours = ["red","green","blue","black","white"];
+const [firstColor, secondColor, thirdColor,...extraColors] = colors;
+console.log(firstColor);
+console.log(secondColor);
+console.log(thirdColor);
+// Array destructuring with rest parameters
+console.log(extraColors);
+
+
+
+//                    Example 4
+// EXTRACT VALUES FROM OBJECTS
+
+const person3 ={
+  firstName: "Peter",
+  lastName: "Parker",
+  age: 30,
+  job:"Life saver"
+}
+
+const{firrstName, lastName, ahge, job} = person3;  //This is how we extract values
+console.log(firrstName);
+console.log(lastName);
+console.log(ahge);
+console.log(job);
+
+const person4 = {
+  firsName: "Mellisa",
+  lasName: "Johnson",
+  agfe: 34,
+}
+const{firsName, lasName, agfe, joob="unemployed"} = person4; //Values extracted even can have default values
+console.log(firsName);
+console.log(lasName);
+console.log(agfe);
+console.log(joob);
+
+//                 Example 5
+// DESTRUCTURE IN FUNCTION PARAMETERS
+
+function displayPerson({fName,lName,AGe,Job="unemployment"}){     //As there is a value then it will not give "unemployment" output
+  console.log(`name ${fName} ${lName}`);
+  console.log(`age : ${AGe}`);
+  console.log(`Job: ${Job}`)
+}
+const person5 = {
+  fName: "peter",
+  lName: "parker",
+  AGe: 30,
+  Job:"Doctor",
+}
+
+displayPerson(person5);
+// we can pass an object to a function and destructure when it it is passed in 
+
+// NESTED OBJECTS = Objects inside of other Objects.
+//                  Allows you to represent more complex data structures.
+//                  Child Object is enclosed by a Parent Object
+
+
+//                   Person{Address{}, ContactInfo{}}
+//                   ShoppingCart{keyboard{}, Mouse{}, Monitor{}}
+
+// Each of the child object would have their own properties and methods
+// example
+const person ={
+  fullName: "Spongebob Squarepants",
+  age: 30,
+  isStudent: true,
+  hobbies: ["karate","jellyfishing","cooking"],
+  address: {
+    street: "124 Conch St.",
+    city: "Bikini Bottom",
+    country: "Int.Water"
+  }                                          //objects can also contain arrays 
+}
+
+console.log(person.fullName);
+console.log(person.age);
+console.log(person.isStudent);
+// console.log(person.hobbies);                   returns whole array
+console.log(person.hobbies[1]);              //To get specific element
+
+console.log(person.address);          //returns whole object
+// To access a property within a nested object we have to use the property accessor(.)
+// To get a specific element from an object -;
+console.log(person.address.street);
+console.log(person.address.city);
+console.log(person.address.country);
+// If you have to loop through the properties of a nested object we can write a "for" loop like this
+
+for(const property in person.address){
+  console.log(person.address[property]);
+}
+// In this example Address is the child object of Person object
+
+class Person{
+  constructor(name, age, ...address){
+    this.name = name;
+    this.age = age;
+    this.address = new Address(...address);             //we are going to call the constructor of the adress class and pass in our address
+  }
+}
+class Address{
+  constructor(street, city, country){
+    this.street = street;
+    this.city = city;
+    this.country = country;
+  }
+}
+
+const peerson1 = new Person("Peter",28,
+         "124 Conch St.","Bikini Bottom","Int.Waters");
+const peerson2 = new Person("parker",36,
+          "128 Conch St.","Bikini Bottom","Int.waters");
+const peerson3 = new Person("Jane",25,
+          "126 Conch St.","Bikini Bottom","Int.Waters");
+
+console.log(peerson1.address.country);
+console.log(peerson1.address.city);
+console.log(peerson1.address.street);
+console.log(peerson1.name);
+
+console.log(peerson3.address.country);
+console.log(peerson3.address.city);
+console.log(peerson3.address.street);
+
+// Array of objects
+
+const fruits = [{name: "apple", color: "red", calories: 95},
+  {name: "orange", color:"orange", calories: 45},
+  {name: "banana", color:"yellow", calories:105},
+  {name: "coconut",color:"white",calories: 159},
+  {name: "pineapple",color:"yellow",calories:37}
+];
+// accessing an element in the arrray of objects
+
+console.log(fruits[4].name);
+console.log(fruits[1].calories);
+console.log(fruits[2].color);
+// To add a new object we can use the push method
+fruits.push({name: "grapes",color:"purple",calories:62});
+console.log(fruits);
+// to remove an element in the array of obects
+fruits.pop();
+console.log(fruits);
+// splice will remove the elements at certain indices
+// fruits.splice(1,2); 
+// console.log(fruits);
+//      forEach()
+// to loop through the elements of the array
+fruits.forEach(fruit => console.log(fruit));
+// to get one of the property
+fruits.forEach(fruit => console.log(fruit.color));
+
+
+//                    Map()
+const fruitNames = fruits.map(fruit =>fruit.name);
+const fruitColors = fruits.map(fruit =>fruit.color);
+console.log(fruitNames);
+console.log(fruitColors);
+
+// filter
+const yellowFruits = fruits.filter((fruit) => fruit.color === "yellow"); //(fruit) parenthesis is not necessary as there is only one element.
+console.log(yellowFruits);
+const lowcalorieFruits = fruits.filter(fruit => fruit.calories < 100);
+console.log(lowcalorieFruits);
+const  highcalorieFruits = fruits.filter(fruit => fruit.calories > 100);
+console.log(highcalorieFruits);
+
+// reduce() [return a single value]
+// return the object with greatest amount of calories
+const maxFruitCalorie = fruits.reduce((/*(accumulator)*/max,/*(element) */fruit) => fruit.calories > max.calories? fruit : max);
+console.log(maxFruitCalorie);
+
+const leastFruitcalorie = fruits.reduce((min, fruit) => fruit.calories < min.calories ? fruit: min);
+console.log(leastFruitcalorie);
