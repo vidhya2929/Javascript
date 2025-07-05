@@ -1,0 +1,30 @@
+body{
+  margin: 0;
+  background-image: url(centralparkNY.jpg);
+  background-position: center;
+  /* as our image is small it get repeated,so to avoid it set background-repeat: no-repeat */
+  background-repeat: no-repeat;
+  background-size: cover;                 /*the image will cover the entire window*/
+  /* If we have additional content besides this clock we can fix the background in place when we scroll down*/
+  background-attachment: fixed;
+}
+#clock-container{
+  display: flex;
+  justify-content: center;
+  /* coming 2 properties for aligning the item vertically center */
+  align-items: center;     /*vertically align items*/
+  height: 100vh; /*viewport height*/
+}
+#clock{
+  font-family: monospace;
+  font-size: 6.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  /* To get blur effect */
+  backdrop-filter: blur(5px);
+  background-color: hsla(0, 0%, 100%, 0.1); /*if we increase the alpha(last value) it will increase the lighting*/ /*foggy glass appearence*/
+  /* To increase the width to be 100%  of the web browser*/ 
+  width: 100%;
+
+}

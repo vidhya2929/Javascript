@@ -1,0 +1,33 @@
+/* There is 3 way to apply CSS 
+1).Inline
+2).Internal
+3).External
+*/
+/* here we do external linking */
+body{
+  background-color: black;
+}
+h1{
+  color: white;
+}
+/* to access id use " # " */
+#pid1{
+  color: yellowgreen;
+}
+#pid2{
+  color: orangered;
+}
+#pid3{
+  color: yellow;
+}
+#pid4{
+  color: blueviolet;
+}
+/* to access class use " . " */
+.odd{
+  font-size: 45px;
+}
+.even{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}

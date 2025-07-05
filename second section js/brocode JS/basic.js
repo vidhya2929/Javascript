@@ -2566,3 +2566,262 @@ console.log(maxFruitCalorie);
 
 const leastFruitcalorie = fruits.reduce((min, fruit) => fruit.calories < min.calories ? fruit: min);
 console.log(leastFruitcalorie);
+
+// SORT()= method used to sort elements of an array in place.
+//        Sorts elements  as strings in lexicographic order, not alphabetical
+//        lexicographic = (alphabet + numbers + symbols) as strings
+
+let vegs = ["carrot", "onion","cucumber","lettuce"];
+vegs.sort();
+
+console.log(vegs);
+
+let numbi = [1,10,2,9,3,8];
+numb.sort();
+console.log(numbi);
+// O/p => [ 1, 10, 2, 3, 8, 9 ] (we are not sorting this array numerically ,it is based on lexicographically...)
+// we treating this numbers as strings 
+// For sorting numbers -;
+
+let nus = [1,10,2,9,3,8,4,7,5,6];
+  //Inside of the sort method we have to write a custom comparison function (this is normally a callback,we can write a functionexpression or even better an arrow function)
+nus.sort((a,b) => a-b);    //  function a-b will return either  a negative zero or positive value depending on the values we are examining
+// The sort method will sort those values  depending on what value returned is and array get sorted  
+console.log(nus);
+
+
+//  For reverse order
+nus.sort((a,b) => b-a);
+console.log(nus);
+
+// Obects can be dorted by a given property
+const people = [{name: "peter", age: 30, gpa: 3.0},
+                {name: "parker",age:25, gpa:1.5},
+                {name: "mary", age: 52, gpa:3.0},
+                {name: "Jane", age: 62, gpa:4.0}
+              ];
+              // Sorting based on the age 
+people.sort((a,b) => a.age - b.age);
+console.log(people);
+
+people.sort((a,b) => a.gpa - b.gpa);
+console.log(people);
+
+// if we want to sort by a property that contains a string within an object -;
+// There is a formula  =>
+people.sort((a,b) => a.name.localeCompare(b.name));
+// This statement will examine two strings for lexicographic order 
+
+//  DATE OBJECTS  = objects that contain values that represent dates and times 
+//                  These date objects can be changed and formatted
+
+
+// const date = new Date();
+// console.log(date);
+
+// Date(year, month, day, hour, minute, second, ms)
+// const date = new Date(2024, 0, 1, 2, 3, 4, 5);
+// console.log(date);
+
+
+// passing a string representation of time is also valid to the date object
+
+const date =new Date("2024-01-02T12:00:00Z");
+console.log(date.toString());
+
+// use toString() or localeString() to show the in this format -; Tue Jan 02 2024 17:30:00 GMT+0530 (India Standard Time)
+
+const datee = new Date();
+const year = datee.getFullYear();   //To get the year
+const month = datee.getMonth();      // To get the month(if this is july we will get the output as 6)
+const daey = datee.getDate();           // To get the day(if this is saturday we will get the ouput as 5)
+const hour = datee.getHours();
+const minutes = datee.getMinutes();
+const seconds = datee.getSeconds();
+const dayOfWeek = datee.getDay();
+console.log(year);
+console.log(month);
+console.log(daey);
+console.log(hour);
+console.log(minutes);
+console.log(seconds);
+console.log(dayOfWeek);
+
+const dater = new Date();
+dater.setFullYear(2024);      //setting date with a method
+dater.setMonth(0);
+dater.setDate(1);
+dater.setHours(2);
+dater.setMinutes(3);
+dater.setSeconds(5)
+console.log(dater);
+
+// Comparison of dates
+// const date1 = new Date("2023-12-31");
+// const date2 = new Date("2023-01-01");
+
+// if(date2 > date1){
+//   console.log("HAPPY NEW YEAR!");
+// }
+
+const date1 = new Date("2023-12-31");
+const date2 = new Date("2024-01-01");
+
+if(date2 > date1){
+  console.log("HAPPY NEW YEAR!");
+}
+
+// closure = A function defined inside of another function,
+//           the inner function has to access to the variables and scope of the outer function
+//           Allow for private variables and state maintenance
+//           Used frequently in JS frameworks : React, Vue, Angular
+function outer(){
+  let message = "Hello";
+  function inner(){              //here the inner function has access to everything within the outer function
+    console.log(message);
+  }
+}
+outer();            //O/p => nothing
+
+
+// if we want to call an inner function from within the outer function we need to call it somewhere inside the outer function...
+
+function outer(){
+  let message = "Hello";
+  function inner(){
+    console.log(message);
+  }
+  inner();
+}
+message = "goodbye"  // it doesn't work as it is not in the outer scope
+outer();
+// benefit of using closure is that any variables are considered private i.e, we can encapsulate varibles and make them private
+
+// example 2
+
+function increment(){
+  let count = 0;
+  count++;
+  console.log(`Count increased to ${count}`);
+}
+increment();
+increment();
+increment();
+// here we are resetting each time we call this function
+// but by using a closure we can have state maintenance and remember where this variable was previously
+
+// let count = 0;                  here anybody can access this variables
+count = 1000000;
+
+function increment(){
+  count++;
+  console.log(`Count increased to ${count}`);
+}
+increment();
+increment();
+increment();
+increment();
+
+// A closure maintains the state of a variable and makes it private
+// so we will enclose the whole inside a function
+function createCounter(){
+  let count = 0;
+  function increment(){
+    count++;
+    console.log(`Count increased to ${count}`);
+  }
+  function getCount(){
+    return count;
+  }
+  //return {increment:increment}
+  return{increment,getCount};       //we can use the function name as the property    
+}
+
+const counter = createCounter();
+counter.increment();
+counter.increment();
+counter.increment();
+counter.increment();
+// here the closuremaintains it's state
+
+console.log(`The current count is ${counter.getCount()}`);
+
+// Example
+let score = 0;
+
+function increaseScore(points){
+  score += points;
+  console.log(`+${points}pts`);
+}
+function decreaseScore(points){
+  score -= points;
+  console.log(`-${points} pts`);
+}
+function getScore(){
+  return score;
+}
+score = 1000000;                         
+
+increaseScore(5);
+increaseScore(6);
+decreaseScore(3);
+console.log(`The final score is ${getScore()}pts`);
+
+// for some security we should enclose the code  within a closure
+function createGame(){
+  let score = 0;
+  function increaseScore(points){
+    score += points;
+    console.log(`+{points}pts`);
+  }
+  function decreaseScore(points){
+    score -= points;
+    console.log(`-${points}pts`);
+  }
+  function getScore(){
+    return score;
+  }
+  return {increaseScore,decreaseScore,getScore}
+}
+const game = createGame();
+
+game.increaseScore(5);
+game.increaseScore(6);
+game.decreaseScore(3);
+console.log(`The final score is ${game.getScore()} pts`);
+
+// setTimeout function in javascript
+// setTimeout() = function in javaScriot that allows you to schedule
+//                the execution of a function after an amount of time (milliseconds)
+//                Times are approximate (varies bcript runtime env.)
+//                setTimeout(callback, delay);
+
+// example
+
+function sayHello(){
+  window.alert("hello");
+}
+setTimeout(sayHello, 3000);
+
+// Anonymous function
+setTimeout(function(){window.alert("Hello")}, 3000);
+
+// Arrow Function
+setTimeout(() => window.alert("Hellooo"), 3000);
+
+// clearTimeout(timeoutId) = can cancel a timeout before it triggers
+
+const timeoutId = setTimeout(() => window.alert("hello"), 3000)
+// to clear this timeout use clearTimeout but we have to pass that timeoutId along with it
+clearTimeout(timeoutId);
+
+
+let timeoutIdd;
+function startTimer(){
+  timeoutIdd = setTimeout(() => window.alert("Hellow"),3000);
+  console.log("started");
+}
+function clearTimer(){
+  clearTimeout(timeoutIdd);
+  console.log("cleared");
+}

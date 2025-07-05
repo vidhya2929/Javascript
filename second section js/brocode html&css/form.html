@@ -7,17 +7,80 @@
   </head>
   <body>
 
-
-      <form action="index.php" method="POST">  <!--//action specifies to what location our form want to send
+    <!-- include an encryption type within the opening form tag -->
+     <!-- if we are sending an image and image is a large file,so we will set the encryption type like below -->
+      <form action="index.php" method="POST" enctype="multipart/form-data "> <!--enctype="multipart/form-data => when we send large data ,it will break into multiple part and when received it will be reassembled -->
+         <!--//action specifies to what location our form want to send
          -->
         <!-- form submission is done with backend  language such as PHP -->
          <!-- method attribute specifies if this is a get request or a post request -->
         <!-- POST request is used for confidential information such as username and a password -->
          <!-- GET is for insensitive data -->
-      </form>
+      
       <!---->
-      <input type="text" id="username" required>  <!--required => to alert fill the form without fail-->
+      <label for="username">username</label>
+      <input type="text" id="username"placeholder="parker" minlength="6" maxlength="15"> <br><br> <!--required => to alert that fill the form without fail-->
+      <!-- minlength =>specifies the minimum length for the username -->
+       <!-- maxlength => specifies the maximum length for the username -->
+      <!--placeholder gives a hint to the user as to the format in which they should enter an information ,It will remains in the input box until we type something-->
+
+      <!-- To create a password ,type becomes password -->
+       <label for="password">Password:</label>
+       <input type="password" id="password" minlength="6" maxlength="15" required><br><br>  <!--id attribute to be matched with the "for" attribute-->
+
+       <!-- email -->
+        <label for="email">email:</label>
+        <input type="email" id="email" placeholder="vm122gmail.com"><br><br>
+
+        <!-- phone -->
+        <label for="phone">Phone No:</label>
+        <input type="tel" id="phone" placeholder="049-395-2347" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br><br>
+        <!-- type = "tel"(for telephone) -->
+        <!-- by adding "for =" in input ,when a user clicks on the label,the associated input field is automatically focussed-->
+        <label for="bday">birthdate</label>
+        <input type="data" id="bday"><br><br>
+        <label for="quantity">Quantitiy:</label>
+        <input type="number" id="quantity" min="0" max="99" value="1"><br><br> <!--default is value = 1 .min and max for minimum and maximum-->
+        <!-- radio button can select only one option -->
+
+        <label for="title">title</label>
+
+
+        <label for="Mr.">Mr.</label>
+        <input type="radio" id="Mr." value="Mr." name="ame">   <!--name should be same in all radio button to select one-->
+        <label for="Ms.">Ms.</label>                                 <!--for is used to when we click on label ,it automatically selects the corresponding radio button,for should match the id-->
+        <input type="radio" id="Ms." value="Ms." name="ame">
+        <label for="PhD.">PhD.</label>
+        <input type="radio" id="PhD." value="phD." name="ame"><br>
+      <!-- "Value" is the actual data that get sent when the form is submitted -->
+
+      <!-- drop-down menu -->
+       <br><label for="payment">payment</label>
+       <select id="payment">
+        <option value="visa">Visa</option>
+        <option value="Mastercard">Mastercard</option>
+        <option value="giftcard">Gift Card</option>
+       </select><br><br>
+
+       <label for="subscribe">subscribe:</label>
+       <input type="checkbox" id="subscribe"><br>
+
+       <label for="comment">comment</label>
+      <textarea name="" id="comment" rows="3" cols="25"></textarea><br><br>
+
+      <label for="file">File:</label>
+      <input type="file" id="file"><br>
+      <!-- By default we can accept all the files -->
+       <!-- To limit the file use "accept"attribute -->
+
+       <label for="file">file:</label>
+       
+       <input type="file" id="file" accept="image/png,image/jpeg">
+
+        <br><input type="reset"><br><br>
+
       <input type="Submit">
+    </form>
 
   </body>
 </html>
