@@ -2825,3 +2825,30 @@ function clearTimer(){
   clearTimeout(timeoutIdd);
   console.log("cleared");
 }
+
+
+
+//////////////      MathUtil             ///////////////
+// ES6 Module = An external file that contains reusable code that can be imported into other JavaScript files.
+//              Write reusable code for many different apps.
+//              Can contain variables, classes, functions... and more 
+//              Introduced as part of ECMAScript 2015 update
+// Example
+
+
+// to import a module we have to make script type ="module" in html
+
+import {Pi,getArea,getCircumference,getVolume} from './mathUtil.js' ;
+ // 
+// we are using object destructuring 
+// write the elements that we want to import inside the destructuring 
+
+console.log(Pi);
+const circumfereence = getCircumference(10);
+const area = getCircumference(10);
+const volume = getVolume(10);
+
+console.log(`${circumfereence.toFixed()}cm`);
+console.log(`${area.toFixed(2)} cm^2`);
+console.log(`${volume.toFixed(2)}cm ^3`);
+

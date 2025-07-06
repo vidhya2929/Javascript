@@ -1,12 +1,36 @@
-// ES6 Module = An external file that contains reusable code that can be imported into other JavaScript files.
-//              Write reusable code for many different apps.
-//              Can contain variables, classes, functions... and more 
-//              Introduced as part of ECMAScript 2015 update
-// Example
+// synchronous  = Executes line by line consecutively in a sequential manner 
+//                 Code that waits for an operation to complete
 
 
-// to import a module we have to make script type ="module" in html
-console.log(Pi);
-import {Pi, getCircumference, getArea, getVolume} from './mathUtil.js';
+// asynchronous = Allows multiple operations to be performed concurrently without waiting 
+//                Doesn't block the execution flow and allows the program to continue (I/O operations, network requests, fetching data)
+//                Handled with : Callbacks,Promises, Async/Await
 
-const circumference = getCircumference
+
+// Synchronous code
+
+console.log("Task 2");
+console.log("TAsk 3");
+console.log("TAsk 4");
+
+// Asynchronous Code
+
+setTimeout(() => console.log("Task 1"), 3000);
+
+console.log("Task 5");
+console.log("Task 6");
+console.log("TAsk 7");
+
+// what we could do in this is 
+
+function func1(Callback){
+  setTimeout(() => {console.log("Task 1")
+                    Callback()}, 3000);
+}
+
+function func2(){
+  console.log("Task 8");
+  console.log("Task 9");
+  console.log("Task 10");
+}
+func1(func2);

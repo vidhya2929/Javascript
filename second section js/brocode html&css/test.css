@@ -1,0 +1,64 @@
+h1{
+  font-family: "roboto";
+  font-family: verdana, arial;  /*arial act as a fallback*/
+
+  /* border */
+  /* border-style: dashed; */
+  border-style: solid;      /*border line be like*/
+  border-width: 5px;
+  border-color: hsl(300, 94%, 38%);
+/* These 3 properties can be done in one line of code (shorthand) */
+
+  /* border: 3px solid burlywood; (border-width border-style color) */
+
+  border-radius: 15px;    /*round the corner of border*/
+
+}
+@font-face {
+  font-family: "roboto";
+  src: url(fonts/Roboto-VariableFont_wdth\,wght.ttf);
+}
+body{
+  margin: 0px;   /*margin to be side*/
+}
+.box{
+  border: 5px solid;
+  font-size: 5em;
+}
+p{
+  font-family: "Roboto:ital","lucida console","courier new";  /*If the font-family  contain space enclose it with double quote*/  /* courier new acts as backup*/
+  font-size: 18px; 
+  /* another unit of measurement is em*/
+  /* 1 em means 100%, it's the normal size*/
+  /*1.5 em means 150 % , 1.1 em means 110%*/
+  font-weight: bold;  /*normal is also there*/
+  font-style: italic;  /* or normal */
+
+  border-bottom: 5px dashed red; /*border only for bottom*/
+  border-top: 3px double yellow;
+  border-left: 6px dotted green;
+  border-right: 2px inset navy;
+  padding: 10px;
+  margin: 30px;
+
+  border-radius: 25px;
+}
+/* Google fonts */
+/* we can download font and put in the font folder */
+
+/* Box shadows */
+h2{
+  text-shadow: 3px 3px 5px blue, -3px -3px 5px hsl(315, 29%, 45%) ;  /*horizontal offset, vertical offset, blur, also color*/
+}
+#box{
+  width: 100px;
+  height: 100px;
+  background-color: rgb(234, 234, 234);
+  box-shadow: 3px 3px 5px;
+}
+
+
+/* Margin */
+/* space around an element(area outside the border) */
+/* padding */
+/* padding is between the element itself and any borders */
