@@ -34,3 +34,5 @@ function func2(){
   console.log("Task 10");
 }
 func1(func2);
+
+

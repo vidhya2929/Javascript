@@ -24,6 +24,21 @@ body{
 .box{
   border: 5px solid;
   font-size: 5em;
+  width: 250px;
+  height: 250px;
+  /*margin: 50px; margin to the top,right,bottom,left*/
+  /*margin: auto;          (center of your web browser)takes up the entire space*/
+}
+#box1{
+  background-color: hsl(0, 78%, 55%);
+  /* margin-right: 50px;              can't see margin-right because divs are block level elements they take up the entire horizontal space */
+  margin-left: auto;       /*margin on the left side of the box will take up as much as possible, it will stick to the righthand side*/
+  margin-right: auto;/* wont do anything because it is already left justified*/
+  
+
+}
+#box2{
+  background-color: hsl(180, 80%, 62%);
 }
 p{
   font-family: "Roboto:ital","lucida console","courier new";  /*If the font-family  contain space enclose it with double quote*/  /* courier new acts as backup*/

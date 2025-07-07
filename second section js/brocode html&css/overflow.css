@@ -1,0 +1,24 @@
+#p1{
+  border: 2px solid;
+  height: 75px;
+  overflow: visible;   /* no apparent change is there*/
+}
+#p2{
+  border: 2px solid;
+  height: 75px;
+  overflow: hidden; /*It will be hidden, we can no longer see it*/
+}
+#p3{
+  border: 2px solid;
+  height: 75px;
+  overflow: clip;
+  overflow-clip-margin: 8px; /* we can set the overflow*,here this content will overflow by 8px*/
+}
+
+#p4{
+  border: 2px solid;
+  height: 75px;
+   overflow: scroll;/*there will be a scrollbar both horizontally and vertically*/ 
+  /*scrollbar will be there anyways,length of the content doesn't matter*/
+  /* overflow :auto;       the scollbar will be disabled if the content is less... */
+}

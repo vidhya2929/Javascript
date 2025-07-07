@@ -1,0 +1,37 @@
+/* display => property specifies if/how an elementis displayed */
+/* block-level  => (start on a new line, take up the full width available(h1, div, p, form, header, footer)*/
+/* inline => do not start on a new line, width is limited to what is needed(span, a, img)*/ 
+
+ /*using display property we can set an element to be a  block level inline block or not display it at all*/
+
+div{
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  display: block;    /*By using the display property we can change the behaviour of these elements*/
+}
+/* here as div is a block-level element it took up the entire width available */
+span{
+  background-color: blue;
+  height: 100px;            /*no change by height and width for inline element*/
+  width: 100px;
+  display: inline;   /*It becomes inline and can't apply height and width*/
+}
+  
+/*By applying display block here we can assign height and width*/
+/* span => is inline so it only took up the necessary space it needed */
+
+#div2{
+  background-color: greenyellow;
+  width: 100px;
+  height: 100px;
+  display: inline-block;   /* which means it acts as inline but we can give height and width*/
+  /* These 2 element is not taking up the entire width of the viewport */
+  visibility: hidden;  /*By setting visibility hidden the space will be there but them element become invisible*/
+} 
+#div3{
+  background-color: rgb(19, 84, 141);
+  height: 100px;
+  width: 200px;
+  display: none;   /*It will erase the element*/
+}
