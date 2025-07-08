@@ -2852,3 +2852,332 @@ console.log(`${circumfereence.toFixed()}cm`);
 console.log(`${area.toFixed(2)} cm^2`);
 console.log(`${volume.toFixed(2)}cm ^3`);
 
+
+// synchronous  = Executes line by line consecutively in a sequential manner 
+//                 Code that waits for an operation to complete
+
+
+// asynchronous = Allows multiple operations to be performed concurrently without waiting 
+//                Doesn't block the execution flow and allows the program to continue (I/O operations, network requests, fetching data)
+//                Handled with : Callbacks,Promises, Async/Await
+
+
+// Synchronous code
+
+// console.log("Task 2");
+// console.log("TAsk 3");
+// console.log("TAsk 4");
+
+// Asynchronous Code
+setTimeout(() => console.log("Task 1"),3000)
+
+console.log("Task 2");
+console.log("Task 3");
+console.log("Task 4");
+
+// 
+function func1(callback){
+  setTimeout(() =>{ console.log("Task 1");
+    callback()}, 3000);                                            //here task 2,3,4 are followed by task 1
+}
+
+function func2(){
+  console.log("Task 2");
+  console.log("Task 3");
+  console.log("Task 4");
+}
+func1(func2);
+// After task 1 is complete we invoke the callback to func2
+
+// Using callbacks is one method for handle asynchronous code
+
+
+// Error = An object that is created to represent an problem that occurs often with user inout or establishing a connection
+console.lag("Hello");   //uncaught  TypeError
+
+console.log("You have reached the end!");
+// interrupt the normal flow of the program
+// Errors can be -;
+/*
+.Network Errors
+.Promise Rejection
+.security Errors
+
+*/
+// Errors can be handled by using try,catch and finally blocks
+
+// try {} => Enclose code that might potentially cause an error
+// catch {} => Catch and handle any thrown Errors from try{}
+// finally {} => (optional) Always executes. Used mostly for clean up ex.close files, close connections, release resources
+
+try{
+  console.log(x);
+}
+catch(error){
+  console.error(error);
+}
+console.log("You have reached the end!");
+// for catching errors use console.error
+
+// finally block executes regardless of the error
+
+// CLOSE FILES
+// CLOSE CONNECTIONS
+// RELEASE RESOURCES
+
+try{
+  console.log("Hello");
+}
+catch(error){
+  console.error(error);
+}
+finally{
+  console.log("This always executes");
+}
+console.log("You have reached the end");
+const dividend = window.prompt("Enter a dividend: ");
+const divisor = window.prompt("Enter a divisor: ");
+
+const reseault = dividend / divisor ;
+console.log(reseault);
+
+
+// if we divide 1 /0 => infinity
+
+try{
+  const dividend = Number(window.prompt("Enter a dividend:"));
+  const divisor = Number(window.prompt("Enter a divisor"));
+
+  if(divisor == 0){
+    throw new Error("You can't divide by zero");
+  }
+  if(isNaN(dividend) || isNaN(divisor)){
+    throw new Error("Values must be a number");
+  }
+
+  const result = dividend / divisor ;
+  console.lag(result);
+}
+catch(error){
+  console.error(error);
+}
+console.log("You have reached the end!");
+
+// Callback Hell = Situation in javascript where callbacks are nested within other callbacks to the degree where the code is difficult to read.
+// Old pattern to handle asynchronous functions.Use promises + async/await to avoid Callback Hell
+
+function task1(callback){
+  setTimeout(() =>{
+    console.log("Task 1 complete");
+    callback();
+  },2000);
+ 
+ }
+ function task2(callback){
+  setTimeout(() => {
+    console.log("task 2 complete");
+    callback();
+  },1000)
+ }
+ function task3(callback){
+  setTimeout(()=>{
+    console.log("task 3 complete");
+    callback();
+  },2000)
+}
+ function task4(callback){
+  setTimeout(()=> {
+    console.log("task 4 complete");
+    callback();
+
+  },1500)
+ }
+
+ task1(()=>{
+  task2(()=>{
+    task3(()=>{
+      task4(()=> console.log("All tasks complete"))
+    })
+  })
+ })
+
+ console.log("All task complete");
+//  To make it synchronous each of these accept a callback
+// Promise = An Object that manages asynchronous operations.
+// Wrap a promise Obhect around {asynchronous code}
+// "I promise to return a value"
+//  PENDING -> RESOLVED or REJECTED
+// new Promise ((resolve, reject)=>{asynchronous code})
+
+// Do chores in order
+
+// 1.Walk the dog
+// 2.clean the kitchen
+// 3.Take out the trash
+
+function walkDog(callback){
+  setTimeout(() =>{
+    console.log("You walk the dog");
+    callback();
+  },1500);
+}
+function cleanKitchen(callback){
+  setTimeout(()=>{
+    console.log("You clean the kitchen");
+    callback();
+  },2500);
+}
+function takeoutTrash(callback){
+  setTimeout(()=>{
+    console.log("You take out the trash");
+    callback();
+  },500);
+}
+//callback hell
+walkDog(()=> {
+  cleanKitchen(()=>{
+    takeoutTrash(()=> console.log("You finished all the chores"));
+  });
+});
+
+// By instead of callbacks we use promise
+// At the end of each object we will return an object
+
+
+
+// sometimes get rejected
+function walkDog(){
+  return new Promise((resolve,reject) =>{
+    setTimeout(()=>{
+
+      const dogwalked = true;
+      if(dogwalked){
+        resolve("You walk the dog");
+      }
+      else{
+        reject("you didn't walk the Dog");
+      }
+    },1500);
+  });
+}
+
+function cleanKitchen(){
+  return new Promise((resolve,reject)=>{
+    setTimeout(() =>{
+
+      const kitchenClean = true;
+      if(kitchenClean){
+        resolve("You cleaned the kitchen");
+      }
+      else{
+        reject("You didin't clean the kitchen");
+      }
+  },2500)
+});
+}
+
+function takeTrash(){
+  return new Promise((resolve,reject)=>{
+    setTimeout(() =>{
+      const takeTrash = false;
+      if(takeTrash){
+        resolve("You take the trash");
+      }
+      else{
+        reject("You didn't take the trash");
+      }
+    },500);
+  });
+}
+walkDog().then(value => {console.log(value); return cleanKitchen()})
+         .then(value => {console.log(value); return takeTrash()})
+         .then(value =>{console.log(value); console.log("You have finished all the chores")})
+         .catch(error => console.error(error));
+
+
+         // Async / Await = Async = makes a function return a promise 
+//                 Await = makes an async function wait for a promise
+
+//                 Allows you write asynchronous code in a syncronous manner
+//                 async doesn't have resolve or reject parameters 
+//                 Everything after Await is placed in an event queue
+
+// a function declared with an async returns a promise ,that promise doesn't resolve or reject
+// async works together with await, by using these 2 keywords together when calling all these asynchronous in order we don't need method chain the statements
+async function walkDog(){
+
+}
+// there is a more synchronous manner in which we can write the method chaining
+ function walkDog(){
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      const dogwalked = false;
+      if(dogwalked){
+        resolve("You walk the dog");
+      }
+      else{
+        reject("You didn't walk the dog");
+      }
+    },1500)
+  });
+}
+function cleanKitchen(){
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      const cleankitchen = true;
+      if(cleankitchen){
+        resolve("You clean the kitchen")
+      }
+      else{
+        reject("You didn't clean the kitchen");
+      }
+    },2500)
+  });
+}
+function takeTrash(){
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      const takeTrash = true;
+      if(takeTrash){
+        resolve("You take the trash");
+      }
+      else{
+        reject("You didn't take the trash");
+      }
+    },500)
+  });
+}
+async function doChores(){
+  const walkdogResult = await walkDog();
+  console.log(walkdogResult);
+
+  const cleanKitchenResult = await cleanKitchen();
+  console.log(cleanKitchenResult);
+
+  const takeoutTrashResult = await takeTrash();
+  console.log(takeoutTrashResult);
+
+  console.log("You finished all the chores")
+}
+
+doChores()
+// await is only valid in async function
+// await makes a async function wait for a promise before continuing it
+
+async function doChores(){
+  try{
+    const walkdogResult = await walkDog();
+    console.log(walkdogResult);
+
+    const cleanKitchenResult = await cleanKitchen();
+    console.log(cleanKitchenResult);
+
+    const takeoutTrashResult = await takeTrash();
+    console.log(takeoutTrashResult);
+
+    console.log("You have finished all the chores")
+  }
+  catch(error){
+    console.error(error)
+  }
+}
