@@ -18,3 +18,6 @@ myButton.onclick = function(){
     myLabel2.textContent = randomNum2;
     myLabel3.textContent = randomNum3;
 }
+
+
+

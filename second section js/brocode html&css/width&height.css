@@ -1,11 +1,30 @@
-/* width & height properties in CSS */
 *{
   box-sizing: border-box;
 }
 .box{
+  background-color: white;
   border: 2px solid;
   padding: 25px;
-  height: auto;
+  height: auto;  
   width: 50%;
-  float: left;
+     /*default*/
+  /* width: auto; */
+   /* width: 50%;        it take 50%of the viewport */
+  float: left; /*float element to left*/
+  text-align: center;
+  min-height:50%;
+ 
+  /* max-width: 25%;   maximum width will be 25% */
+  /*min-width: 75%;  /*mininum width will be 75% even if we given width to be 50% before*/
+  /* max-height: 75%;
+  min-height: 75%; */        /*there is no such big difference as they start from the top of the page*/
+}
+/* By using box sizing ->border-box, when calculating the height or the width we can disregard any padding or borders*/
+/* It is good to give  */
+
+/*  */
+.container{
+  background-color: hsl(0, 0%, 24%);
+  /* height: 100vh;            viewport height*/
+  height: 100vh;
 }
