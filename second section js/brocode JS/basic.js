@@ -1334,9 +1334,9 @@ console.log(fooods);
 // rest parameters = (...rest) allow a function work with a variable number of arguments by building them into an array
 
 //                   spread = expands an array into seperate elements ||| rest = bundles seperate elements into an array
-function openFridge(...foods){
-    console.log(foods);
-    console.log(...foods);   //spread operator
+function openFridge(...foodes){
+    console.log(foodes);
+    console.log(...foodes);   //spread operator
   }
   function getFood(...foods){
     return foods;
@@ -1352,8 +1352,8 @@ function openFridge(...foods){
   // this function can accept any number of arguments
   // rest parameters can be used as parameters
   // spread operator is used whenever you have an array or any sort of collection of something
-  const foods = getFood(food1,food2,food3,food4,food5);
-  console.log(foods); //bundled into an array
+  const foodes = getFood(food1,food2,food3,food4,food5);
+  console.log(foodes); //bundled into an array
 
   function sum(...numbers){
     let result = 0;
@@ -3181,3 +3181,228 @@ async function doChores(){
     console.error(error)
   }
 }
+// DOM = Document Object Model is an OBJECT in JavaScript
+//       Object{} that represents the page you see in rhe web browser and provides you with an API to interact with it.
+//       Web browser constructs the DOM when it loads an HTML document, and structures all the elements in a tree like representation.
+//       JavaScript can access the DOM to dynamically change the content, structure, and style of a web page.
+
+// documment is an object it contains properties and methods and other nested objects
+// document.title = "document";
+// document.body.style.backgroundColor = "black";           // even we have css we are stilll able to dynamically change the background color
+// console.log(document);
+
+
+
+// const username = "";
+// const welcomeMsg = document.getElementById("welcome -msg");
+// welcomeMsg.textContent += username === "" ? `Guest` : username ;
+
+
+
+// Element Selectors = Methods used to target and manipulate HTML elements
+// They allow you to select one or multiple HTML elements 
+// from the DOM(Document Object Model)
+// These are the built-in  methods of DOM
+
+// 1. document.getElementById()           //ELEMENT OR NULL
+// 2.document.getElementsClassName()     // HTML COLLECTION
+// 3.document.getElementByTagName()     //HTML COLLECTION
+// 4.document.querySelector            // ELEMENT OR NULL
+// 5.document.querySelectorAll()     //NODELIST
+
+
+
+// 1. document.getElementById()  
+const myHeading = document.getElementById("my-heading");
+myHeading.style.backgroundColor = "yellow";
+myHeading.style.textAlign = "center";
+console.log(myHeading);
+// getElementById returns a single element if it finds it or ,null if it doesn't.
+
+
+// 2.document.getElementsClassName()
+// It is similar to an array but it is limited in the built - in methods
+
+const fruits = document.getElementsByClassName("fruits");          //it gives an HTML COLLECTION,HTML collections are iterable
+// fruits[2].style.backgroundColor = "yellow";
+
+// To iterate the backgroundColor through the elements we use enhanced for loop 
+for(let fruit of fruits){
+  fruit.style.backgroundColor = "yellow"
+}
+// HTML COLLECTIONs don't have a built - in for each method
+// we can only typecast the HTML collection as an array
+// it has a limited amount of utility methods
+Array.from(fruits);         //this is how we typecast the HTML COLLECTION as an array
+// HTML collections don't have a forEach Method,but after type casting it -;
+const fruits = document.getElementsByClassName("fruits");
+Array.from(fruits).forEach(fruit =>{
+  fruit.style.backgroundColor = "yellow";
+});
+// If we want to use array method with this HTML collection then you would want to typecast it to an array
+
+// 3.getElementsByTagName()
+// we can select one of the element from the unordered list by using getElementsByTagName()
+
+// const liElements = document.getElementsByTagName("li");
+// h4Elements[0].style.backgroundColor = "yellow";  //backgroundColor will be applied to Root Vegetables
+// for(let h4Element of h4Elements){
+//   h4Element.style.backgroundColor = "yellow";
+// }
+
+
+// for(let liElement of liElements){
+//   liElement.style.backgroundColor = "lightgreen";
+// }
+
+
+// if we want to change the background color of these using foreach method
+// typecast HTML COLLECTION of H$ elements as an array and method chain to use forEach method
+const h4Elements = document.getElementsByTagName("h4");
+Array.from(h4Elements).forEach(h4Element =>{
+  h4Element.style.backgroundColor = "yellow";
+});
+
+const liElements = document.getElementsByTagName("li");
+
+Array.from(liElements).forEach(liElement =>{
+  liElement.style.backgroundColor = "lightgreen";
+});
+
+// 4.document.querySelector()                      
+// returns first matching element , or null if it doesn't find any matches 
+
+// const element = document.querySelector();
+// query selector will return the first match
+// const element = document.querySelector(".fruits");
+
+// element.style.backgroundColor = "yellow";
+// here O/p => Apple  which is the first match
+
+// if we select list item that would select beets
+
+// const  element = document.querySelector("li");             //It will selsct first li item
+// element.style.backgroundColor = "yellow";
+
+// const element = document.querySelector("ul");               //It will select first unordered list
+// element.style.backgroundColor = "yellow";
+
+const element = document.querySelector("ol");
+console.log(element);                                       // as there is no matching element it returns null
+
+// 5.document.querySelectorAll()                        // NODELIST
+// since node lists are static they do not update automatically in the DOM ,HTML collections are live they will
+// select all elements that have same class
+
+const foods = document.querySelectorAll("li");
+console.log(foods);             
+// foods[1].style.backgroundColor = "yellow";
+
+// NODELIST do have a built -in forEach() method ,so we don't need to typecast it aas an array
+
+foods.forEach(food => {
+  food.style.backgroundColor = "yellow";
+});
+
+// combination of getElementById and querySelector
+
+
+// DOM NAVIGATION      =  The process of navigating through the structure of an HTML document using JavaScript.
+
+
+// .firstElementChild
+// .lastElementChild
+// .nextELementChild
+// .previousElementSibling
+// .parentElement
+// .children
+
+// firstelementChild = they each have their own children (a child element)
+// secondElementChild = any element that is found within the parent element
+// In the HTML  <ul id="fruits"> is the firstElementChild
+// list of fruit has 3 children -; Apple,orange,banana
+
+// unordered sets of fruit is a parent
+//  In which apple will be the firstborn
+// orange will bw the middle child
+// Banana will be the lastborn
+
+// ----------.firstElementChild--------------
+const elementt = document.getElementById("fruits");
+const firstChild = elementt.firstElementChild;
+firstChild.style.backgroundColor = "yellow";
+// It will select apple which is the firstborn of fruits id
+
+const elem = document.getElementById("dessers");
+const firstt = elem.firstElementChild;
+firstt.style.backgroundColor = "green";
+
+// if we use querySelectorAll
+
+const ulElements = document.querySelectorAll("ul");   //This will return a nodelist
+// nodelist do have their own built-in forEach method
+ulElements.forEach(ulElements => {
+  const firstChild = ulElements.firstElementChild;
+  firstChild.style.backgroundColor = "blue"
+});
+// This is how we can use querySelectorAll to select all of the first children of all matching elements
+
+//  To get lastborn
+// -------------.lastElementChild----------------
+
+// const lastt = document.getElementById("dessers");
+// const lastChild = lastt.lastElementChild;
+// lastChild.style.backgroundColor = "yellow";     // it will select Ice Cream
+
+// const las = document.getElementById("fruits");
+// const last = las.lastElementChild;
+// last.style.backgroundColor = "green"
+
+// const ulElements = document.querySelectorAll("ul");
+
+// ulElements.forEach(ulElement =>{
+//   const lastChild = ulElement.lastElementChild;
+//   lastChild.style.backgroundColor = "purple";
+// })
+// ----------------------------nextElementSibling------------------
+const elen = document.getElementById("apple");
+const nextSibling = elen.nextElementSibling;
+nextSibling.style.backgroundColor = "red"            //orange will be red
+
+// There is no nextElement for mango
+
+const wen = document.getElementById("fruits");
+const nextSib = wen.nextElementSibling;
+nextSib.style.backgroundColor="red"      // vegetables will be grey
+
+
+// --------------------------------previousElementSibling----------------------
+// It will select the prevoius element
+
+const pre = document.getElementById("Orange");
+const prev = pre.previousElementSibling;
+prev.style.backgroundColor = "orange";
+
+
+// ---------------------------ParentElement-------------------
+const access = document.getElementById("Cake");
+const parent = access.parentElement;
+parent.style.backgroundColor = "pink";         //here the unordered list "dessers" will be the parent
+
+//---------------------chidren----------------------------------
+const en = document.getElementById("fruits");
+const childrren = en.children;
+console.log(childrren);
+
+// By accessing the children of an element that returns an HTML COLLECTION(has 3 list item elements)
+
+Array.from(children).forEach(child =>{
+  child.style.backgroundColor ="yellow";          //3 children of the corresponding class is selected
+});
+
+
+// it can be done using index number
+// like highlighting middle element
+const elek = document.getElementById("dessers");
+const middle = elek.children;
+middle[1].style.backgroundColor = "gold";
