@@ -1,0 +1,49 @@
+/* position : */
+/* 
+relative : positioned relative to where it normally
+fixed : positioned relative to the viewport(web browser)
+absolute: positioned relative to nearest ancestor
+sticky: positioned based on scroll position
+static : default position for an element
+*/
+
+
+#box1{
+  width: 200px;
+  height: 200px;
+  background-color: hsl(188, 100%, 63%);
+  position: relative; /*With position relative we can move the element to left,right,upwards or downwards*/
+  /* To push the element to downward set top to some value */
+  top: -100px;
+  left: -100px;
+}
+#box2{
+  width: 200px;
+  height: 200px;
+  background-color: blueviolet;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+}
+
+/* */
+#box1{
+  border-block-end-width: 200px;
+  height: 200px;
+  background-color: hsl(188,100%,63%);
+  position: fixed;
+  position: absolute;
+  height: 100px;
+  height: 100px;
+  width: 200px;
+  left: 20px;
+  right: 20px;
+  position: sticky;
+  position: sticky;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  position: absolute;
+  position: fixed;
+  
+}

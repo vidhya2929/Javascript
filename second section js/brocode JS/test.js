@@ -1,36 +1,21 @@
-function task1(callback){
-  setTimeout(() =>{
-    console.log("Task 1 complete");
-    callback();
-  },2000);
- 
- }
- function task2(callback){
-  setTimeout(() => {
-    console.log("task 2 complete");
-    callback();
-  },1000)
- }
- function task3(callback){
-  setTimeout(()=>{
-    console.log("task 3 complete");
-    callback();
-  },2000)
+// MOUSE EVENTS IN JAVASCRIPT
+// eventListener = Listen for specific events to create interactive web pages
+//                 events: click(when we click on something), mouseover(hover over something),mouseout(hovering out something)
+//                 .addEventListener(event,callback);
+                  // .addEventListener(click, changeColor);
+
+
+const myBox = document.getElementById("myBox");
+
+function changeColor(event){
+
 }
- function task4(callback){
-  setTimeout(()=> {
-    console.log("task 4 complete");
-    callback();
+// myBox.addEventListener("click",changeColor);
 
-  },1500)
- }
 
- task1(()=>{
-  task2(()=>{
-    task3(()=>{
-      task4(()=> console.log("All tasks complete"))
-    })
-  })
- })
+// event is an object it is provided by the web browser (it is an object that contains information about something that happens)
 
-// 
+// to change the color while clicking
+function changeColo(event){
+  event.target.style.backgroundColor = "tomato";
+}
