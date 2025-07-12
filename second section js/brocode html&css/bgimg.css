@@ -1,0 +1,16 @@
+body{
+  /* background-image: url(images/bmw.jpeg);     It can have relative file path or absolute file path */
+  /* if the image is small then it may repeat ,if so apply
+  "background-repeat : no-repeat" */
+  /* and if it aligned to  center then apply "background-position: center" (which center it horizontally)*/
+  /* to fill the whole webpage apply
+  "background-size: cover" */
+  /*"background-attachment : fixed"  sets whetehr a background image scrolls with rest of the page or is it fixed*/
+  /* background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed; */
+}
+body{
+  background-image: url(images/higher\ resolution\ img.jpeg);
+}
