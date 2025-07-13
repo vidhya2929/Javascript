@@ -9,6 +9,7 @@
 <body>
   <!-- Combinators = explains the relationship between listed selectors
                 |space  = descendent
+All children are descendents but all descendents are not children
                   > = child
                   ~ = general sibling
                   + = adjacent sibling
@@ -18,10 +19,15 @@
   <p>This is #1</p>
   <p>This is #2</p>
   <div>
-    <p>This is #3</p>
+    <p>This is #3</p>         <!--Not technically a child it is a descendent-->
   </div>
 </div>                
 <p>This is #4</p>
 <p>This is #5</p>
+<div>
+  <p>This is #6</p>
+  <p>This is #7</p>       <!--This p are not siblings of the container , this div is the sibling of the container sibling-->
+  <!-- p6 and p7 are nieces of the container div -->
+</div>
 </body>
 </html>

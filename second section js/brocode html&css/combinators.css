@@ -1,6 +1,17 @@
 #container{
   border: 2px solid;
 }
-#container p{
+#container > p{
   background-color: hsl(60, 100%, 52%);
+}
+/* #container p{
+  background-color: rgb(23, 128, 219);
+} */
+/* #container ~ p{
+  background-color: yellow;
+} */
+/* 4,5 are the siblings of the container */
+
+#container + p{   /*next direct sibling ,not all siblings*/
+    background-color: orangered;
 }
