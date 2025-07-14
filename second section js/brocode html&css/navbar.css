@@ -1,0 +1,34 @@
+body{
+  margin: 0px;
+}
+main{
+  margin: 20px;
+}
+h1{
+  text-align: center;
+}
+.navbar ul{
+list-style-type: none;
+background-color: hsl(0, 0%, 25%);
+padding: 0px;
+margin: 0px;
+overflow: hidden;
+/* overflow: hidden forces the <ul> to expand and wrap around its floated children. */
+}
+.navbar a{
+  text-decoration: none;
+  color: white;
+  padding: 15px;
+  display: block;
+  text-align: center;
+
+}
+.navbar a:hover{
+  background-color: hsl(0, 0%, 15%);
+}
+.navbar li{
+  float: left;
+/* This line makes each <li> (menu item) float to the left.
+
+That means the <li> elements will line up horizontally (side-by-side), instead of stacking vertically (which is the default for <li> in a block-level layout). */
+}
