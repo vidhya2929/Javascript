@@ -1,0 +1,78 @@
+body{
+  background-color: white;
+}
+#box{
+  width: 250px;
+  height: 250px;
+  background-color: hsl(0, 64%, 58%);
+  font-size: 13em;
+  text-align: center;
+  animation-name: slideLeft;
+  animation-duration: 2s;
+  animation-iteration-count: 1; /*it count howmany times it should be iterate*/
+  animation-direction: normal;  /*normal*/
+  /* animation-direction: reverse;It reverse the normal flow */
+  /* animation-direction: alternate;to get alternate like left and right */
+  /* animation-direction: alternate-reverse  */
+
+  /* to pause the animation */
+  animation-play-state: running;
+  /* normally this animation it accelerates then slows down it(decelerates) */
+  animation-timing-function: ease-in-out; /*it speeds up then slws down before it reaches its destination*/
+  /* animation-timimg-function: linear (it has a constant speed,for the entire duration it stays the same speed) */
+  /* animation-timing-function: steps(5); (It will give a step effect,if the stpe is 10 it will take 10 steps to complete) */
+}
+/* #box:hover{
+  animation-name: glow;
+  animation-duration: 2s;
+} */
+/* To use an animation we need to create an animation first using keyframe rule*/
+/* from{} is shorthand for 0%{}*/
+/* to{}  is shothand for 100%{}*/
+@keyframes slideLeft{
+  from{transform: translateX(300%)}
+}
+@keyframes slideRight{
+  to{transform: translateX(300%)}
+}
+@keyframes slideUp{
+  from{transform: translateY(300%)}
+}
+@keyframes slideDown{
+  to{transform: translateY(300%)}
+}
+@keyframes rotateX{
+  100%{transform: rotateX(360deg)}
+}
+@keyframes rotateY{
+  100%{transform: rotateY(360deg)} /*here 100% refers to the speed of rotaion*/
+}
+@keyframes rotateZ{
+  50%{transform: rotateZ(360deg);}  /*complete this animation at the 50% mark then from 50% to 100% in a way we undo the animation*/
+}
+@keyframes rotate25{
+  25%{transform: rotateZ(360deg);} /*we complete the animation in 25s seconds , then with the other 75s we return to normal*/
+}
+
+/* create an animation to grow this element */
+@keyframes grow {
+  100%{transform: scale(2,2);} /*here 2 means 200% ,ie. width=200%
+  height= 200%*/
+}
+@keyframes shrink{
+  50%{transform: scale(0.5,0.5);}
+}
+@keyframes fade{
+  50%{opacity:0}
+}
+@keyframes colorChange{
+  0%{background-color: hsl(0, 100%, 62%);}
+  20%{background-color: hsl(35, 100%, 62%);}
+  40%{background-color: hsl(63, 100%, 62%);}
+  60%{background-color: hsl(103, 100%, 62%);}
+  80%{background-color: hsl(201, 100%, 62%);}
+  100%{background-color: hsl(268, 100%, 62%);} 
+}
+@keyframes glow{
+  50%{box-shadow: 0px 0px 50px black;}
+}

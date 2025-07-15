@@ -56,10 +56,9 @@
 
 // ```html
 // <div class="container" id="mainDiv"></div>
-
+// 
 // <script>
 //   const mainDiv = document.getElementById("mainDiv");
-
 //   for (let i = 1; i <= 20; i++) {
 //     const childDiv = document.createElement("div");
 //     childDiv.className = "child";
@@ -68,6 +67,5 @@
 //   }
 // </script>
 // ```
-
 // Let me know if you want this in a separate file setup (HTML + CSS + JS files).
 // 

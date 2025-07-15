@@ -1,0 +1,32 @@
+body{
+  margin: 0;
+  font-family: Arial,sans-serif;
+}
+header,footer{
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+.container{
+  display: flex;
+  min-height: 300px;
+}
+aside{
+  background-color: #f4f4f4;
+  width: 200px;
+  padding: 15px;
+}
+main{
+  background-color: #e2e2ff;
+  flex: 1;  
+  padding: 15px;
+}
+/* flex: 1 means ==> flex-grow: 1; flex-shrink: 1; flex-basis: 0% */
+/* flex grow:1 => tells the item to grow and take up space if there is any available 
+if multiple items have flex-grow: 1 ,they share the available space equally*/
+
+/* flex-shrink:1 ==> allows the item to shrink if neccessary when the container is smaller than its
+'s contents */
+/* flex-basis: 0% =>sets the starting size before growing/shrinking to 0 
+eg: starts from 0, and then grow based on available space.*/

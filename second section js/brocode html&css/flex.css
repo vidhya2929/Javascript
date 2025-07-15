@@ -1,3 +1,62 @@
+.container{
+  display: flex;
+  /* flex-direction: row;  by default the direction of flex is set to row */
+
+
+  /* flex-direction: row-reverse (To get the reverse order(now 1 is on the right hand side))*/
+
+  /* flex-direction: column;  (to arrange it in a column) */
+
+  /* flex-direction: column-reverse; (to get in the reverse order(So the top becomes 4))*/
+
+
+
+  /* justify-content: flex-start;  sets the alignment on the main axis by default it is in the flex start (positioned beginning of the container)*/
+
+  /* justify-content: flex-end; justify content at the end */
+
+  /* when we set flex-direction to be row reverse it becomes 1 on the the starting of the right side */
+  /* but if justify-content is flex-end the order doesn't change it only align to right side (starting will be 4 on the right side)*/
+
+  /*  justify-content: center (To center align the elements) */
+
+  /* justify-content: space-around;  (the area outside the element also get increased in it) */
+
+  /* justify-content: space-betweeen; (items will have space between them) */
+
+  /* justify-content: space-evenly items will have equal space around them; */
+
+  border: 10px solid black;
+  height: 90vh; /*90% of the height of the webpage*/
+  /* align-items: flex-start; (default) */
+
+  /* align-items are used for cross axis */
+
+  /* align-items: flex-end; (On the botttom of the page)*/
+
+  /* align-items: center; (middle of the cross axis)*/
+
+  /* align-items: baseline; (the text is going to be aligned) */
+
+  /* flex-wrap: wrap; */
+  /* The elements will wrap if there is no space */
+  /* flex-wrap: wrap-reverse; (In the reverse order)(6,7,8 will be on the top of 1,2,3,4,5) */
+  /* flex-wrap: nowrap default; */
+
+
+  /* flex-wrap is used with align-content */
+  /* align-content: flex-start;the space between the first row and the second row is gone */
+
+   /* align-content: center(to make it center) */
+   /* align-content:space-between; */
+/* space-evenly,space-around, */
+  
+
+/* setting gap between colums and rows */
+  /* column-gap: 1em;
+  row-gap: 1em; */
+}
+
 .box{
   width: 150px;
   height: 150px;
@@ -6,14 +65,38 @@
   border-radius: 15px;
 }
 #box1{
+  /* font-size: 1em; (To check baseline property) */ /*number 1 get aligned with rest of the texts*/
+  /* if we increase the font-size they are still aligned */
   background-color: hsl(0, 100%, 70%);
+
+  /* to give properties to self */
+  align-self: start; /*default The element will be aligned at the top of the container*/
+  /* align-self: center the first element only aligned at the center on the cross axis */
+  /* applied to individual element */
+  /* align-self: end; */
+  order: 1;/*to determine the order*/ /*place the one at the end*/
+  /* -1 would be the beginning */
 }
 #box2{
 background-color: hsl(52, 100%, 70%);
+order: 1;
+order: -1;
 }
 #box3{
   background-color: hsl(111, 100%, 70%);
 }
 #box4{
  background-color: hsl(201, 100%, 70%);
+}
+#box5{
+  background-color: hsl(52, 100%, 70%);
+}
+#box6{
+  background-color: hsl(111, 100%, 70%);
+}
+#box7{
+  background-color: hsl(201, 100%, 70%);
+}
+#box8{
+  background-color: hsl(0, 100%, 70%);
 }

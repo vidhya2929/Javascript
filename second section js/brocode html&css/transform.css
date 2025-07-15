@@ -1,0 +1,87 @@
+/* transform property in CSS */
+/* css property lets you rotate,scale,skew or translate an element*/
+body{
+  margin: 0;
+}
+.box{
+  height: 250px;
+  width: 250px;
+  border: 5px solid;
+  font-size: 13em;
+  text-align: center;
+  transform: translateX(100px) rotateZ(45deg) scale(0.5);
+}
+#box1{
+  /* height: 250px;
+  width: 250px;
+  border: 5px solid;
+  font-size: 13em;
+  text-align: center; */
+  background-color: aquamarine;
+
+/*                           TRANSLATE()                                      */
+
+  /* transform: translateX(50px); translate X on X-axis */
+  /* The element will move to the right by 50px*/
+  /* transform: translateX(-100px); */
+  /* The element will move to the left by 100px */
+  /* 100% => "%" is also applicable*/
+
+
+ /* transform: translateY(); translate Y on Y-axis */
+  /* transform: translateY(100%); */
+  /* the element will move down by 100% */
+  /* transform: translateY(-45px); */
+  /* the element will move up by 45px */
+
+
+
+  /* transform: translate(); both axis */
+  /* transform: translate(50px,50px); first will be X translation and second value is Y translation */
+ 
+/*                           ROTATE()                                      */
+
+/*                          rotateX() */
+  /* transform: rotateX(45deg);  we set  number of degrees that we want to rotate */
+  /* transform: rotateX(90deg);  the element is now edge-on to the screen - only its top or bottom edge points toward you */
+  /* transform: rotateX(180deg)                         upside down on 180 degree */
+
+  /*                        rotateY()*/
+  /* transform: rotateY(45deg); */
+    /* transform: rotateY(90deg)  not visible */
+  /* transform: rotateY(180deg) */
+
+  /*                     rotateZ()                    */
+  /* transform: rotateZ(135degree); */
+
+
+/*                                               SCALE()                                            */
+  /* transform: scaleX(1.1);1.1em  (110%)    */
+  /* transform: scaleX(2); scale 2 on X axis */
+  /* transform: scaleX(0.25); */
+  /* any value below 1 will compress it on X-axis */
+
+  /* transform: scaleY(3); scale 3 on Y-axis */
+
+  /* we can combine the both X and Y too with only scale */
+  /* transform: scale(2,1); */
+
+  /*                           SKEW                                                */
+  /* transform: skewX(45deg);  skews an element into a given angle */
+  /*skewing the element on the x- axis*/
+  /* transform:skew(90 deg)  it is invisible*/
+  /* transform: skew(0,0); */
+
+  /* we can apply more than one transformation at a time */
+  /* transform: translateX(100%) rotateZ(90deg) scale(0.5); */
+
+}
+#box2{
+  background-color: blueviolet;
+}
+#box3{
+  background-color: hsl(0, 87%, 41%);
+}
+img{
+  transform: translateX(100%) rotateZ(180deg) scaleX(2);
+}

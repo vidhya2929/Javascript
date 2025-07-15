@@ -10,27 +10,6 @@ function addtask(){
     alert("Please enter a task!");
     return
   }
-  const quotes = [
-    "Believe in yourself.",
-    "You are stronger than you think.",
-    "Never stop learning.",
-    "Small steps every day.",
-    "Push through the hard days.",
-    "Success is built daily.",
-    "Stay consistent and focused.",
-    "Dream big. Work hard.",
-    "Every day is a fresh start.",
-    "You’ve got this!"
-  ];
-  
-  const quoteElement = document.getElementById("quote");
-  const button = document.getElementById("generateBtn");
-  
-  button.addEventListener("click", () => {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    quoteElement.textContent = quotes[randomIndex];
-  });
-  
 const li = document.createElement("li");
 li.textContent = text;
 
@@ -45,3 +24,5 @@ taskLost.appendChild(li);
 taskInput.value = "";
 taskInput.focus();
 }
+// 
+
