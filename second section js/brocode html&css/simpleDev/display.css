@@ -1,0 +1,83 @@
+/* block to inline block */
+/* .p2,.p3{
+  display: inline-block;   /*default: block*/
+ /* }  */
+/* inline-block to block element */
+
+/* div by default is a block element */
+.thumbnail{
+  display: block; 
+}
+.name,.Email{
+  display: block;
+}
+.p4{
+  display: inline-block;
+}
+input{
+  border-width: 1px;
+ border-style: solid;
+ border-color: rgb(200,200,200);
+ padding-top: 12px;
+ padding-bottom: 12px;
+ padding-right: 16px;
+ padding-left: 16px;
+ border-radius: 8px;
+ margin-bottom: 12px;
+}
+.search,.search2{
+  width: 148px;
+}
+.email{
+  display: block;
+  width: 300px;
+}
+#sign{
+  background-color: rgb(47,127,231);
+  color: white;
+  border: none;
+  width: 300px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+.p5{
+  font-family: Arial,sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.pickup,.desti{
+  display: block;
+  border-radius: 2px;
+  font-size: 16px;
+  width: 250px;
+  background-color: rgb(200,200,200);
+}
+#req{
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-right: 20px;
+}
+#sche{
+  background-color: rgb(200,200,200);
+  border: none;
+  border-radius: 2px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+#videopre{
+  width: 300px;
+  display: inline-block;
+  margin-right: 15px;
+  vertical-align: top;
+}
+.search{
+  display: block;
+}

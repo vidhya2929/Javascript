@@ -1,0 +1,89 @@
+<style>
+  /* inside this we can write css code which modifies the appearence */
+  #sub{    /*here button is called a CSS Selector => which elements we are targeting*/
+    background-color: rgb(200, 0, 0);  /*text on the left side is called css property and the right is called the css value*/
+    color: white;
+    border: none;
+    /* height: 36px;           padding can be used instead
+    width: 105px; */
+    margin-right:8px;
+    margin-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: opacity 1s;
+    vertical-align: top; /*Instead of aligning everything based on text it willl align everything to the top  */
+    /* usually 0.15s*/
+  }
+  /* hover => example for psuedo class */
+  #sub:hover{
+    /* background-color: green; */ 
+    /* opacity   => tells how see through an HTML element is,It takes a value between 0 n 1 */
+    opacity: 1; /*completely normal*/
+    opacity: 0.7; /*get fade*/
+  }
+  #sub:active{
+    /* background-color: yellow; */
+  }
+  #join{
+    color: rgb(41, 118, 211);
+    background-color: white;
+    border-color: rgb(41, 118, 211);
+    border-style: solid;
+    border-width: 1px;
+    height: 36px;
+    width: 62px;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: background-color 1s,color 1s;
+  }
+  #join:hover{
+    background-color: rgb(41, 118, 211);
+    color: white;
+  }
+  #tweet{
+    background-color: rgb(2, 137, 255);
+    border: none;
+    color: white;
+    height: 36px;
+    width: 74px;
+    border-radius: 18px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 8px;
+    /* shadow property  */
+  box-shadow: 10px 10px 10px rgba(0.0.0.0.15);  /*rgba is used because rgba has last element as opacity*/
+  /* 1.horizontal position
+    2.vertical position
+  */
+  /* transitioning the shadow */
+  transition: box-shadow 0.15s;
+ }
+ #tweet:hover{
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+ }
+  /* In CSS space is called margin */
+
+</style>
+<button id="sub">SUBSCRIBE</button>
+<button id="join">JOIN</button>
+<button id="tweet">Tweet</button>
+
+<!-- CSS Box Model -->
+<!-- How much space an element takes up -->
+ <!-- how far it is away from other elements -->
+
+
+ <!-- allows us to add space between our elements as well as  add space inside our element to make it bigger.
+1).first part of the box model  is spacing on the outside of the element which is called margin.
+2).second part of the box model is spacing on the inside of the element.(Can be used instead of height and width) which is called padding.-->
+
+<!-- usually browser tries  align our button based on the text-->
+
+
+<!-- <div> = division (div is just a box)-->
