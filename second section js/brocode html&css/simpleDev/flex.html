@@ -1,0 +1,96 @@
+<!-- flexbox is smilar to css grid -->
+ <!-- it is more flexible -->
+
+ <!-- inside the flexbox the the divs which are block elements don't behave like block elements,they behave like inline-block elements(they only take up as much horizontal space as they need to)-->
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flexbox</title>
+  </head>
+  <body style="padding-bottom: 1000px;">
+     <div style="
+      display: flex;
+      flex-direction: row;"><!--this container is going to be the flexbox--><!--To work with flexbox ,it requires a container -->
+      <div style="background-color: lightblue;">div 1 text</div>
+      <div style="background-color: lightpink;">div 2 <p>text</p></div>
+      <!--it get taller,but still maintain vertical alignment  -->
+    </div>
+    <div style="
+    margin-top: 30px;
+      display: flex;
+      flex-direction: row;"><!--this container is going to be the flexbox--><!--To work with flexbox ,it requires a container -->
+      <div style="background-color: lightblue;width: 100px;">100px</div>
+      <div style="background-color: lightpink;
+      flex: 1;">flex 1></div>
+      <!--it get taller,but still maintain vertical alignment  -->
+    </div>
+  </div>
+  <div style="
+  margin-top: 30px;
+    display: flex;
+    flex-direction: row;">
+    
+    <div style="background-color: lightblue;flex: 1;">flex:1</div>
+    <div style="background-color: lightpink;width: 100px;">100px</div>
+    <div style="background-color: lightblue; flex: 2;">flex 2</div>
+  </div>
+
+  <div style="margin-top: 30px;
+  height: 70px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: gray;
+  display: flex;
+  flex-direction: row;
+  
+  justify-content: center;">
+  <div style="background-color: lightblue;width: 100px;">100px</div>
+  <div style="background-color: lightcoral;width: 100px;">100px</div>
+  <div style="background-color: lightblue;width: 100px;">100px</div>
+  </div>
+
+<div style="margin-top: 30px;
+height: 70px;
+border-width: 1px;
+border-style: solid;
+border-color: gray;
+display: flex;
+flex-direction: row;
+justify-content: space-between">
+
+<div style="background-color: lightblue;width: 100px;">100px</div>
+<div style="background-color: lightcoral;width: 100px;">100px</div>
+<div style="background-color: lightblue;width: 100px;">100px</div>
+</div>
+
+<div style="margin-top: 30px;
+height: 70px;
+border-width: 1px;
+border-style: solid;
+border-color: gray;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;">
+<div style="background-color: lightblue; width: 100px;">100px</div>
+<div style="background-color: lightcoral;width: 100px;">100px</div>
+<div style="background-color: lightblue;width: 100px;">100px</div>
+
+</div>
+
+  </body>
+  </html> 
+<!-- Flex VS Grid --><!--similarities-->
+ <!-- 1 fr in grid is similar to flex: 1 in flex-->
+  <!-- 2fr in grid is similar to flex:2 -->
+<!-- differences -->
+<!-- The layout is more rigid for grid  -->
+ <!-- if we change the order of the elements,the layout changes in the flexbox -->
+  <!-- the element takes thier width along with them when they move out -->
+   <!-- grid=> rigid layout
+    flexbox => flexible layout -->
+  <!-- justify-content => how the elements are aligned horizontally -->
+   <!-- align-item=> how the elements are aligned vertically -->
+    <!--  -->

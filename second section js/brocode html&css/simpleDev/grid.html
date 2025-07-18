@@ -1,0 +1,45 @@
+<!-- CSS GRID => used to create perfectly aligned horizontal layouts to learn grid -->
+ <!-- A grid is a layout that has rows and columns-->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid Practice</title>
+ </head>
+ <body>
+  <div style="display: grid ;
+  grid-template-columns: 100px 100px 200px;">  <!--how many columns our grid has-->
+  <!-- the number of values determine the number of columns -->
+    <div style="background-color: lightblue;">100px</div>
+    <div style="background-color: lightpink;">100px<p>text</p></div>
+    <div style="background-color: lightseagreen;">200px</div>
+    <div style="background-color: lightsalmon;">100px</div>
+    <!-- this 4th div wraps around the second row -->
+     <!-- whenever we have more elements than more columns,it starts to wrap around and create new rows -->
+  </div>
+  <!-- characteristics of grid -->
+<!-- if it is  turned into grid then the div does not take the entire line-->
+<!-- There is no extra space between it  -->
+<!-- if something is added to one of the div then it make it taller than the other,but they are vertically aligned -->
+<div style="margin-top: 30px;
+  display: grid ;
+  grid-template-columns: 100px 100px;">  <!--how many columns our grid has-->
+  <div style="background-color: lightblue;">div 1</div>
+  <div style="background-color: lightpink;">div 2 <p>text</p></div>
+</div>
+
+<div style="display: grid ;
+  grid-template-columns: 100px 1fr;"> <!--first column is 100px and the second column has a width of 1 fr,so it takes the remaining amount of space--><!-- fr means free space,which is a special value in grid -->
+  <!-- it means take up the remaining space of the grid -->
+    <div style="background-color: lightblue;">100px</div>
+    <div style="background-color: lightpink;">1 fr</div>
+</div>
+<div style="display: grid ;
+  grid-template-columns: 100px 1fr 2fr;">
+    <div style="background-color: lightblue;">100px</div>
+    <div style="background-color: lightpink;">1 fr</div>
+    <div style="background-color: lightgreen;">2 fr</div>
+</div>
+ </body>
+ </html>

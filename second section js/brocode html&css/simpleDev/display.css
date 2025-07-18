@@ -5,8 +5,9 @@
 /* inline-block to block element */
 
 /* div by default is a block element */
+/* it is a container that groups other elements together. */
 .thumbnail{
-  display: block; 
+  width: 100%;
 }
 .name,.Email{
   display: block;
@@ -25,6 +26,10 @@ input{
  border-radius: 8px;
  margin-bottom: 12px;
 }
+/* .p1,.p2,.p3{
+  width: 200px;
+  margin-top: 0;
+} */
 .search,.search2{
   width: 148px;
 }
@@ -72,12 +77,38 @@ input{
   padding-top: 15px;
   padding-bottom: 15px;
 }
-#videopre{
+/* #videopre{
   width: 300px;
   display: inline-block;
   margin-right: 15px;
-  vertical-align: top;
+  vertical-align: top; */
+  /* background-color: grey; */
+
+.gridd{
+ display: grid;
+ grid-template-columns: 1fr 1fr 1fr;
 }
-.search{
-  display: block;
+.inline,.inline2{
+  display: inline-block;
+  width: 50px;
+  vertical-align: top;
+  /* background-color: grey; */
+}
+.inlineblock,.inlineblock2{
+  display: inline-block;
+  width: 200px;
+  /* background-color: grey; */
+}
+.profile{
+  border-radius: 50px;
+  width: 40px;
+}
+.thumbmar{
+  margin-bottom: 12px;
+}
+.container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 16px;
+  row-gap: 40px;
 }

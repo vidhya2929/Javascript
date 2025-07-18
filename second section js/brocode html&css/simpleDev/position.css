@@ -1,0 +1,82 @@
+body{
+  height: 3000px;
+  /*To properly handle this without margin we need to add spacing to the body*/
+  /* we can add margin as well as padding */
+  padding-top: 60px;
+  padding-left: 80px;
+
+}
+.header{
+  background-color: black;
+  color: white;
+  position: fixed;  /* 4 properties to move this around*/
+  /* below given properties */
+  top: 0px;  /*specifies how far the element from the top of the window*/
+  left: 0px;  /*specifies how far the element from the left edge of the window*/
+  /* we can set bottom and right like this*/
+  right: 0px;
+  /* if we give opposite properties together then it will stretch to meet both conditions */
+
+  /* if we give bottom here that's not gonna work while resizing the page ,So we need another approach */
+  /* in addition to left,right,top,bottom use height and width to resize the element */
+  /* here as we don't have to resize with the page we use height */
+  height: 50px;
+  /* top: 10px => for position fixed it place 10 pixels from the top of the browser window,not from the top of the page  */
+  /* z-index: 0; default */
+  /* Elements with higher Z-index appear infront of the elements with lower Z-index*/
+  z-index: 1;
+}
+.sidebar{
+  background-color: green;
+  color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 50px;
+  width: 72px;
+}
+/* here the abs2 is placing relative to the position fixed element ,whenever position absolute is inside  */
+.abs2{
+  position: absolute;            
+  background-color: brown;
+  color: white;
+  right: 10px;           /*here right =0 means right from the sidebar not from the right of the page*/
+  top: 60px;     /*here top 10px means top 10px from the top of the sidebar not from the top of the page */
+} 
+.abs{
+  position: absolute;
+  background-color: brown;
+  color: white;
+  right: 0;
+  top: 10px;
+/* top: 10px => for position absolute, it place 10px from the top of the page not from the browser window */
+
+/* to place an element in the precise location of the page can be done by
+position:absolute;
+background-color: red;
+color:white;
+top: 60px;
+right: 10px;
+*/
+/* As it is on the page as we scroll up the page it will go along with the page */
+z-index: 2;
+}
+/* position fixed => placed in the browser window */
+/* absolute => placed on the page */
+.div1{
+  background-color: lightblue;
+  height: 200px;
+  width: 200px;
+  position: static;  /*default position .it is same as we don't have that line of code*/
+  /* margin-top: 60px;But it is not a good practice because if we remove an element then it becomes invalid */
+  /*To properly handle this without margin we need to add spacing to the body*/
+
+}
+.div2{
+  background-color: lightcoral;
+  height: 200px;
+  width: 200px;
+}
+
+/* position absolute and position relative */
+/* key feature of absolute */

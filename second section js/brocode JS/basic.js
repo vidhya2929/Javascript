@@ -1117,6 +1117,7 @@ function happyBirthday(){
     console.log("Happy birthday dear you!");
     console.log("Happy birthday to you!")
   }
+  // 
   happyBirthday();
   happyBirthday();
   happyBirthday();  // here it executes the function 3 times.
