@@ -35,13 +35,15 @@ body{
   top: 50px;
   width: 72px;
 }
+/* MOST IMPORTANT FEATURE OF ABSOLUTE POSITION */
+/* whenever position absolute is inside the position fixed element, its gonna be placed relative to the position fixed element */
 /* here the abs2 is placing relative to the position fixed element ,whenever position absolute is inside  */
 .abs2{
   position: absolute;            
   background-color: brown;
   color: white;
-  right: 10px;           /*here right =0 means right from the sidebar not from the right of the page*/
-  top: 60px;     /*here top 10px means top 10px from the top of the sidebar not from the top of the page */
+  right: 0px;           /*here right =0 means right from the sidebar not from the right of the page*/
+  top: 0%;     /*here top 0px means top 0px from the top of the sidebar not from the top of the page */
 } 
 .abs{
   position: absolute;
@@ -76,7 +78,16 @@ z-index: 2;
   background-color: lightcoral;
   height: 200px;
   width: 200px;
+  position: relative;
+}
+.div3{
+  position: absolute;
+  background-color: black;
+  color: white;
+  right: 10px;  /*means 10 pixels from the right of the position relative element, not 10 pixels from the right of the page*/
+  bottom: 10px;  /**/
 }
 
 /* position absolute and position relative */
 /* key feature of absolute */
+/*  */

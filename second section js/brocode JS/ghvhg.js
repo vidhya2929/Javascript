@@ -68,4 +68,3 @@
 // </script>
 // ```
 // Let me know if you want this in a separate file setup (HTML + CSS + JS files).
-// 
