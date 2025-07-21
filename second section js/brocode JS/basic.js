@@ -3407,3 +3407,162 @@ Array.from(children).forEach(child =>{
 const elek = document.getElementById("dessers");
 const middle = elek.children;
 middle[1].style.backgroundColor = "gold";
+
+
+// Mouse events in javascript
+
+// eventListeners = Listen for specific events to create interactive web pages
+//                  events: click, mouseover(when hover over something), mouseout(when hover over something and leave that element)
+//                  to add an eventlistener => .addEventListener(click,changeColor(to change the color))
+//                  .addEventListener(event, callback);
+//                  .addEventListener(event, anonymous function);
+//                  .addEventListener(event, arrow function);
+
+
+const myBox = document.getElementById("myBox");
+const myButton = document.getElementById("myButton")
+
+function changeColor(event){   //event is an object  provided automatically by the web browser when somthing happens
+  event.target.style.backgroundColor = "tomato";
+  event.target.textContent =  "OUCH!";
+
+
+}
+  // target is what we clicked on ,there is information about out target within the event object
+  // console.log(event)
+// when clicks a pointer event occurs
+// }
+// myBox.addEventListener(event, callback)
+myBox.addEventListener("click", changeColor);
+// we don't need to explicitly pass in an event object with the call back changeColor
+
+// we don't necessarily need to pass in a call back we can also pass in an anonymous function / arrow function
+
+// using anonymous function for eventListener
+
+
+// myBox.addEventListener("click", function(event){
+//   event.target.style.backgroundColor = "tomato";
+//   event.target.textContent = "OUCH!";
+// });
+
+
+
+// Arrow Function
+
+// myBox.addEventListener("click", event => {
+//   event.target.style.backgroundColor = "tomato";
+//   event.target.textContent = "OUch!";
+// })
+
+// mouseover
+
+myBox.addEventListener("mouseover",event =>{
+  event.target.style.backgroundColor = "yellow";
+  event.target.textContent = "Don't do it";
+});
+
+// mouseOut
+myBox.addEventListener("mouseout",event =>{
+  event.target.style.backgroundColor = "lightgreen";
+  event.target.textContent = "Click Me";
+})
+
+// Adding Event Listener to myButton
+
+myButton.addEventListener("click",event =>{
+  event.target.style.backgroundColor = "tomato";
+  event.target.textContent = "Don't Do It";
+});
+
+myButton.addEventListener("mouseover", event =>{
+  event.target.style.backgroundColor = "yellow";
+  event.target.textContent = "OUCH!"
+});
+myButton.addEventListener("mouseout",function(event){
+  event.target.style.backgroundColor ="green";
+})
+
+
+// eventListener = Listen for specific events to create interactive web pages
+//                 events : keydown(when you press down on a key), keypress,keyup(when you release a key)
+//                 document.addEventListener(event, callback);
+
+
+// document.addEventListener("keydown", event =>{
+//   console.log(`Key down = ${event.key}`);
+// });
+// document.addEventListener("keyup",event =>{
+//   console.log(`Key up = ${event.key}`);
+// });
+
+// const myBox = document.getElementById("myBox");
+// document.addEventListener("keydown", event =>{
+//   myBox.textContent = "emojidown";
+//   myBox.style.backgroundColor = "tomato";
+// });
+
+// document.addEventListener("keyup", event =>{
+//   myBox.textContent = "emojiUp";
+//   myBox.style.backgroundColor = "yellow";
+// })
+
+const mybox2 = document.getElementById("mybox2");
+const moveAmount = 100;   // to increase the distance
+let tx = 0;
+let ty = 0;
+
+document.addEventListener("keydown", event =>{
+   if(event.key.startsWith("Arrow")){
+
+    event.preventDefault();
+
+
+    switch(event.key){
+    case "ArrowUP":
+      y -= moveAmount;
+      break;
+    case "ArrowDown":
+      y += moveAmount;
+      break;
+    case "ArrowLeft":
+      x -=moveAmount;
+      break;
+    case "ArrowRight":
+      x += moveAmount;
+      break;
+    }
+    mybox2.style.top = `${ty}px`
+    mybox2.style.left = `${tx}px`
+   }
+
+});
+
+const myButtons = document.getElementById("myButtons");
+const myImg = document.getElementById("myImg");
+
+myButtons.addEventListener(event,callback);
+myButtons.addEventListener("click", event =>{
+
+  if(myImg.style.display === "none"){           //we don't reserve  a space for display "none"
+    myImg.style.display = "block";
+  }
+  else{
+  myImg.style.display = "none";
+  myButton.textContent = "show";
+  }
+});
+
+// if we want to retain the space for the image then toggle the visibility not the display
+
+myButtons.addEventListener("click", event => {
+
+    if(myImg.style.visibility === "hidden"){
+      myImg.style.visibility = "visible";
+      myButton.textContent = "Hide";
+    }
+    else{
+      myImg.style.visibility = "hidden";
+      myButton.textContent = "show";
+    }
+});
