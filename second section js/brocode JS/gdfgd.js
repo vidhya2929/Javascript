@@ -237,3 +237,36 @@ const rr = [0,1,false,2,"",3,null];
 const  filtered = arr.filter(Boolean);
 console.log("");
 
+function countFrequency(arr){
+  const freq = {};
+  for (let item of arr){
+    freq[item] = (freq[item] || 0) + 1;
+  }
+  return freq;
+}
+console.log(countFrequency(["apple", "banana", "apple","orange"]));
+
+function longestWord(sentence){
+  const words = sentence.split(" ");
+  let max = " ";
+  for(let word of words){
+    if(word.length > max.length){
+      max = word;
+    }
+  }
+  return max;
+}
+console.log(longestWord("I love JS Programming"));
+
+const car ={
+  type:"Fiat", model:"500", color:"white"
+};
+document.getElementById("demo").innerHTML = "The car type is "+ car.type;
+let x = myFunction(4,3);
+document.getElementById("demo").innerHTMl = x;
+function myFunction(a,b){
+  return a * b;
+}
+function toCelcius(f){
+  documn
+}

@@ -3566,3 +3566,138 @@ myButtons.addEventListener("click", event => {
       myButton.textContent = "show";
     }
 });
+
+
+// NodeList = static collection of HTML elements by (id, class, element)
+//            Can be created by using querySelectorAll()
+//            Similar to an array , but no (map, filter, reduce)
+//            NodeList won't update to automatically reflect changes 
+let buttons = document.querySelectorAll(".myButtons");
+console.log(buttons);
+// ADD HTML/CSS PROPERTIES
+
+// buttons.forEach(element => {
+//   //do something
+// });
+
+
+buttons.forEach(button => {
+  button.style.backgroundColor = "green";
+  button.textContent += " hellooo"
+});
+
+// CLICK event listener
+
+buttons.forEach(button => {
+  // button.addEventListener(event,callback);
+  button.addEventListener("click", event =>{
+     event.target.style.backgroundColor = "tomato"     
+  });
+});
+
+
+
+// let buttons = document.querySelectorAll(".myButtons")
+
+// MOUSEOVER + MOUSEIUT event listener
+buttons.forEach(button =>{
+  button.addEventListener("mouseover", event =>{
+    event.target.style.backgroundColor = "hsl(205, 100%, 40%)";
+  });
+});
+
+buttons.forEach(button =>{
+  button.addEventListener("mouseout",event =>{
+    event.target.style.backgroundColor = "hsl(205, 100%, 60%)"
+  });
+});
+
+// ADD AN ELEMENT
+// COPYRIGHT =>
+// let buttons = document.querySelectorAll(".myButtons");   //declared with let to reassign it 
+// step 1 create that element first
+const newButton = document.createElement("button");
+// add any necesssary attributes or css properties
+newButton.textContent = "Button 5";
+// giving class to the element (when working with an element's class we work with classList)
+newButton.classList = "myButtons";
+// step 3 appending the element to the DOM
+// here the parent element of this newButton is body
+document.body.appendChild(newButton);
+console.log(buttons);
+// button 5 is within the Dom we would need to manually add it to our nodelist if we want to work with it 
+
+buttons = document.querySelectorAll(".myButtons");
+
+console.log(buttons);
+
+// REMOVE AN ELEMENT
+
+buttons.forEach(button =>{
+  button.addEventListener("click", event =>{
+    event.target.remove();        //built -in method to remove an element
+    buttons = document.querySelectorAll(".myButtons");
+    console.log(buttons);
+  });
+});
+
+// classList = Element property in JavaScript used to interact with an element's list of classes (CSS classess)
+//             Allow you to make reusable classes for many elements across your webpage.
+// add()
+// remove()
+
+const myh1 = document.getElementById("myh1");
+myh1.classList.add("enabled");
+
+const myBtn = document.getElementById("myButton");
+myBtn.classList.add("enabled");      //dynamically adding the "enabled" class
+// myh1.addEventListener(event, callback)
+myh1.addEventListener("mouseover", event =>{
+ event.target.classList.add("hover");
+});
+myh1.addEventListener("mouseout", event => {
+ event.target.classList.remove("hover");
+})
+myh1.classList.add("enabled");
+myh1.addEventListener("click", event =>{
+ if(event.target.classList.contains("disabled")){
+   event.target.textContent += "emoj";
+ }
+ else{
+   event.target.classList.replace("enabled", "disabled")
+ }
+});
+
+
+// myBtn.addEventListener(event, callback);
+
+myBtn.addEventListener("mouseover", event => {
+ event.target.classList.add("hover");
+});
+myBtn.addEventListener("mouseout", event =>{
+ event.target.classList.remove("hover");
+});
+
+// myBtn.classList.remove("enabled");
+// myBtn.classList.add("hover");
+
+// toggle(Remove if present , Add if not)
+myBtn.addEventListener("mouseover", event =>{
+ event.target.classList.toggle("hover");
+});
+myBtn.addEventListener("mouseout", event =>{
+ event.target.classList.toggle("hover");
+});
+// replace(oldClass, newClass)
+
+myBtn.classList.add("enabled");
+myBtn.addEventListener("click", event =>{
+if(event.target.classList.contains("disabled")){
+ event.target.textContent += "emojii";
+}
+else{
+ event.target.classList.replace("enabled", "disabled")
+}
+});
+// contains()
+// if an element contains a class this will return true and if it doesn't it will return false
