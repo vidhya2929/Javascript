@@ -439,7 +439,7 @@ else{
 //undefined       -JavaScript signalize emptiness  
 //NaN -Not a Number
 
-let currentViewers = null
+let currentViewers =
 
 currentViewers = ["jane","per"]
 
@@ -454,8 +454,7 @@ console.log(currentViewerss[6])             //undefined
 
 let trueOfFalse = Boolean("hello")
 
-console.log(trueOfFalse)
+
 
 let trueeo = Boolean("")
-
-console.log(trueeo)
+console.log
