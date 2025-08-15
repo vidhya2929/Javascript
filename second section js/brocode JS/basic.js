@@ -1503,7 +1503,7 @@ function Capitallize(element,index,array){
 function display(element){
   console.log(element);
 } 
-
+111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 // .map() = accepts a callback and applies that function to each element of an array, then return a new array
 const numbbers = [1,2,3,4,5];
 
@@ -2595,7 +2595,7 @@ console.log(nus);
 nus.sort((a,b) => b-a);
 console.log(nus);
 
-// Obects can be dorted by a given property
+// Objects can be sorted by a given property
 const people = [{name: "peter", age: 30, gpa: 3.0},
                 {name: "parker",age:25, gpa:1.5},
                 {name: "mary", age: 52, gpa:3.0},
