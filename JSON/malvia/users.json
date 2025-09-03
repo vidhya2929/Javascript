@@ -1,0 +1,11 @@
+{
+  "name": "Dipesh",
+  "age":29,
+  "isProgrammer":true,
+  "skills": ["HTML","CSS","JAVASCRIPT"],
+  "address": {
+    "city": "Mumbai",
+    "State": "MH",
+    "Country":"India"
+  }
+}

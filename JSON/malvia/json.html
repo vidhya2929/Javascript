@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON</title>
+</head>
+<body>
+  <h1>JSON TODO LIST</h1>
+  <script>
+    fetch('users.json')  //it will return a promise
+    .then(response => response.json()) //extract json from it and it again gives a promise'
+    .then(json => {
+      console.log(json);
+    })
+    // Network=>fetch,GET, content-type: application /JSON
+
+
+//     const user = {
+//   "name": "Dipesh",
+//   "age":29,
+//   "isProgrammer":true,
+//   "skills": ["HTML","CSS","JAVASCRIPT"],
+//   "address": {
+//     "city": "Mumbai",
+//     "State": "MH",
+//     "Country":"India"
+//   }
+// }
+// console.log(user);
+// console.log(user.name);
+// console.log(user.skills);
+// console.log(user.skills[0]);
+// console.log(user.address.city);
+  </script>
+</body>
+</html>

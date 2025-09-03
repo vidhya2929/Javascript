@@ -1,0 +1,36 @@
+{
+  "users":[
+    {
+      "name":"Dipesh Malvia",
+      "age": 29,
+      "isProgrammer": true,
+      "skills": ["HTML", "CSS", "JAVASCRIPT"],
+      "address": {
+        "city":"Mumbai",
+        "state":"MH",
+        "country":"India"
+      }
+    },
+    {
+      "name":"Harry Potter",
+      "age":25,
+      "isProgrammer":true,
+      "skills":["DB2", "MongoDB", "JAVASCRIPT"],
+      "address":{
+        "city":"Delhi",
+        "state":"DL",
+        "country":"India"
+      }
+    },{
+      "name":"Amit Dubey",
+      "age":32,
+      "isProgrammer":false,
+      "skills":[],
+      "address":{
+        "city":"Mumbai",
+        "state":"MH",
+        "country":"India"
+      }
+    }
+  ]
+}
