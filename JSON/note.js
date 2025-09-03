@@ -65,5 +65,24 @@ console.log(myJSON)
 // JavaScript can include functions which is not availabel in JSON
 // json.org.com
 // our JSON can be validated from ==>> jsonlint.com
-// libe JSON generator ==>>ObjGen
+// like JSON generator ==>>ObjGen
 
+// W3School
+// JSON is a plain text format for storing and transporting data(send, receive and store data)
+// Syntactically identitical to the code for creating JavaScript objects.
+// Json allows us to store JavaScript objects as text.
+// employees object with an array of 3 employee objects:
+{
+  "employees" =[
+    {"firstName":"John", "lastName":"Doe"},
+    {"firstName": "Anna", "lastName":"Smith"},
+    {"firstName": "Peter", "lastName": "Jones"}
+  ]
+}
+// JSON Arrays are written inside square brackets.
+// JSON is used to read data from the web browser.and display the data in a webpage.
+let text = {"employees":[ +
+  '{"firstname":"john", "lastName":"Doe"},'+
+  '{"firstname":"Anna", "lastName":"Smith"},'+
+  '{"firstname":"Peter", "lastName":"Jones"},'
+]};
