@@ -23,3 +23,13 @@
 // JS combines both interpretation and compilation  which is called 'Just -in-Time' compilation to optimize the performance of web application.
 // Just-in Time =>compiles the entire code into machine code all at once and executes it.
 // 'Inlining'=>engine replaces the function call with actual code of function at call site.
+
+// DOM => Document Object Model
+// Structured representation of HTML documents.Allows JS to access HTML elements and styles to manipulate them.
+// Connection point between HTML docs and JS code
+// DOM is automatically created whrn the HTML page loads & stored in a tree like structure .In this tree, each HTML element is one object.
+// DOCUMENT =>>Special object that is the entry point to the DOM.
+// i.e, querySelector( method is available in the document object)
+
+// DOM is the complete representation of HTML DOCUMENT.
+// DOM and DOM methods are not a part of JS, they are a part of Web API's(Application Programming Interface) and that can be accessed from js code.

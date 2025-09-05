@@ -345,6 +345,37 @@ const jones = {
 } 
 console.log(jones.getSummay());
 
+
+// Challenge 6
+const mark = {
+  fullName: 'Mark Miller',
+  mass: 78,
+  height: 1.69,
+  calcBMI: function (){
+    this.bmi = this.mass / (this.height * this.height);
+    return this.bmi;
+  }
+};
+const john = {
+  fullName: 'John Smith',
+  mass: 92,
+  height:1.95,
+  calcBMI: function(){
+    this.bmi = this.mass / (this.height * this.height);
+    return this.bmi;
+  }
+};
+mark.calcBMI();
+john.calcBMI();
+console.log(mark.bmi, john.bmi);
+
+if(mark.bmi > john.bmi){
+  console.log(`${mark.fullName}'s BMI(${mark.bmi}) is higher than ${john.fullName}'s (${john.bmi})`);
+}
+else if(john.bmi > mark.bmi){
+  console.log(`${john.fullName}'s BMI(${john.bmi}) is higher than ${mark.fullName}'s (${mark.bmi})`);
+}
+const types = [];
 const jonesArray = [
   'jones',
   'Schmedtmann',
@@ -353,8 +384,110 @@ const jonesArray = [
   ['Michael', 'Peter', 'Steven']
 ];
 
-for(let i = 0; ;i++){
-  console.log()
+for(let i = 0;i<jonesArray.length; i++){
+  // Reading from jonesArray
+  console.log(jonesArray[i],typeof jonesArray);
+
+  // one way of filling an array
+  types[i] = typeof jonesArray[i];
+  // 2nd way
+  types.push(typeof jonesArray[i]);
+}
+console.log(types);
+
+const yes = [1991, 2007, 1969, 2020];
+const ages = [];
+
+for(let i = 0; i < yes.length;i++){
+  ages.push(2037 - yes[i]);
+}
+console.log(ages);
+// Continue & break
+// Continue =>exit the current iteration of the loop and continue the next one. 
+// /break => Completely terminate the whole loop.
+console.log("----ONLY STRINGS----")
+for(let i = 0; i< jonesArray.length; i++){
+  if(typeof jonesArray[i] !== 'string') continue;
+
+  console.log(jonesArray[i], typeof jonesArray[i]);
+}
+console.log('----BREAK WITH NUMBER---')
+for(let i = 0; i < jonesArray.length; i++){
+  if(typeof jonesArray[i] ==='number')break;
+  console.log(jonesArray[i], typeof jonesArray[i]);
+}
+// Backward Access
+const jone = [
+  'jone',
+  'schmedt',
+  2037-1991,
+  'teacher',
+  ['michael', 'Peter', 'Steven']
+];
+for(let i = jone.length-1; i>=0;i--){
+  console.log(i,jone[i]);
+}
+for(let excercise = 1; excercise < 4; excercise++){
+  console.log(`---------Starting excercise ${excercise}`);
+  for(let rep=1; rep < 6; rep++){
+    console.log(`Excercise ${excercise}: Lifting weight repetition ${rep}`);
+  }
 }
 
+// While Loop
+// for(let rep = 1;rep <= 10; rep++){
+//   console.log(`Lifting weights repitition ${rep}`);
+// }
 
+let rep = 1;
+while(rep <=10){
+  console.log(`WHILE : Lifting weights repitition ${rep}`);
+  rep++;
+}
+
+let dice = Math.trunc(Math.random() * 6) +1;
+console.log(dice);
+while(dice !== 6){
+  console.log(`You rolled a ${dice}`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if(dice === 6) console.log('Loop is about to end...')
+}
+const calcTipp = function(bill){
+    return bill >=50 && bill <=300 ? bill * 0.15 : bill * 0.2;
+  }
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86,52];
+const tips = [];
+const totals = [];
+for(let i=0; i<bills.length;i++){
+  const tip = calcTipp(bills[i]);  
+  // reason for using const above is => a new tip variable is created at each iteration.
+  tips.push(tip);
+  totals.push(tip + bills[i]);
+}
+console.log(bills,tips, totals);
+
+
+const calcAveragee = function(arr){
+  let sum = 0;
+  for(let i =0; i< arr.length;i++){
+    // sum = sum + arr[i];
+    sum +=arr[i];
+  }
+  console.log(sum)
+  return sum/ arr.length;
+}
+console.log(calcAveragee([2,3,7]));
+console.log(calcAveragee(totals));
+
+console.log(document.querySelector('.message').textContent);
+// manipulating the element
+document.querySelector('.message').textContent = 'Correct Number!';// manipulated the textContent
+document.querySelector('.number').textContent = 13;
+document.querySelector('.score').textContent = 10;
+document.querySelector('.guess').value = 23;
+// with input field ,to get the actual value, we use the value property
+console.log(document.querySelector('.guess').value);
+// An event is something that happens on the page
+
+// refactoring =>> restructure the code but without changong how it works
+// It is used to improve the code and to avoid duplicate code
