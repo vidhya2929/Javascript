@@ -491,3 +491,22 @@ console.log(document.querySelector('.guess').value);
 
 // refactoring =>> restructure the code but without changong how it works
 // It is used to improve the code and to avoid duplicate code
+
+// How JS work behind the scenes
+// High-level
+
+// Low-level => Developer has to manage resources manually 
+// JS is an hug level language =>Developer does not have to worry, everything happens automatically
+
+// TOOL FOR MEMORY MANAGEMENT =>> Garbage -Collected
+// Algorithm inside the JS engine, which automatically removes old, unused objects from the computer memory 
+// interpreted or just - in-time compiled
+// paradigm: approach and mindset of structuring code, which will direct your coding style and technique  =>
+  // 3 -;
+// 1.Procedural Programming
+// 2.Object-oriented programming
+// 3.Functional programming
+// First class Functions => functions are treated as variables and which can be pass into other functions and return them from functions
+// dynamic => there is no need to specify the data type. and also the type of variable can easily be changed
+// jS is a single threaded language , so it can only do one thing at a time.
+// non-blocking event loop

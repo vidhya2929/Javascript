@@ -10,12 +10,13 @@
 // 2)web APIs =>functionalities provided to the engine  but are not pat of JS language.
 // eg: DOM , Fetch API
 // 3)callback queue => contains callback functions(which are ready to be executed) and also it ensures the callbacks are exectued in the FIFO method and passed into stack 
+// Event loop takes the callback functions and is put into the callback queue, when the stack is empty, the callback function is passed to the stack
 // browser runtime and Node.js are examples of runtime environments.
 // browser runtime environment gives access to DOM
 // Node.js provides server-Side runtime enviornment for executing JS ouside the browser.
 
 // Using compilation and interpretation => JScode to machine code occurs
-// Compilation -;
+// Compilation -; entire source code is converted into machine code at once
 // Source code -> machineCode at once and written into a binary file to be executed by the computer
 // Interpretation -;
 // interpreter goes through sourcecode and interprets line by line
@@ -33,3 +34,6 @@
 
 // DOM is the complete representation of HTML DOCUMENT.
 // DOM and DOM methods are not a part of JS, they are a part of Web API's(Application Programming Interface) and that can be accessed from js code.
+
+
+
