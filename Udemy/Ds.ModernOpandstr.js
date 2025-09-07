@@ -138,4 +138,4 @@ console.log(letters);
 
 // REST , because on the left side of the '='
 const [f,g,...others] = [1,2,3,4,5];
-// 
+// pack the elements into an array
