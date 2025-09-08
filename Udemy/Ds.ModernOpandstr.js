@@ -139,3 +139,217 @@ console.log(letters);
 // REST , because on the left side of the '='
 const [f,g,...others] = [1,2,3,4,5];
 // pack the elements into an array
+
+// Short  Circuiting (&& and ||)
+// OR  
+console.log('-------OR---------');
+// (Use ANY data type, return ANY data type)
+console.log(3 || 'Jonas'); //3  because, in the case of OR operator the short-circuiting means if the first value is a truthy value, it will immediately returns that first value. (2nd value is not even get evaluated)
+console.log('' || 'Jonas'); // Jonas as '' is a false value.
+console.log(true || 0);  // true as 0 is a falsy value
+console.log(undefined || null);  //null
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);  //Hello
+
+// ternary and its short circuiting with || (Practical Example)
+restaurant.numGuests = 23;
+const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guest1);
+// OR
+const guest2 = restaurant.numGuests || 10 ;
+console.log(guest2);
+
+// AND Operator short Circuiting => Opposite of OR operator
+console.log('--------AND--------');
+console.log(0 && 'Jonas');  // 0  // && operator short circuits when the first value is falsy
+console.log(7 && 'Jonas'); // 'jonas' // continues when it is truthy and log last value
+console.log('Hello' && 23 && null && 'jonas'); // null
+
+// Practical Example
+if(restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms' , 'spinach')
+}
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+// Nullish Coalescing Operator(??)
+restaurant.NumGuests = 0;
+// Nullish values are null and undefined
+const guestCorrect = restaurant.NumGuests ?? 10;
+console.log(guestCorrect);  // 0  because 0 is a nullish value , first non-nullish value is only returned
+
+const rest1 = {
+  name: 'Capri',
+  numGuests: 20,
+};
+const rest2 = {
+  name: 'La Piazza',
+  Owner: 'Giovanni Rossi',
+  numGuests: 0
+};
+rest1.numGuests = rest1.numGuests || 10;
+rest1.numGuests ||= 10;
+
+rest2.numGuests ??= 10;
+
+// CHALLENGE
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+const [players1, players2] = game.players;
+console.log(players1, players2);
+
+const [gk, ...fieldPlayers] = players1; //one goalkeeper and remiaing so we used rest operator here
+
+const allPlayers = [...players1, ...players2]; //all players so we used spread operator
+// player1 with 3 other players
+const players1Final= [...players1, 'Thiago','Coutino','Periscic'];
+const{odds: {team1, x: draw, team2}} = game;
+console.log(team1, draw, team2);
+
+const printGoals = function(){
+
+}
+
+// for......of 
+const manu = [...restaurant.starterMenu,...restaurant.mainMenu]
+for(const item of manu) console.log(item);
+// to get each item as an array with array number use entries
+for(const item of manu.entries()){
+  console.log();
+}
+
+for (const [i, el] of menu.entries()){
+  console.log(`${i + 1}: ${el}`);
+}
+
+
+// OPTIONAL CHAINING( ?. )
+if(restaurant.openingHours && restaurant.openingHours.mon?.open); // only if monday exists(not null or not undefined), then the open property will be read from there, if not then immediately undefined will be returned.
+// If a certain property is nor existing then undefined is returned immediately
+
+// Practical Example
+const days = ['mon','tue','wed','thu','fri', 'sat', 'sun'];
+for(const day of days){
+  console.log(day);
+  restaurant.openingHours[day] ?.open || 'closed'
+  console.log(`On ${day}, we open at ${open}`);
+  // to use variable name as a property name, then use square bracket
+}
+// property NAMES =>> Object.keys()
+// property VALUES =>> Object.values()
+
+// entries on objects
+Object.entries(openingHours);
+console.log(entries);
+
+
+// To avoid duplicates use 'Set()'
+const orderSet = new Set([
+'Pasta',
+'Pizza',
+'Pizza',
+'Risotto',
+'Pasta',
+'pizza'
+]);
+console.log(orderSet);
+// Order of elements in the sets are irrelevant.
+console.log(orderSet.size);   // to get the size of the array.
+console.log(orderSet.has('Pizza'));  //similar to includes method in arrays. returns true or false...
+orderSet.add('garlic Bread');
+orderSet.add('garlic Bread');  // only one is added as it is set.
+orderSet.delete('Risotto');   //delete  particular item
+orderSet.clear();  //clears the set completely(delete all the elements)
+// Sets are also iterables
+for(const order of orderSet) console.log(order) //looping is possible like any other iterables
+
+// 
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager','Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)]; //here using spread operator converted the set into an array.
+console.log(staff);
+
+
+const italianFoods = new Set([
+  'pasta',
+  'gnocchi',
+  'tomatoes',
+  'olive oil',
+  'garlic',
+  'basil',
+]);
+
+const mexicanFoods = new Set([
+  'tortillas',
+  'beans',
+  'rice',
+  'tomatoes',
+  'avocado',
+  'garlic',
+]);
+
+const commonFoods = italianFoods.intersection(mexicanFoods);
+console.log('Intersection: ',commonFoods);
+console.log([...commonFoods]);  // converting set to array.
+
+const fusion = italianFoods.union(mexicanFoods);
+console.log('Union: ', fusion);
+console.log([...fusion]);
+console.log([...new Set([...italianFoods, ...mexicanFoods])]);
+
+const uniquefoods = italianFoods.difference(mexicanFoods);
+console.log('Difference italian', uniquefoods);
+
+const uniquemexicanItalian = italianFoods.symmetricDifference(mexicanFoods);    // just opposite of intersection.
+console.log(uniquemexicanItalian);
+console.log(italianFoods.isDisjointFrom(mexicanFoods));
+
+
+// map => ds that used to map values to keys
+// key can be any type unlike objects
+const rest = new Map();
+rest.set('name', 'Classico Italiano');  //here the 'set' method is similar to 'add' method in sets
+rest.set(1, 'Firenze, Italy');
+console.log(rest.set(2, 'Lisbon, Portugal'));  //not only calls the set methood but also returns the map.
+
+rest.set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']).set('Open', 11).set('close', 23).set(true, 'We are open :)').set('false','We are closed :(')
+// Read data from the map
+// Use Get Method
+console.log(rest.get('name'));
+const time = 21;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));

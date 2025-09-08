@@ -1,5 +1,11 @@
 'use strict';
 // default parameters =>
-  const createBooking = function(flightNum, numPassengerss, price){
-    cons
+  const createBooking = function(flightNum, numPassengers, price){
+    const booking = {
+      flightNum,
+      numPassengers,
+      price
+    }
+    console.log();
+    
   }
