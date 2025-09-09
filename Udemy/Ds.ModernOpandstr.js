@@ -4,9 +4,9 @@
 'ues strict';
 
 
-const arr = [2,3,4];
-const a = arr[0];
-const b = arr[1];   //retrieving without destructuring
+const arer = [2,3,4];
+const a = arer[0];
+const b = arer[1];   //retrieving without destructuring
 
 const [x,y,z] = arr; //destructuring
 console.log(x,y,z); //original array is not affected
@@ -353,3 +353,144 @@ rest.set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']).set('Op
 console.log(rest.get('name'));
 const time = 21;
 console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+rest.set([1,2], 'Test'); //[1,2] becomes key and it set to 'Test
+console.log(rest);
+console.log(rest.get([1,2])); // undefined not retrive 'Test' because [1,2] are not refering to the same place in the memory. to make that assign arr=[1,2]
+const arr = [1,2];
+rest.set(arr, 'Test');
+console.log(rest);
+console.log(rest.size);
+console.log(rest.get(arr));  //here we can retrieve 'Test'.
+
+const question = new Map([
+  ['Question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'Try Again!']
+]) 
+
+// Converting Object to Map
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours))
+
+console.log(hoursMap);
+
+for(const [key, value] of question){
+  if(typeof key === 'number') console.log(`Answer ${key} : ${value}`);
+}
+const obj = {
+  name: "Willi",
+  age: 18,
+  city: "Wayanad"
+}
+const map = new Map(Object.entries(obj));
+console.log(map);
+
+// Iteration
+for(const [key,value] of question){
+  // as objects is not iterable 
+  if(typeof key === 'number'){
+    console.log(`Answer ${key}:${value}`);
+  }
+}
+
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+indexOf();  //first occurence
+lastIndexOf();  //last occurence
+// case-sensitive and if not found it gives -1 .  space also considered in the index.
+// slice
+console.log(airline.slice(4)); //4 is the beginning character ,it is where the extraction get start.
+// we can also specify the end parameter
+console.log(airline.slice(4,7));
+// length of the extracted string can be find by -; end parameter- start parameter of slice method
+
+console.log(airline.slice(0, airline.indexOf(' '))); // slicing first word.
+console.log(airline.slice(lastIndexOf(' '))); //slicing the last word
+// if we didn't specify the end parameter then it will extract everything untill the end.
+console.log(airline.slice(-2)); // it will start counting from the end.
+
+const checkMiddleSeat = function(seat){
+// B and E are the middle seats
+const s = seat.slice(-1);
+if(s === 'B' || s === 'E')
+  console.log('Ypu got the middle seat');
+else console.log('You got lucky');
+}
+
+checkMiddleSeat('11B');
+checkMiddleSeat('3E');
+checkMiddleSeat('23C');
+// when  a method is used in the string then js converts the sring into an object and performs the operation and converts back to string
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+// Fix capitalization in name
+const pass = 'jOnas';
+const lower = pass.toLowerCase(); // everything to lowerCase
+const correct = lower[0].toUpperCase();
+console.log(correct + lower.slice(1));
+
+// Comparing emails
+const email = 'hello@Jonas.io';
+const loginEmail = ' Hello@Jonas.Io \n';
+
+const loweer = loginEmail.toLowerCase();
+const trimm = loweer.trim();
+console.log(trimm);
+// replacing
+const priceGB = '288,97E';
+// replace the element in the first occurence only
+const priceUs = priceGB.replace('E', '$').replace(',','.');
+// replace all the occurences => stringname.replaceAll();
+// To create a string write inside the slash instead of ' '. And add g to represent 'global'.
+const annou = 'ALl passengers come to boarding door 23. Boarding door 23!';
+console.log(annou.replace(/door/g, 'gate'));
+includes('a320');  //To find whether it involves.
+startsWith(); //Checks starting
+endsWith();
+
+// split
+console.log('a+very+nice+string'.split('+')); //(4) ["a", "very", "nice", "string"]
+const[firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
+// join
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join('-');
+console.log(newName); //Mr. -Jonas-SCHMEDTMANN
+
+
+const capitalizeName = function(name){
+  const names = name.split(' ');
+  const uppername = [];
+
+  for(const n of names){
+    uppername.push(n[0].toUpperCase() + n.slice(1));
+    // or
+    uppername.push(n.replace(n[0],n[0].toUpperCase()));
+  }
+  console.log(uppername.join(' '));
+}
+capitalizeName('jessica ann smith davis')
+capitalizeName('Jonas Schmedtmann')
+
+// Padding  =>> add some characters to the beginning of the string.
+const msg = 'Go to gate 23!'
+console.log(msg.padStart(25, "+").padEnd(35,'+'));
+console.log('Jonas'.padStart(25, '+'));
+
+const makskCreditCard = function(number){
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+}
+console.log(makskCreditCard(648376834));
+console.log(makskCreditCard(433029498737967539));
+
+// repeat
+// repeat same string multiple times
+const mesg2 = 'Bad weather... All Departures Delayed...';
+console.log(mesg2.repeat(5));

@@ -63,3 +63,4 @@ calcAge: function (){
 greet: () => console.log(`Hey ${this.firstName}`),
 };
 jonsas.greet();
+
