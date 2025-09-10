@@ -64,3 +64,42 @@ greet: () => console.log(`Hey ${this.firstName}`),
 };
 jonsas.greet();
 
+
+
+// Scope and the Scope chain
+// how variables are organized and accessed
+// Lexical Scoping =>> Scoping is controlled by placement of functions and blocks in the code;
+// Scope => space or environment in which a certain variable is declared
+// Scope of a variable : Region of a code where a certain variable can be accessed.
+// 1)Global Scope => declared outside of any function or block, accessible everywhere
+// 2)Function Scope(Local Scope) => accessible inside the function,not outside
+// 3)Block Scope => accessible only inside the block, only applies to let and const (functions are also block scoped)
+
+const myname = 'Jonas';   //Global scope  (first function also count as present in the global Scope)
+function first(){
+  // ////////// function scopee ///////////////////////
+  const age = 30;
+  if(age >= 30){
+    const decade = 3;
+    var millenial = true;
+  }
+  // ////////// 2nd function scope /////////////////////////
+  function second(){
+    const job = 'teacher';                                                  //Nested Scope
+    console.log(`${myName} is a ${age} -old ${job}`);                 //This scope has access to variables from all outer scopes  [This process is called as VARIABLE LOOKUP]
+    ////////////////////////////// till here ///////////
+  }
+  second();
+  ////////////////////// till here ////////////////////
+}
+first();
+
+// let and const are function scoped
+
+function calcAge(birthYear){
+  const age = 2037 - birthYear;
+  console.log(firstName);
+  return age;
+}
+const firstName = 'Jonas';
+calcAge(1991);

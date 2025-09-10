@@ -1,31 +1,22 @@
-const lufthansa = {
-  airline: 'Lufthansa',
-  iataCode: 'LH',
-  bookings: [],
-  // book: function(){
+// // CLOSURES
+// // Inner function has access to variables from an outer function even after the outer function has finished execution(or the outer function is returned)
+// function outerFunction(){
+//   let outerVariable = 'I am from outer scope';
+//   function innerFunction(){
+//     console.log(outerVariable);
+//   }
+//   return innerFunction;
+// }
+// const myCLosure = outerFunction();
+// myCLosure();
+// // Even outerFunction() has finished execution, innerFunction() still has access to outerVariable.
+// function treasureBox(){
+//   let secretNumber = 7;
+//   function helperRobot(){
+//     console.log('The secret number is:'+ secretNumber);
+//   }
+//   return helperRobot
+// }
+// const myRobot = treasureBox(); 
+// myRobot();
 
-  // }
-  book(flightNum, name){
-    console.log(
-      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
-    );
-    this.bookings.push({flight: `${this.iataCode}${flightNum}`, name})
-  },
-};
-// With Event Listeners
-lufthansa.planes = 300;
-lufthansa.buyPlane = function () {
-  console.log(this);
-
-  this.planes++;
-  console.log(this.planes);
-};
-// lufthansa.buyPlane();
-
-// document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane);
-
-// document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane);//addEventListener is the Higher Order Function and Lufthansa.buyplane is the callback function.
-// while clicking on it we get NaN because 'this' is the button element 
-// In event Handler function the 'this' keyword is always points to the element on which that handler is attached to.
-// we use bind instead of bind because we don't want to call the method.
-document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa));

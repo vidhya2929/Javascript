@@ -227,5 +227,54 @@ lufthansa.buyPlane = function(){
   console.log(this);
   this.planes++;
   console.log(this.planes);
+  // lufthansa.buyPlane;
 };
 document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane);
+
+// 
+// const addTax = (rate, value) => value + value * rate;
+// console.log(addTax(0.1, 200));
+
+// const addVAT = addTax.bind(null, 0.23);
+
+// // addVAT = value => value + value * 0.23;
+// console.log(addVAT(100));
+// console.log(addVAT(23));
+
+
+const addTax = function(rate){
+  return function(value){
+    return value + value * rate;
+  }
+}
+const rateTax = addTax(0.23);
+console.log(rateTax(100));
+console.log(rateTax(23));
+
+// CHALLENGE 
+const poll = {
+  question: 'What is your favourite programming language?',
+  options: ['0: JavaScript', '1:Python', '2:Rust','3: C++'],
+  answers: new Array(4).fill(0),//generates [0,0,0,0];
+
+registerNewAnswer(){
+const answer = Number(prompt(`${this.question}\n${this.options.join('\n')}\n(Write option number)`));
+
+// here join method is used to convert the array into string.
+console.log(answer);
+},
+};
+poll.registerNewAnswer();
+
+// Immediately Invoked Dunction Expressions(IIFE)
+const runOnce = function (){
+  console.log('This will never run again');
+};
+runOnce();
+
+// IIFE (1 way)
+(function(){                                 // Enclosed in a parenthesis to show that it is an expression.
+  console.log('This will run only once');
+})();
+// (second way)
+(() => console.log('This will never run again'))();
