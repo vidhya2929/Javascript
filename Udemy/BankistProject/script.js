@@ -65,7 +65,7 @@ const displayMovements = function(movements){
     const html = `
     <div class="movements__row">
           <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-          <div class="movements__value">${mov}</div>
+          <div class="movements__value">${mov}🪙</div>
         </div>
     `;
 
@@ -84,22 +84,63 @@ displayMovements(account1.movements);
 
 // textContent returns the texts itself while innerHTML returns everything, including the HTML.
 
-// CHALLENGE CHECK PUPPY
 
-const checkDogs =  function(dogsJulia, dogsKate){
-  const dogsJuliaCorrected = dogsJulia.slice(); // shallow copy creation 
-  dogsJuliaCorrected.splice(0,1);  //(startIndex(0) deleteCount(1)
-  dogsJuliaCorrected.splice(-2);  //since no second arg is given, so removes everyhting from index -2 to the end.
-  const dogs = dogsJuliaCorrected.concat(dogsKate);//also done by spread operator
-  console.log(dogs);
-  dogs.forEach(function(dog, i){
-    if(dog >= 3){
-      console.log(`Dog number ${i+1}  is an adult, and is ${dog} years old`);
-    }
-    else{
-      console.log(`Dog number ${i+1}  is still a puppy`);
-    }
-  })
+const calcDisplayBalance = function(movements){
+  const balance = movements.reduce((acc,curr) => acc += curr, 0);
+  //above
+  labelBalance.textContent = `${balance}🪙`;
+};
+calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = function(movements) {
+  const incomes = movements
+  .filter(mov => mov > 0)
+  .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}🪙`;
+
+
+  const outgoings = movements
+  .filter(mov => mov < 0)
+  .reduce((acc, mov)=> acc+ mov, 0);
+  labelSumOut.textContent = `${Math.abs(outgoings)}🪙`;
+
+
+// for each of the deposits we receive 1.2 % interest
+const interest = movements
+.filter(mov => mov > 0)
+.map(deposit => deposit * 1.2/100)
+// bank only pays interest if that interest is at least one Euro
+.filter((int,i,arr)=> {
+  console.log(arr);
+  return int >= 1;
+})
+.reduce((acc, int) => acc + int,0);
+labelSumInterest.textContent = `${interest}🪙`;
+};
+calcDisplaySummary(account1.movements);
+
+
+
+
+
+
+//# Username for each accounts
+const user = 'Steven Thomas Williams';  //here username will be stw
+// const username = user.toLowerCase().split(' ').map(function(value){
+//   return value[0];
+// }).join('') //toLowerCase() returns a string , split() works on all the string, split() converts the string into an array, so we can perform map function which works on an array. join an empty string to get stw.
+const createUsername = function (accs) {
+  accs.forEach(function(acc){
+    acc.username = acc.owner
+    .toLowerCase()
+    .split(' ')
+    .map(value => /*actually the return is happening here*/value[0])
+    .join('');
+});
 }
-// checkDogs([3,5,2,12,7],[4,1,15,8,3]);
-checkDogs([9,16,6,8,3],[10,5,6,1,4]);
+// const username = user
+
+// return username;
+
+createUsername(accounts);
+// console.log(username);

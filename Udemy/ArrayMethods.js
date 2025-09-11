@@ -122,18 +122,170 @@ currenciesUnique.forEach(function(value,_,map){    //   '_' underscore means a t
 
 /////////////////////////////  MAP()  ///////////////////////////////////////////////////////////////
 const eurToUsd = 1.1;
-
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];   //Above declared so commented
-const movementsUSD = movements.map(function(mov){
+const movementsUSD = movements.map(function(mov) {
   return mov * eurToUsd;
 });
+// Arrow Function
+// const movementsUSD = movements.map(mov => 
+//    mov * eurToUsd
+// );
+
+
 console.log(movements);
 console.log(movementsUSD);
 
-// FOR.....OF
 const movementsUSDfor = [];
-for(const mov of movements){
-  movementsUSDfor.push(mov * eurToUsd);
-}
+for(const mov of movements) movementsUSDfor.push(mov * eurToUsd);
 console.log(movementsUSDfor);
-// 
+
+// map() also have access to 3 parameters => 
+const movementsDescriptions=movements.map((mov,i,arr) => {
+  `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}` //3rd parameter is not used in this (arr)
+ 
+ 
+  // if(mov > 0) {
+  //   return `Movement ${i +1}: You deposited ${mov}`;
+  // }
+  // else 
+  // {
+  //   return `Movement ${i + 1}: You withdrew ${Math.abs(mov)}`;
+  // }
+});
+console.log(movementsDescriptions);
+
+// FILTER method
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];       //  Above uncommented 
+const deposits = movements.filter(function(mov){
+  return mov > 0;
+})
+console.log(deposits);
+
+const depositsFor = [];
+for(const mov of movements) if(mov > 0) depositsFor.push(mov);
+console.log(depositsFor);
+// Advantage for not using regular'for loop' is usage of chaining different methods.
+
+const withdrawals = [];
+for(const mov of movements) if (mov < 0) withdrawals.push(mov);
+console.log(withdrawals);
+
+const withdrawalfil = movements.filter(mov => mov < 0);
+console.log(withdrawalfil);
+
+const withfilnotArr = movements.filter(function(mov){
+  return  mov < 0;
+})
+console.log(withfilnotArr);
+
+// REDUCE() METHOD => all the elements of an array into a single value
+// finding globalbalance (sums up)
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]; 
+// const balance = movements.reduce(function(acc,cur,i,arr){
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);  //0 is the second parameter , which is the initialize value,(value of the accumulator in the first loop iteration)
+// console.log(balance);
+
+// More Simpler
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]; 
+const balance = movements.reduce((acc,cur) => acc + cur, 0);  //0 is the second parameter , which is the initialize value,(value of the accumulator in the first loop iteration)
+console.log(balance);
+
+// for loop
+// let balance2 = 0;
+// for(const mov of movements) balance2 +=mov;
+// console.log(balance2);
+
+// Maximum value of movements array
+
+const max = movements.reduce((acc, mov) => {
+  if(acc > mov){
+    return acc;
+  }
+  else {
+    return mov;
+  }
+}, movements[0]);
+console.log(max);
+
+// Chaining Methods
+// We can only chain a method after another one, if the first one returns an array. 
+
+// const eurToUsd = 1.1;  Above
+console.log(movements);
+
+// PIPELINE
+const totalDepositUSD = movements
+.filter(mov => mov > 0)
+.map((mov, i, arr)=> {          // we can inspect the current array at any stage of the pipline using the 3rd parameter of the callback function.
+  console.log(arr);
+  return mov * eurToUsd;
+})
+// .map(mov => mov * eurToUsd)
+.reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositUSD);
+
+
+// CHALLENGE - 1  (CHECK PUPPY)
+
+const checkDogs =  function(dogsJulia, dogsKate){
+  const dogsJuliaCorrected = dogsJulia.slice(); // shallow copy creation 
+  dogsJuliaCorrected.splice(0,1);  //(startIndex(0) deleteCount(1)
+  dogsJuliaCorrected.splice(-2);  //since no second arg is given, so removes everyhting from index -2 to the end.
+  const dogs = dogsJuliaCorrected.concat(dogsKate);//also done by spread operator
+  console.log(dogs);
+  dogs.forEach(function(dog, i){
+    if(dog >= 3){
+      console.log(`Dog number ${i+1}  is an adult, and is ${dog} years old`);
+    }
+    else{
+      console.log(`Dog number ${i+1}  is still a puppy`);
+    }
+  })
+}
+// checkDogs([3,5,2,12,7],[4,1,15,8,3]);
+checkDogs([9,16,6,8,3],[10,5,6,1,4]);
+
+// CHALLENGE - 2
+const calcAverageHumanAge = function(ages){
+  const humanAges = ages.map(age => age <= 2 ? 2 * age : 16 + age * 4);
+  console.log(humanAges);
+  const adults = humanAges.filter(age => age >= 18);
+  console.log(adults);
+
+  const average = adults.reduce((acc, age) => acc +age, 0) / adults.length;
+  return average;
+
+  // const average = adults.reduce(
+  //   (acc,age,i,arr) => acc + age / arr.length, 0
+  // );
+
+}
+const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+const avg2 = calcAverageHumanAge([16,6,10,5,6,1,4]);
+console.log(avg1);
+console.log(avg2);
+
+// CHALLENGE - 3
+// Above Using arrow function and chaining
+
+const calcAverageHumanAge2 = ages => ages.map(age =>(age <=2 ? 2 * age : 16 + age * 4)).filter(age => age >= 18).reduce(
+     (acc,age,i,arr) => acc + age / arr.length, 0 ); // here length from the 3rd parameter (arr)
+    //  .reduce((acc, age) => acc +age, 0) / adults.length; // not possible here because adult.length is not exist anywhere.
+
+const avg21 = calcAverageHumanAge2([5, 2, 4, 1, 15, 8, 3]);
+const avg22 = calcAverageHumanAge2([16,6,10,5,6,1,4]);
+console.log(avg21);
+console.log(avg22);
+
+// FIND method
+// retrieving one element of an array based on a condition.
+// loops over the array
+// Unlike filter method it doesn't give an new array instead it will only returns the first element in the array that satisfies  the condition. 
+ const firstWithdrawal = movements.find(mov => mov < 0) //accepts a callback function that returns a boolean
+ console.log(movements);
+ console.log(firstWithdrawal);
+
+//  Diff b/w Filter() and Find() 
+// 1) Filter returns a new array, Find only returns the element itself
+// 2) Filter returns all the elements that match the condition , Find only returns the first condition.
