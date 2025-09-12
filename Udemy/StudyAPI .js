@@ -23,3 +23,8 @@ fetch('https://jsonplaceholder.typicode.com/posts')
     postList.appendChild(li);
   });
 })
+
+
+
+
+// 

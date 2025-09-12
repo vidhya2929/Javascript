@@ -289,3 +289,178 @@ console.log(avg22);
 //  Diff b/w Filter() and Find() 
 // 1) Filter returns a new array, Find only returns the element itself
 // 2) Filter returns all the elements that match the condition , Find only returns the first condition.
+
+// FindIndex() 
+// returns the index of the found element and not the element itself
+
+// some() and every()
+// EQUALITY
+ console.log(movements.includes(-130));
+// CONDITION
+console.log(movements.some(mov => mov === -130));
+const anyDeposits = movements.some(mov => mov > 0)
+console.log(anyDeposits);   //true
+// Every()
+// returns true if all of the elements in the array satisfy the condition
+console.log(movements.every(mov => mov >0));  //false
+console.log(account4.movements.every(mov => mov > 0)); //true
+
+// funtion sepration and pass the function as a callback. [Seperate Callback]
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
+
+//FLAT & FLATMAP
+const flarr = [[1,2,3],[4,5,6],7,8];
+console.log(flarr.flat());
+
+const arrDeep = [[[1,2],3],[4,[5,6]],7,8];
+console.log(arrDeep.flat()); // It only flatten 1 level 
+// we can specify the depth of flattening
+console.log(arrDeep.flat(2));
+
+// flatMap
+// combines a map and a flat into one method
+const overallBalance2 = accounts
+.flatMap(acc =>acc.movements)
+.reduce((acc,mov)=> acc + mov,0);
+console.log(overallBalance2);
+// flatMap only go one level deep, we cannot change it.
+
+// CHALLENGE
+// 1. Store the the average weight of a "Husky" in a variable "huskyWeight"
+// 2. Find the name of the only breed that likes both "running" and "fetch" ("dogBothActivities" variable)
+// 3. Create an array "allActivities" of all the activities of all the dog breeds
+// 4. Create an array "uniqueActivities" that contains only the unique activities (no activity repetitions). HINT: Use a technique with a special data structure that we studied a few sections ago.
+// 5. Many dog breeds like to swim. What other activities do these dogs like? Store all the OTHER activities these breeds like to do, in a unique array called "swimmingAdjacent".
+// 6. Do all the breeds have an average weight of 10kg or more? Log to the console whether "true" or "false".
+// 7. Are there any breeds that are "active"? "Active" means that the dog has 3 or more activities. Log to the console whether "true" or "false".
+
+// BONUS: What's the average weight of the heaviest breed that likes to fetch? HINT: Use the "Math.max" method along with the ... operator.
+
+const breeds = [
+  {
+    breed: 'German Shepherd',
+    averageWeight: 32,
+    activities: ['fetch', 'swimming'],
+  },
+  {
+    breed: 'Dalmatian',
+    averageWeight: 24,
+    activities: ['running', 'fetch', 'agility'],
+  },
+  {
+    breed: 'Labrador',
+    averageWeight: 28,
+    activities: ['swimming', 'fetch'],
+  },
+  {
+    breed: 'Beagle',
+    averageWeight: 12,
+    activities: ['digging', 'fetch'],
+  },
+  {
+    breed: 'Husky',
+    averageWeight: 26,
+    activities: ['running', 'agility', 'swimming'],
+  },
+  {
+    breed: 'Bulldog',
+    averageWeight: 36,
+    activities: ['sleeping'],
+  },
+  {
+    breed: 'Poodle',
+    averageWeight: 18,
+    activities: ['agility', 'fetch'],
+  },
+];
+// 1)
+const huskyWeight = breeds.find(breed => breed.breed === "Husky").averageWeight;
+console.log(huskyWeight);
+
+// 2)
+const dogBothActivities = breeds.find(breed => breed.activities.includes('fetch') && breed.activities.includes('running')).breed;
+console.log(dogBothActivities);
+
+// 3)
+// const allActivities = breeds.map(breed => breed.activities);
+// const allactivities2 = new Set(allActivities.flat());
+// console.log(allactivities2);
+const allActivities = breeds.flatMap(breed => breed.activities);
+console.log(allActivities);
+
+// 4)
+const uniqueActivities = [...new Set(allActivities)]; //Now it becomes an array with unique names
+console.log(uniqueActivities); //to convert this set into an array use spread operator
+
+// 5)
+const swimmingAdjacent = [...new Set(breeds
+.filter(breed => breed.activities
+.includes('swimming'))
+.flatMap(breed => breed.activities)
+.filter(activity => activity !== 'swimming')
+)];
+console.log(swimmingAdjacent);
+
+// 6)
+console.log(breeds.every(breed => breed.averageWeight > 10));
+// 7)
+console.log(breeds.some(breed => breed.activities.length >=3));
+// Bonus
+const fetchWeight = breeds.filter(breed => breed.activities.includes('fetch'))
+.map(breed => breed.averageWeight);
+const heaviestFetchBreed = Math.max(...fetchWeight); // here spread operator is used because Math.max does not work on Array.(works for multiple values)
+
+console.log(fetchWeight);
+console.log(heaviestFetchBreed);
+
+
+// Sort() Method
+// Strings
+const owners = ['Jonas', 'Zach','Adam','Martha'];
+console.log(owners.sort());
+ // sort =>> mutates the original array
+
+//  Numbers
+console.log(movements);
+// console.log(movements.sort());
+// Sort() does the sorting based on strings i.e,converts everything to strings and sort itself
+// Sorting in number can be fixed by passing in a compare callback function into sort().
+
+// return < 0, A, B  KEEP ORDER
+// return >0, B,A    SWITCH ORDER
+// Ascending
+movements.sort((a,b) => {
+  if(a > b)
+    return 1;
+  if(b > a)
+    return -1;           // this callbacks until the base case is reached.
+});
+console.log(movements);
+
+// OR
+movements.sort((a,b)=> a-b);
+// Descending
+movements.sort((a,b) => {
+  if(a >b)
+    return -1
+  if(b > a)
+    return 1
+}
+)
+movements.sort((a,b)=> b-a);
+// with 2 parameters 1)current value, 2) next value
+// Working -; suppose a = 450 and b = -400 , if we return 0 , then the value 'a' will be sorted before value 'b'. and vice versa
+
+// Array Grouping
+// Allows to group values in an array based on a condition.
+console.log(movements); 
+const groupedMovements = Object.groupBy(movements, movement => movement > 0 ? 'deposits': 'withdrawals') ; // 2 arguments -; 1) array we wnat to group , 2) callback function that determines how exactly we want to group the values in the array.
+console.log(groupedMovements);
+
+// More Ways of Creating and Filling of Arrays
+
+console.log([1,2,3,4,5,6,7]);
+console.log(new Array(1,2,3,4,5,6,7));

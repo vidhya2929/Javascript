@@ -57,9 +57,13 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function(movements){
+const displayMovements = function(movements, sort = false){
   containerMovements.innerHTML= '';
-  movements.forEach(function(mov, i){
+
+const movs = sort ? movements.slice().sort((a,b) => a - b) : movements // here slice method is used to make a copy of the array.
+
+
+  movs.forEach(function(mov, i){
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -77,7 +81,7 @@ const displayMovements = function(movements){
     // afterend => after the element itself
   });
 };
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
 
 // console.log(containerMovements.innerHTML);
 // TO add this to the container(to movements element) of the page we use  'insertAdjacentHTML
@@ -85,30 +89,31 @@ displayMovements(account1.movements);
 // textContent returns the texts itself while innerHTML returns everything, including the HTML.
 
 
-const calcDisplayBalance = function(movements){
-  const balance = movements.reduce((acc,curr) => acc += curr, 0);
+const calcDisplayBalance = function(acc){
+  const balance = acc.movements.reduce((acc,curr) => acc += curr, 0);
+  acc.balance = balance;
   //above
   labelBalance.textContent = `${balance}🪙`;
 };
-calcDisplayBalance(account1.movements);
+// calcDisplayBalance(account1.movements);
 
-const calcDisplaySummary = function(movements) {
-  const incomes = movements
+const calcDisplaySummary = function(acc) {
+  const incomes = acc.movements
   .filter(mov => mov > 0)
   .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}🪙`;
 
 
-  const outgoings = movements
+  const outgoings = acc.movements
   .filter(mov => mov < 0)
   .reduce((acc, mov)=> acc+ mov, 0);
   labelSumOut.textContent = `${Math.abs(outgoings)}🪙`;
 
 
 // for each of the deposits we receive 1.2 % interest
-const interest = movements
+const interest = acc.movements
 .filter(mov => mov > 0)
-.map(deposit => deposit * 1.2/100)
+.map(deposit => (deposit * acc.interestRate) /100)
 // bank only pays interest if that interest is at least one Euro
 .filter((int,i,arr)=> {
   console.log(arr);
@@ -117,11 +122,7 @@ const interest = movements
 .reduce((acc, int) => acc + int,0);
 labelSumInterest.textContent = `${interest}🪙`;
 };
-calcDisplaySummary(account1.movements);
-
-
-
-
+// calcDisplaySummary(account1.movements);
 
 
 //# Username for each accounts
@@ -144,3 +145,131 @@ const createUsername = function (accs) {
 
 createUsername(accounts);
 // console.log(username);
+
+const updateUI = function(acc){
+  // Display movements
+    displayMovements(acc.movements);
+    // Display balance 
+    calcDisplayBalance(acc);
+    // Display Summary
+    calcDisplaySummary(acc);
+}
+
+// Event Handler
+let currentAccount;
+
+
+
+btnLogin.addEventListener('click', function(e){
+  // prevent from from submitting   (reason => this is a button in the form element. In HTML when we click submit the default behavior is page reload)
+  e.preventDefault();    
+  // console.log('LOGIN');
+
+  currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);          //Find method will return undefines if no account could be found for this username.
+  console.log(currentAccount);
+
+  if(currentAccount?.pin === Number(inputLoginPin.value)){
+    console.log("Loggined Successfully")  // ?.(Optional Chaining) if it exists 
+
+    // Display UI and message
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`
+    containerApp.style.opacity = 1;
+    
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = ''; //because assignment operator works from right to left
+    inputLoginPin.blur();  // to make the field loses it focus
+
+    // Update UI
+    updateUI(currentAccount)
+  }
+});
+btnTransfer.addEventListener('click', function(e){
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(acc =>acc.username === inputTransferTo.value);
+  // console.log(amount, receiverAcc);
+  inputTransferAmount.value = inputTransferTo.value = '';
+
+  if(amount > 0 && receiverAcc && currentAccount.balance >= amount && receiverAcc?.username !== currentAccount.username)
+  {
+    // DOing the transfer
+    // console.log('Transfer valid');
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+    // Update UI
+    updateUI(currentAccount);
+  }
+});
+// some()
+// only grant loans if there is atleast one deposit with atleast 10 % of the requested loan amount.
+btnLoan.addEventListener('click', function(e){
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if(amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)){
+    // Add movement
+    currentAccount.movements.push(amount);
+
+  // Update UI
+  updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});
+
+// findIndex() => closing an account
+btnClose.addEventListener('click', function(e){
+  e.preventDefault()
+  inputCloseUsername.value = inputTransferTo.value = '';
+  if(inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === currentAccount.pin)
+  {
+    const index = accounts.findIndex(acc => acc.username === currentAccount.username)
+    // Delete Account
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
+});
+
+let sorted = false;
+btnSort.addEventListener('click', function(e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements,!sorted);
+  sorted = !sorted;
+});
+
+
+
+
+
+// In form clicking one field is same as clicking enter
+
+
+
+// The New finndLast and finceLastIndex Methods
+// last withdrawal
+console.log(movements);
+const lastWithdrawal = movements.findLast(mov => mov < 0);
+console.log(lastWithdrawal);
+
+// flat
+const accountMovements = accounts.map(acc => acc.movements);
+console.log(accountMovements);
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+const overallBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+
+// Chaining of methods
+const balanceOverall = accounts.map(acc=> acc.movements).flat().reduce((acc,mov)=> acc+ mov,0);
+console.log(balanceOverall);
+
+
+
+
+// Find
+const account = accounts.find(acc => acc.owner === 'Jessica Davis')
+console.log(account);
+
