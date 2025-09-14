@@ -464,3 +464,26 @@ console.log(groupedMovements);
 
 console.log([1,2,3,4,5,6,7]);
 console.log(new Array(1,2,3,4,5,6,7));
+
+// Non -Destructive(non - mutating) Alternatives
+//  TOREVERSED() , TOSORTED() , TOSPLICEDWITH()
+const reversedMovements = movements.reverse();
+console.log(reversedMovements);
+console.log(movements);
+//  here the original array is get mutated. 
+// to preserve the original array 
+// Use toReversed()
+const reversednotMutated = movements.toReversed();
+console.log(reversednotMutated);
+console.log(movements);
+
+// movements[1]  = 200;
+// to update a value without mutating the original array
+const mewMovemenets = movements.with(1,2000);
+console.log(mewMovemenets);
+
+// Array Methods Practice
+const bankDepositSum = accounts.flatMap(acc => acc.movements).filter(mov => mov>0).reduce((sum,curr) => sum+curr,0);
+console.log(bankDepositSum);
+
+const numDeposits1000 = account.flatMap(acc => acc.movemets).filter(mov => mov > 1000).length
