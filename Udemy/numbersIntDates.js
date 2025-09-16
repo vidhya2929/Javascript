@@ -114,9 +114,9 @@ console.log(Number(2300000));  // we get that numbr itself
 console.log(Number230_0000); //NAn
 
 // wORKING WITH BigInt
-// Among 64 bits 53 bits are only used to store the number, the rest are string the decimal pont an the sign. 
+// Among 64 bits 53 bits are only used to store the number, the rest are string the decimal point and the sign. 
 
-console.log(2 ** 53 - 1);  // The biggest number avaScript can easily represent.  // here 2 because we are working with base 2.
+console.log(2 ** 53 - 1);  // The biggest number javaScript can easily represent.  // here 2 because we are working with base 2.
 
 console.log( 2 ** 53 + 6);   //Unsafe Numbers
 // BigInt => Big Integer used to store big int,data
@@ -124,14 +124,54 @@ console.log( 2 ** 53 + 6);   //Unsafe Numbers
 console.log(1236542687425386538465288342384726666666666n)  //hre the 'n' converts a regular number into BigInt number
 // Creating BigInt using  BigInt function
 console.log(BigInt(1236542687425386538465288342384726666666666));
-
+console.log(Math.sqrt())
 // Operations
 console.log(10000n + 10000n); //20000n
 // mix BigInt with regular number
 const huge =  2347946234556358276374343n;
 const num = 23;
 console.log(huge * BigInt(num));
-
-console.log(20n > 15);console.log(20n === 20)
+// 2 exceptions, comparison operator  and plus
+console.log(20n > 15);
+console.log(20n === 20)   //no type coercion
 console.log(typeof 20n);
-console.log(20n == '20');
+console.log(20n == '20');  //true because JS do type coercion
+// String Concatenations
+
+console.log(huge + 'is really Big');
+// Math operations are not gonna work
+// Divisions
+console.log(11n/ 3n);    //erturn the closest bigInt  3n(cut off the decimal part)
+console.log(10 / 3);  //3.333333333333335
+
+// CREATING DATES 
+
+// 4 ways to create dates in JS
+// 1) new Date() constructor
+const now = new Date();
+console.log(now);
+
+// 2) Parse the date from a date string
+console.log(new Date('2025-09-16T03:20:41.179Z')); //unreliable
+
+
+console.log(new Date('December 24, 2015'));
+
+console.log(new Date(2037, 10, 19, 15, 23, 5));
+
+console.log(new Date(account1.movementsDates[0]));
+// it autocorrects Nov 31st to dec 1
+
+console.log(new Date(0));  //If we pass a parameter it will be after Uni time, here 0 millisecond after Unix time.
+console.log(new Date(3 * 24 * 60 *  60 * 1000));
+// Workig with dates
+
+
+console.log(future.getFullYear());  //year
+console.log(future.getMonth());   // 0 based
+console.log(future.getDate());   // day
+console.log(future.getDay());    // day of the week
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString());
