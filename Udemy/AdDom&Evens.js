@@ -133,3 +133,48 @@ section1.scrollIntoView({behavior: "smooth"})
 // After reaching the target the event travels all the way up to the document again in the so-called bubbling phase.(Only through parents not through any sibling elements.)
 // if we attach the same event for th section element as well, the section element will also get the wxact same alert widow for the section element as well.
 // Events can set up event listeners in a way
+// Events propagate which is what apturing and bubbling.its events propagate from one place to another
+
+// LIFECYCLE DOM EVENTS
+// lifeCycle => the momnt the page is first accessed, until the user leves it.
+// DOM Content Loaded
+// fired by the document ASA the HTML is completely parsed(HTML has been downloaded and converted to the DOM tree),also all scripts must be downloaded and executed before the DOM content loaded event can happen.
+
+document.addEventListener('DOMContentLoaded', function(e){ //DOMContentLoaded doesn't wait for images and other external resources to load. Just html, and Js needed to be loaded
+  console.log('HTML PArsed and DOM tree built!', e);
+});
+
+// When we have the script tag at the end of the html , we don't need to listen for the DOM content loaded
+
+// load event 
+// fired by the window after all loaded(when the complete page has finished loading)
+
+window.addEventListener('load', function(e){
+  console.log('Page fully loaded',e);
+});
+// before unload event
+// triggered before a user is about to leave the page
+window.addEventListener('beforeunload',function(e){
+  e.preventDefault();
+  e.returnValue = '';
+})
+
+// Loading a Js scriptin HTML
+// async or defer attribute and it influence the way in which the JS file is fetched
+
+// script tag can be witten in the head or in the body
+// Regular => HTML parsing            ==>  fetch Script ==> Execute
+
+// ASYNC => HTML parsing and Fetch script  ==> Execute  ==> Finish parsing HTML
+
+// DEFER  => parsing HTML and Fetch script  ==>> 
+// here the HTML parsing is never interrupted,script is only executed at the end
+
+// End Of Body
+// Scripts are fetched and executed after the HTML is completely parsed
+
+// ASYNC in Head 
+// Scripts are fetched asynchronously and executed immediately
+// DEFER
+// Scripts are fetched asynchronously and executed after the HTML is completely parsed
+// Use when order of execution matters
