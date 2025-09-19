@@ -277,10 +277,19 @@ Person.prototype.calcAge = function () {
 
 
 const student = function(firstname, birthYear, course){
-  this.firstname = firstname;
-  this.birthYear = birthYear;
+  // this.firstname = firstname;
+  // this.birthYear = birthYear;
+  // Instead Use
+  Person.call(this,firstname,birthYear)   // In a regular function the 'this keyword is set to undefined
+
   this.course = course;
+};
+student.prototype = Object.create(Person.prototype)
+
+student.prototype.introduce = function() {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
 }
 const mike = new student('Mike',2005,'Computer Science')
-console.log(mike);
+// console.log(mike);
+mike.introduce();
 // 
